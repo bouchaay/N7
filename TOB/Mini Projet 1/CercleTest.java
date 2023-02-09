@@ -83,13 +83,13 @@ public class CercleTest {
 		// Initialiser les variables de test.
 
 		Point centreAttendu = new Point(5, 0);
-        double rayonAttendu = 5;
-        Color couleurAttendu = couleur;
+        	double rayonAttendu = 5;
+        	Color couleurAttendu = couleur;
         
 		// Tests de la validité du 3ème constructeur de la classe Cercle
 		assertEquals(centreAttendu.getX(), C3.getCentre().getX(), EPSILON);
 		assertEquals(centreAttendu.getY(), C3.getCentre().getY(), EPSILON);
-        assertEquals(rayonAttendu, C3.getRayon(), EPSILON);
-        assertEquals(couleurAttendu, C3.getCouleur());
+        	assertEquals(rayonAttendu, C3.getRayon(), EPSILON);
+        	assertEquals(couleurAttendu, C3.getCouleur());
     }
 }
