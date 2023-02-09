@@ -1,6 +1,6 @@
-Nom       : 
-Prénom    : 
-Groupe TP : 
+Nom       : Bouchama
+Prénom    : Ayoub
+Groupe TP : F
 
 
 Consigne :  Ci-dessous, répondre à la place des « ... ».
@@ -8,7 +8,7 @@ Consigne :  Ci-dessous, répondre à la place des « ... ».
 
 =====[ Temps ]==================================================================
 
-Temps passé sur la V1 : ... heures ... minutes
+Temps passé sur la V1 : 4 heures 0 minutes (non précise)
 Temps passé sur la V2 : ... heures ... minutes
 Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
 Bien sûr, les temps renseignés ici ne sont pas pris en compte dans la notation.
@@ -25,7 +25,18 @@ Indiquer la relation UML entre Cercle et le Point centre du cercle.
 Comment est réalisée l'exigence E18 ?
 -------------------------------------
 
-...
+réalisation de l'exigence E18 :
+
+- Modifier le niveau de visibilité des attributs de la classe cercle de 'package-protected' (leur niveau de visibilité par défaut)
+au niveau de visibilité 'private' pour qu'ils ne soient accessibles qu'à l'intérieur de la classe dans laquelle ils sont situés.
+( => private centre; ✔️ )
+
+- Implementer la méthode getCentre qui retourner juste une copie du centre du cercle et non le centre originale du cercle (ce que retourne getCentre ne pointe pas
+sur le meme centre du cercle).
+( => return this.centre; ❌ || return new Point(centre.getX(), centre.getY()); ✔️ )
+
+- Le premier constructeur de la classe Cercle construit le centre du cercle à partir d'une copie du centre entrant en argument.
+( => this.centre = centre; ❌ || this.centre = new Point(centre.getX(), centre.getY()); ✔️ )
 
 
 
