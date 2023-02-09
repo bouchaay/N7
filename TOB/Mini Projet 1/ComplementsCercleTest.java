@@ -53,7 +53,8 @@ public class ComplementsCercleTest {
         public void testCercleConstructeur() {
          
                 // Test pour une valeur positive valide
-                assertEquals(centre, C1.getCentre());
+                assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
+                assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
                 assertEquals(rayon, C1.getRayon(), EPSILON);
   
                 // Test pour une valeur négative
@@ -204,7 +205,8 @@ public class ComplementsCercleTest {
                 Point centreAttendu = new Point(2,2);
  
                 // Tester getCentre
-                assertEquals(centre, C1.getCentre());
+                assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
+                assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
                 
                 // Translater le centre puis tester getCentre
                 C1.translater(2, 2);
@@ -338,7 +340,8 @@ public class ComplementsCercleTest {
 
                 // Test pour des points valides
                 Cercle cercle = Cercle.creerCercle(p1, p2);
-                assertEquals(p1, cercle.getCentre());
+                assertEquals(p1.getX(), cercle.getCentre().getX(), EPSILON);
+                assertEquals(p1.getY(), cercle.getCentre().getY(), EPSILON);
                 assertEquals(p1.distance(p2), cercle.getRayon(), EPSILON);
 
                 // Test pour des points identiques
@@ -444,5 +447,16 @@ public class ComplementsCercleTest {
                 }
         }
         
-
+        // Tester si E18 est fonctionnelle
+        @Test
+        public void testE18() {
+        	assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
+        	assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
+        	C1.getCentre().translater(5, 5);
+        	assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
+        	assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
+        	centre.translater(5, 5);
+        	assertEquals(C1.getCentre().getX(), 0, EPSILON);
+        	assertEquals(C1.getCentre().getY(), 0, EPSILON);
+        }
 }
