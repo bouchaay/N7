@@ -27,7 +27,7 @@ class Cercle implements Mesurable2D {
     public Cercle(Point centre, double rayon) {
         assert centre != null : "le centre ne doit pas être nul";
         assert rayon > 0 : "le rayon doit être strictement positif";
-        this.centre = centre;
+        this.centre = new Point(centre.getX(), centre.getY());
         this.rayon = rayon;
         this.couleur = Color.BLUE;
     }
@@ -83,7 +83,7 @@ class Cercle implements Mesurable2D {
      * @return Centre du cercle
      */
     public Point getCentre() {
-        return this.centre;
+        return new Point(this.centre.getX(), this.centre.getY());
     }
 
     /**
@@ -96,7 +96,7 @@ class Cercle implements Mesurable2D {
     }
 
     /**
-     * Récuperer le diamétren du cercle
+     * Récuperer le diamétre du cercle
      * 
      * @return Diamètre dun cercle
      */
@@ -170,7 +170,7 @@ class Cercle implements Mesurable2D {
     /**
      * Afficher le cercle dans le terminal
      * 
-     * @return Affiche le cercle
+     * @return L'affichage du cercle
      */
     public String toString() {
     	return "C" + this.rayon + "@(" + this.centre.getX() + ", " + this.centre.getY() + ")";
