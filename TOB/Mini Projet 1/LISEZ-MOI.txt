@@ -19,7 +19,7 @@ Bien sûr, les temps renseignés ici ne sont pas pris en compte dans la notation
 Indiquer la relation UML entre Cercle et le Point centre du cercle.
 -------------------------------------------------------------------
 
-...
+En UML, la relation entre la classe Cercle et la classe Point peut être représentée par une association qui indique que la classe Cercle utilise la classe Point pour gérer les informations relatives au centre du cercle.
 
 
 Comment est réalisée l'exigence E18 ?
