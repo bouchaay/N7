@@ -42,20 +42,23 @@ public class ComplementsCercleTest {
                 C3               =       new Cercle(p1, p2, Color.RED);
 
         }
+        
+        /** Vérifier si deux points ont mêmes coordonnées.
+   	  	* @param p1 le premier point
+   	  	* @param p2 le deuxième point
+   	  	*/
+        static void memesCoordonnees(String message, Point p1, Point p2) {
+        		assertEquals(message + " (x) ", p1.getX(), p2.getX(), EPSILON);
+        		assertEquals(message + " (y) ", p1.getY(), p2.getY(), EPSILON);
+        }
 
-        /** Tester le premier constructeur de la classe cercle à partir du centre et du rayon
-         * 1er test     :       paramètre valide (centre et rayon)
-         * 2ème test    :       paramètre invalide (rayon = -1 < 0)
-         * 3ème test    :       paramètre invalide (rayon = 0 < 0)
-         * 4ème test    :       paramètre invalide (centre = null)
-         */
+        /** Tester le premier constructeur de la classe cercle à partir du centre et du rayon. */
         @Test
         public void testCercleConstructeur() {
          
                 // Test pour une valeur positive valide
-                assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
-                assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
-                assertEquals(rayon, C1.getRayon(), EPSILON);
+                memesCoordonnees("Constructeur E11 incorrecte", centre, C1.getCentre());
+                assertEquals("Constructeur E11 incorrecte", rayon, C1.getRayon(), EPSILON);
   
                 // Test pour une valeur négative
                 try {
@@ -85,20 +88,14 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester le deuxième constructeur de la classe cercle à partir de deux point diamètralement opposés
-         * 1er test     :       paramètre valide (p1 et p2)
-         * 2ème test    :       paramètre invalide (p1 = null)
-         * 3ème test    :       paramètre invalide (p2 = null)
-         * 4ème test    :       paramètre invalide (p1 = p2)
-         */
+        /** Tester le deuxième constructeur de la classe cercle à partir de deux point diamètralement opposés. */
         @Test
         public void testCercleConstructeur2Points() {
                
                 // Test pour des points valides
-                assertEquals(5, C2.getRayon(), EPSILON);
-                assertEquals(5, C2.getCentre().getX(), EPSILON);
-                assertEquals(0, C2.getCentre().getY(), EPSILON);
-                assertEquals(Color.BLUE, C2.getCouleur());
+        		memesCoordonnees("Constructeur E12 incorrecte", C2.getCentre(), new Point(5, 0));
+        		assertEquals("Constructeur E12 incorrecte", 5, C2.getRayon(), EPSILON);
+                assertEquals("Constructeur E12 incorrecte", Color.BLUE, C2.getCouleur());
                 
                 // Test pour p1 null
                 try {
@@ -126,21 +123,14 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester le troisième constructeur de la classe cercle à partir de deux point diamètralement opposés et sa couleur
-         * 1er test     :       paramètre valide (p1 et p2)
-         * 2ème test    :       paramètre invalide (p1 = null)
-         * 3ème test    :       paramètre invalide (p2 = null)
-         * 4ème test    :       paramètre invalide (p1 = p2)
-         * 5ème test    :       paramétre invalide (couleur = null)
-         */
+        /** Tester le troisième constructeur de la classe cercle à partir de deux point diamètralement opposés et sa couleur. */
         @Test
         public void testCercleConstructeur2PointsEtCouleur() {
 
                 // Test pour des points valides
-                assertEquals(5, C3.getRayon(), EPSILON);
-                assertEquals(5, C3.getCentre().getX(), EPSILON);
-                assertEquals(0, C3.getCentre().getY(), EPSILON);
-                assertEquals(Color.RED, C3.getCouleur());
+        		memesCoordonnees("Constructeur E13 incorrecte", C3.getCentre(), new Point(5, 0));
+        		assertEquals("Constructeur E13 incorrecte", 5, C3.getRayon(), EPSILON);
+                assertEquals("Constructeur E13 incorrecte", Color.RED, C3.getCouleur());
                 
                 // Test pour p1 null
                 try {
@@ -177,62 +167,44 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester la methode translater
-         * 1er test     :       Avec des translations positives (dx = 2, dy = 3)
-         * 2ème test    :       Avec des translations negatives (dx = -2, dy = -3)
-         */
+        /** Tester la methode translater. */
         @Test
         public void testTranslater() {
 
                 // Test translation valide
                 C1.translater(2, 3);
-                assertEquals(2, C1.getCentre().getX(), EPSILON);
-                assertEquals(3, C1.getCentre().getY(), EPSILON);
+                memesCoordonnees("Méthode translater() incorrecte", C1.getCentre(), new Point(2, 3));
             
                 // Test translation négative
                 C1.translater(-4, -6);
-                assertEquals(-2, C1.getCentre().getX(), EPSILON);
-                assertEquals(-3, C1.getCentre().getY(), EPSILON);
+                memesCoordonnees("Méthode translater() incorrecte", C1.getCentre(), new Point(-2, -3));
         }
 
-        /** Tester la methode getCentre
-         * 1er test     :       Recupérer le centre de C1
-         * 2ème test    :       Translater le centre du cercle C1 puis recupérer le nouveau centre
-         */
+        /** Tester la methode getCentre. */
         @Test
         public void testGetCentre() {
-
-                Point centreAttendu = new Point(2,2);
  
                 // Tester getCentre
-                assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
-                assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
+                memesCoordonnees("Méthode getCentre() incorrecte", C1.getCentre(), centre);
                 
                 // Translater le centre puis tester getCentre
                 C1.translater(2, 2);
-                assertEquals(centreAttendu.getX(), C1.getCentre().getX(), EPSILON);
-                assertEquals(centreAttendu.getY(), C1.getCentre().getY(), EPSILON);
+                memesCoordonnees("Méthode getCentre() incorrecte", C1.getCentre(), new Point(2, 2));
         }
 
-        /** Tester la methode getRayon
-         * 1er test     :       Recupérer le rayon de C1
-         * 2ème test    :       Modifier le rayon de C1 puis recupérer le nouveau rayon
-         */
+        /** Tester la methode getRayon. */
         @Test
         public void testGetRayon() {
 
                 // Tester getRayon
-                assertEquals(rayon, C1.getRayon(), EPSILON);
+                assertEquals("Méthode getRayon() incorrecte", rayon, C1.getRayon(), EPSILON);
                 
                 // Modifier le rayon puis tester getRayon
                 C1.setRayon(20);
-                assertEquals(20, C1.getRayon(), EPSILON);
+                assertEquals("Méthode getRayon() incorrecte", 20, C1.getRayon(), EPSILON);
         }
 
-        /** Tester la methode getDiametre
-         * 1er test     :       Recupérer le diametre de C1
-         * 2ème test    :       Modifier le diamètre de C1 puis recupérer le nouveau diamètre
-         */
+        /** Tester la methode getDiametre. */
         @Test
         public void testGetDiametre() {
 
@@ -244,11 +216,7 @@ public class ComplementsCercleTest {
                 assertEquals(40, C1.getDiametre(), EPSILON);
         }
 
-        /** Tester la methode contient qui indique si un point est contenu dans le cercle ou pas
-         * 1er test     :       paramètre valide (pointInterieur != null)
-         * 2ème test    :       paramètre valide (pointExterieur != null)
-         * 3ème test    :       paramètre invalide (un point nul)
-         */
+        /** Tester la methode contient qui indique si un point est contenu dans le cercle ou pas. */
         @Test
         public void testContient() {
                
@@ -257,8 +225,8 @@ public class ComplementsCercleTest {
                 Point pointExterieur = new Point(7, 7);
 
                 // Test avec un point à l'intérieur du cercle
-                assertTrue(C1.contient(pointInterieur));
-                assertFalse(C1.contient(pointExterieur));
+                assertTrue("Méthode contient() incorrecte", C1.contient(pointInterieur));
+                assertFalse("Méthode contient() incorrect", C1.contient(pointExterieur));
 
                 try {
                         assertTrue(C1.contient(null));
@@ -269,55 +237,45 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester la methode perimetre qui retourne le perimetre d'un cercle
-         * Tests : Recupérer les perimètres de C1, C2 et C3
-         */
+        /** Tester la methode perimetre qui retourne le perimetre d'un cercle. */
         @Test
         public void testPerimetre() {
 
                 // Tester la methode perimetre
-                assertEquals(31.415926, C1.perimetre(), EPSILON);
-                assertEquals(31.415926, C2.perimetre(), EPSILON);
-                assertEquals(31.415926, C3.perimetre(), EPSILON);
+                assertEquals("Méthode perimetre() incorrecte", 31.415926, C1.perimetre(), EPSILON);
+                assertEquals("Méthode perimetre() incorrecte", 31.415926, C2.perimetre(), EPSILON);
+                assertEquals("Méthode perimetre() incorrecte", 31.415926, C3.perimetre(), EPSILON);
         }
 
-        /** Tester la methode aire qui retourne l'aire d'un cercle
-         * Tests : Recupérer les aires de C1, C2 et C3
-         */
+        /** Tester la methode aire qui retourne l'aire d'un cercle. */
         @Test
         public void testAire() {
 
                 // Tester la methode perimetre
-                assertEquals(78.539816, C1.aire(), EPSILON);
-                assertEquals(78.539816, C2.aire(), EPSILON);
-                assertEquals(78.539816, C3.aire(), EPSILON);
+                assertEquals("Méthode aire() incorrecte", 78.539816, C1.aire(), EPSILON);
+                assertEquals("Méthode aire() incorrecte", 78.539816, C2.aire(), EPSILON);
+                assertEquals("Méthode aire() incorrecte", 78.539816, C3.aire(), EPSILON);
         }
 
-        /** Tester la methode getCouleur qui récupère la couleur d'un cercle
-         * Tests : Recupérer les couleurs de C1, C2 et C3
-         */
+        /** Tester la methode getCouleur qui récupère la couleur d'un cercle. */
         @Test
         public void testGetCouleur() {
 
                 // Tester la methode getCouleur sur les cercles C1, C2 et C3
-                assertEquals(Color.BLUE, C1.getCouleur());
-                assertEquals(Color.BLUE, C2.getCouleur());
-                assertEquals(Color.RED, C3.getCouleur());
+                assertEquals("Méthode getCouleur() incorrecte", Color.BLUE, C1.getCouleur());
+                assertEquals("Méthode getCouleur() incorrecte", Color.BLUE, C2.getCouleur());
+                assertEquals("Méthode getCouleur() incorrecte", Color.RED, C3.getCouleur());
         }
 
-        /** Tester la methode setCouleur qui modifie la couleur d'un cercle
-         * 1er test     :       Modifier la couleur du cercle C1 et la vérifier (paramètre valide)
-         * 2ème test    :       Modifier la couleur du cercle C2 et la vérifier (paramètre invalide)
-         * 3ème test    :       Utiliser la methode setCouleur avec une couleur nul (paramètre invalide)
-         */
+        /** Tester la methode setCouleur qui modifie la couleur d'un cercle. */
         @Test
         public void testSetCouleur() {
 
                 // Tester setCouleur avec une couleur valide
                 C1.setCouleur(Color.GREEN);
-                assertEquals(Color.GREEN, C1.getCouleur());
+                assertEquals("Méthode setCouleur() incorrecte", Color.GREEN, C1.getCouleur());
                 C2.setCouleur(Color.RED);
-                assertEquals(Color.RED, C2.getCouleur());
+                assertEquals("Méthode setCouleur() incorrecte", Color.RED, C2.getCouleur());
 
                 // Tester setCouleur avec une entrée nulle
                 try {
@@ -329,20 +287,14 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester la methode creerCercle qui crée un cercle à partir du point p1 constituant le centre du cercle et p2 un point appartenant au cercle
-         * 1er test     :       Paramètres valides (p1 et p2)
-         * 2ème test    :       Paramètres invalides (p1 = p2)
-         * 3ème test    :       Paramètre invalide (p1 = null)
-         * 4ème test    :       Paramètre invalide (p2 = null)
-         */
+        /** Tester la methode creerCercle qui crée un cercle à partir du point p1 constituant le centre du cercle et p2 un point appartenant au cercle. */
         @Test
         public void testCreerCercle() {
 
                 // Test pour des points valides
                 Cercle cercle = Cercle.creerCercle(p1, p2);
-                assertEquals(p1.getX(), cercle.getCentre().getX(), EPSILON);
-                assertEquals(p1.getY(), cercle.getCentre().getY(), EPSILON);
-                assertEquals(p1.distance(p2), cercle.getRayon(), EPSILON);
+                memesCoordonnees("Le cercle a été mal créé", cercle.getCentre(), p1);
+                assertEquals("Le cercle a été mal créé", p1.distance(p2), cercle.getRayon(), EPSILON);
 
                 // Test pour des points identiques
                 try {
@@ -372,29 +324,23 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester la methode toString qui affiche un cercle de la forme Cr@(x, y)
-         * Tests : Afficher les trois cercle C1, C2 et C3
-         */
+        /** Tester la methode toString qui affiche un cercle de la forme Cr@(x, y). */
         @Test
         public void testToString() {
 
                 // Tester la methode toString.
-                assertEquals("C5.0@(0.0, 0.0)", C1.toString());
-                assertEquals("C5.0@(5.0, 0.0)", C2.toString());
-                assertEquals("C5.0@(5.0, 0.0)", C3.toString());
+                assertEquals("Le cercle n'a pas été affiché correctement", "C5.0@(0.0, 0.0)", C1.toString());
+                assertEquals("Le cercle n'a pas été affiché correctement", "C5.0@(5.0, 0.0)", C2.toString());
+                assertEquals("Le cercle n'a pas été affiché correctement", "C5.0@(5.0, 0.0)", C3.toString());
         }
 
-        /** Tester la méthode SetRayon qui modifie le rayon d'un cercle
-         * 1er test     :       Paramètre valide (rayon = 10)
-         * 2ème test    :       Paramètre invalide (rayon = -1)
-         * 3ème test    :       Paramètre invalide (rayon = 0)
-         */
+        /** Tester la méthode SetRayon qui modifie le rayon d'un cercle. */
         @Test
         public void testSetRayon() {
 
                 // Test pour une valeur positive valide
                 C1.setRayon(10);
-                assertEquals(10, C1.getRayon(), EPSILON);
+                assertEquals("La méthode setRayon() est incorrecte", 10, C1.getRayon(), EPSILON);
 
                 // Test pour une valeur négative
                 try {
@@ -415,18 +361,14 @@ public class ComplementsCercleTest {
                 }
         }
 
-        /** Tester la méthode SetDiametre qui modifie le diamètre d'un cercle
-         * 1er test     :       Paramètre valide (diamètre = 20)
-         * 2ème test    :       Paramètre invalide (diamètre = -2)
-         * 3ème test    :       Paramètre invalide (diamètre = 0)
-         */
+        /** Tester la méthode SetDiametre qui modifie le diamètre d'un cercle. */
         @Test
         public void testSetDiametre() {
                 Cercle cercle = new Cercle(centre, rayon);
 
                 // Test pour une valeur positive valide
                 cercle.setDiametre(20);
-                assertEquals(10, cercle.getRayon(), EPSILON);
+                assertEquals("La méthode setDiamètre() est incorrecte", 10, cercle.getRayon(), EPSILON);
 
                 // Test pour une valeur négative
                 try {
@@ -447,16 +389,13 @@ public class ComplementsCercleTest {
                 }
         }
         
-        // Tester si E18 est fonctionnelle
+        /** Tester si E18 est fonctionnelle. */
         @Test
         public void testE18() {
-        	assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
-        	assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
+        	memesCoordonnees("E18 est incorrecte", centre, C1.getCentre());
         	C1.getCentre().translater(5, 5);
-        	assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
-        	assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
+        	memesCoordonnees("E18 est incorrecte", centre, C1.getCentre());
         	centre.translater(5, 5);
-        	assertEquals(C1.getCentre().getX(), 0, EPSILON);
-        	assertEquals(C1.getCentre().getY(), 0, EPSILON);
+        	memesCoordonnees("E18 est incorrecte", new Point(0, 0), C1.getCentre());
         }
 }
