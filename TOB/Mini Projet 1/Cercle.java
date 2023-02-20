@@ -1,28 +1,27 @@
 import java.awt.Color;
 
 /**
- * Cercle modélise un cercle dans un plan équipé d'un repère cartésien,
- * constitué d'un centre, un rayon et une couleur. Le cercle peut etre affiché,
- * translaté et modifié. De plus un cercle peut etre construit par
- * plusieurs manières.
- * 
- * @author Ayoub Bouchama <ayoub.bouchama@etu.toulouse-inp.fr>
+ * La classe Cercle permet de modéliser un cercle dans un plan équipé d'un repère cartésien.
+ * Un cercle est caractérisé par son centre, son rayon et sa couleur.
+ * La classe permet de créer des cercles en utilisant différentes méthodes, de les afficher,
+ * de les translater et de récupérer différentes propriétés telles que 
+ * leur périmètre, leur aire, leur diamètre et leur couleur.
+ * Elle implémente l'interface Mesurable2D, qui définit les méthodes de calcul d'aire et de périmètre.
+ * @see Point
+ * @see Mesurable2D
+ * @author Ayoub Bouchama
  */
 
 class Cercle implements Mesurable2D {
+    private Point centre; // Le centre du cercle
+    private double rayon; // Le rayon du cercle
+    private Color couleur; // La couleur du cercle
 
-    private Point centre; // Centre du cercle
-    private double rayon; // Rayon du cercle
-    private Color couleur; // Couleur du cercle
+    public static final double PI = Math.PI; // La constante pi
 
-    public static final double PI = Math.PI; // La constante PI
-
-    /**
-     * Constructeur qui crée un cercle a partir de son centre et son rayon.
-     * Sa couleur est bleue par défaut.
-     * 
-     * @param centre Centre du cercle
-     * @param rayon  Rayon du cercle
+    /** Construire un cercle à partir du centre et du rayon, de couleur est bleue par défaut.
+     * @param centre Le centre du cercle
+     * @param rayon  Le Rayon du cercle
      */
     public Cercle(Point centre, double rayon) {
         assert centre != null : "le centre ne doit pas être nul";
@@ -32,11 +31,7 @@ class Cercle implements Mesurable2D {
         this.couleur = Color.BLUE;
     }
 
-    /**
-     * Constructeur de la classe Cercle qui crée un cercle a partir de deux points
-     * diametralement opposés.
-     * Sa couleur est bleue par défaut.
-     * 
+    /** Construire un cercle à partir de deux points diamétralement opposés, de couleur bleue par défaut.
      * @param p1 Premier point
      * @param p2 Deuxieme point
      */
@@ -50,11 +45,9 @@ class Cercle implements Mesurable2D {
     }
 
     /**
-     * Constructeur de la classe cercle qui crée un cercle à partir de deux points
-     * diamétralement opposés et sa couleur
-     * 
-     * @param p1      Premier point
-     * @param p2      Deuxieme point
+     * Construire un cercle à partir de deux points diamétralement opposés, de couleur bleue par défaut.
+     * @param p1 Premier point
+     * @param p2 Deuxieme point
      * @param couleur La couleur du cercle
      */
     public Cercle(Point p1, Point p2, Color couleur) {
@@ -67,46 +60,36 @@ class Cercle implements Mesurable2D {
         this.couleur = couleur;
     }
 
-    /**
-     * Translater le cercle
-     * 
-     * @param dx Translation suivant x
-     * @param dy Translation suivant y
+    /** Translater le cercle.
+     * @param dx Translation suivant l'axe des X
+     * @param dy Translation suivant l'axe des Y
      */
     public void translater(double dx, double dy) {
         this.centre.translater(dx, dy);
     }
 
-    /**
-     * Récuperer le centre du cercle
-     * 
-     * @return Centre du cercle
+    /** Récuperer le centre du cercle.
+     * @return centre du cercle
      */
     public Point getCentre() {
         return new Point(this.centre.getX(), this.centre.getY());
     }
 
-    /**
-     * Récuperer le rayon du cercle
-     * 
-     * @return Rayon du cercle
+    /** Récuperer le rayon du cercle.
+     * @return rayon du cercle
      */
     public double getRayon() {
         return this.rayon;
     }
 
-    /**
-     * Récuperer le diamétre du cercle
-     * 
-     * @return Diamètre dun cercle
+    /** Récuperer le diamétre du cercle.
+     * @return diamètre dun cercle
      */
     public double getDiametre() {
         return this.rayon * 2;
     }
 
-    /**
-     * Savoir si un point est à l'intérieur
-     * 
+    /** Vérifier si un point est à l'intérieur du cercle.
      * @param p Point à tester
      * @return True si le point est à l'intérieur du cercle
      */
@@ -115,49 +98,39 @@ class Cercle implements Mesurable2D {
         return this.centre.distance(p) <= this.rayon;
     }
 
-    /**
-     * Calculer le périmétre du cercle
-     * 
-     * @return Périmétre du cercle
+    /** Calculer le périmétre du cercle.
+     * @return périmétre du cercle
      */
     public double perimetre() {
         return 2 * PI * this.rayon;
     }
 
-    /**
-     * Calculer l'aire du cercle
-     * 
-     * @return Aire du cercle
+    /** Calculer l'aire du cercle.
+     * @return aire du cercle
      */
     public double aire() {
         return PI * Math.pow(this.rayon, 2);
     }
 
-    /**
-     * Récupérer la couleur du cercle
-     * 
-     * @return Couleur du cercle
+    /** Récupérer la couleur du cercle.
+     * @return couleur du cercle
      */
     public Color getCouleur() {
         return this.couleur;
     }
 
-    /**
-     * Modifier la couleur du cercle
-     * 
-     * @param couleur La couleur a mettre
+    /** Modifier la couleur du cercle.
+     * @param couleur La couleur à mettre
      */
     public void setCouleur(Color couleur) {
         assert couleur != null : "la couleur ne doit pas être nulle";
         this.couleur = couleur;
     }
 
-    /**
-     * Créer un cercle à partir d'un point constituant le centre et un autre formant le rayon entre eux deux
-     * 
+    /** Créer un cercle à partir d'un point constituant le centre et un autre formant le rayon entre eux deux.
      * @param p1 Premier point
      * @param p2 Deuxieme point
-     * @return Le cercle créé
+     * @return cercle créé
      */
     public static Cercle creerCercle(Point p1, Point p2) {
         assert p1 != null : "p1 ne doit pas être nul";
@@ -167,18 +140,14 @@ class Cercle implements Mesurable2D {
         return cercle;
     }
 
-    /**
-     * Afficher le cercle dans le terminal
-     * 
-     * @return L'affichage du cercle
+    /** Afficher le cercle.
+     * @return affiche du cercle
      */
     public String toString() {
-    	return "C" + this.rayon + "@(" + this.centre.getX() + ", " + this.centre.getY() + ")";
+    	return "C" + this.rayon + "@" + centre.toString();
     }
 
-    /**
-     * Modifier le rayon du cercle
-     * 
+    /** Modifier le rayon du cercle.
      * @param rayon Le rayon à mettre
      */
     public void setRayon(double rayon) {
@@ -186,10 +155,8 @@ class Cercle implements Mesurable2D {
         this.rayon = rayon;
     }
 
-    /**
-     * Modifier le diamètre du cercle
-     * 
-     * @param diametre Le diamètre à mettre
+    /** Modifier le diamètre du cercle.
+     * @param diametre diamètre à mettre
      */
     public void setDiametre(double diametre) {
         assert diametre > 0 : "le diamètre doit être strictement positive";
