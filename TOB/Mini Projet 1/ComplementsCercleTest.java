@@ -3,7 +3,7 @@ import org.junit.Before;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-/** Classe de tests exhaustifs de la classe Cercle
+/** Classe de tests exhaustifs de la classe Cercle.
  * 
  * @author Ayoub Bouchama <ayoub.bouchama@etu.toulouse-inp.fr>
  */
