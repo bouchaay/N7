@@ -5,7 +5,7 @@ import java.awt.Color;
 
 /** Classe de test des contructeurs de la classe Cercle.
   * 
-  @author Ayoub Bouchama <ayoub.bouchama@etu.toulouse-inp.fr>
+  @author Ayoub Bouchama
   */
 
 public class CercleTest {
@@ -25,7 +25,7 @@ public class CercleTest {
 		// La couleur du sujet	
 		Color couleur;
 	
-	/** Initialiser les variables de test */
+	/** Initialiser les variables de test. */
 	@Before public void setUp() {
 			
 		// Construire les points
@@ -45,41 +45,39 @@ public class CercleTest {
 		C3 		= 	new Cercle(p1, p2, couleur);			
     }
 	
-	/** Tester le premier constructeur de la classe cercle qui construit un cercle à partir
-	 * de son centre et de son rayon
-	 */
-	@Test public void testConstructeurAvecCentreEtRayon() {
+	/** Vérifier si deux points ont mêmes coordonnées.
+	  * @param p1 le premier point
+	  * @param p2 le deuxième point
+	  */
+	static void memesCoordonnees(String message, Point p1, Point p2) {
+		assertEquals(message + " (x)", p1.getX(), p2.getX(), EPSILON);
+		assertEquals(message + " (y)", p1.getY(), p2.getY(), EPSILON);
+	}
+	
+	/** Tester le constructeur du cercle à partir de son centre et de son rayon. */
+	@Test public void testE11() {
 
 		// Tester la validité du 1er constructeur de la classe Cercle
-
-		assertEquals(centre.getX(), C1.getCentre().getX(), EPSILON);
-		assertEquals(centre.getY(), C1.getCentre().getY(), EPSILON);
-        assertEquals(rayon, C1.getRayon(), EPSILON);
+		memesCoordonnees("Constructeur E11 incorrecte", centre, C1.getCentre());
+		assertEquals(rayon, C1.getRayon(), EPSILON);
         assertEquals(Color.BLUE, C1.getCouleur());
     }
 
-	/** Tester le deuxième constructeur de la classe cercle qui construit un cercle à partir
-	 * de deux points diamètralement opposés appartenant au cercle
-	 */
-    @Test public void testConstructeurAvecDeuxPointsDiametralementOpposes() {
+	/** Tester le constructeur du cercle à partir de deux points diamètralement opposés appartenant au cercle. */
+    @Test public void testE12() {
         
-		// Initialiser les variables de test
-		
+		// Initialiser les variables de test		
 		Point centreAttendu = new Point(5, 0);
         double rayonAttendu = 5;
 
 		// Tester la validité du 2ème constructeur de la classe Cercle
-
-        assertEquals(centreAttendu.getX(), C2.getCentre().getX(), EPSILON);
-        assertEquals(centreAttendu.getY(), C2.getCentre().getY(), EPSILON);
+        memesCoordonnees("Constructeur E12 incorrecte", centreAttendu, C2.getCentre());
         assertEquals(rayonAttendu, C2.getRayon(), EPSILON);
         assertEquals(Color.BLUE, C2.getCouleur());
     }
 
-	/** Tester le deuxième constructeur de la classe cercle qui construit un cercle à partir
-	 * de deux points diamètralement opposés appartenant au cercle et de sa couleur
-	 */
-    @Test public void testConstructeurAvecDeuxPointsDiametralementOpposesEtCouleur() {
+	/** Tester le constructeur du cercle à partir de deux points diamètralement opposés appartenant au cercle et de sa couleur. */
+    @Test public void testE13() {
         
 		// Initialiser les variables de test.
 
@@ -88,9 +86,8 @@ public class CercleTest {
         Color couleurAttendu = couleur;
         
 		// Tests de la validité du 3ème constructeur de la classe Cercle
-		assertEquals(centreAttendu.getX(), C3.getCentre().getX(), EPSILON);
-		assertEquals(centreAttendu.getY(), C3.getCentre().getY(), EPSILON);
-        assertEquals(rayonAttendu, C3.getRayon(), EPSILON);
+		memesCoordonnees("Constructeur E13 incorrecte", centreAttendu, C3.getCentre());
+		assertEquals(rayonAttendu, C3.getRayon(), EPSILON);
         assertEquals(couleurAttendu, C3.getCouleur());
     }
 }
