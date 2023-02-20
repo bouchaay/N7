@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /** Classe de tests exhaustifs de la classe Cercle.
  * 
- * @author Ayoub Bouchama <ayoub.bouchama@etu.toulouse-inp.fr>
+ * @author Ayoub Bouchama
  */
 
 public class ComplementsCercleTest {
