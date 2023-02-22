@@ -2,22 +2,27 @@ import java.awt.Color;
 
 /**
  * La classe Cercle permet de modéliser un cercle dans un plan équipé d'un repère cartésien.
- * Un cercle est caractérisé par son centre, son rayon et sa couleur.
+ * Un cercle est caractérisé par son centre, son rayon et sa couleur
  * La classe permet de créer des cercles en utilisant différentes méthodes, de les afficher,
- * de les translater et de récupérer différentes propriétés telles que 
- * leur périmètre, leur aire, leur diamètre et leur couleur.
- * Elle implémente l'interface Mesurable2D, qui définit les méthodes de calcul d'aire et de périmètre.
+ * de les translater et de récupérer différentes propriétés telles que
+ * leur périmètre, leur aire, leur diamètre et leur couleur
+ * Elle implémente l'interface Mesurable2D, qui définit les méthodes de calcul d'aire et de périmètre
  * @see Point
  * @see Mesurable2D
  * @author Ayoub Bouchama
  */
+public class Cercle implements Mesurable2D {
+    /** Le centre du cercle. */
+	private Point centre;
+    
+	/** Le rayon du cercle. */
+    private double rayon;
+    
+    /** La couleur du cercle. */
+    private Color couleur;
 
-class Cercle implements Mesurable2D {
-    private Point centre; // Le centre du cercle
-    private double rayon; // Le rayon du cercle
-    private Color couleur; // La couleur du cercle
-
-    public static final double PI = Math.PI; // La constante pi
+    /** La constante pi. */
+    public static final double PI = Math.PI;
 
     /** Construire un cercle à partir du centre et du rayon, de couleur est bleue par défaut.
      * @param centre Le centre du cercle
@@ -51,12 +56,8 @@ class Cercle implements Mesurable2D {
      * @param couleur La couleur du cercle
      */
     public Cercle(Point p1, Point p2, Color couleur) {
-        assert p1 != null : "p1 ne doit pas être nul";
-        assert p2 != null : "p2 ne doit pas être nul";
-        assert p1.distance(p2) > 0 : "p1 et p2 doivent être différent";
-        assert couleur != null : "la couleur ne doit pas être nulle";
-        this.centre = new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2);
-        this.rayon = p1.distance(p2) / 2;
+    	this(p1, p2);
+    	assert couleur != null : "la couleur ne doit pas être nulle";
         this.couleur = couleur;
     }
 
