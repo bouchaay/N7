@@ -2,7 +2,6 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 import java.awt.Color;
-import java.beans.Transient;
 
 /**
  * Classe de test des contructeurs de la classe Cercle.
