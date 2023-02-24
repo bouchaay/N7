@@ -2,92 +2,128 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 import java.awt.Color;
+import java.beans.Transient;
 
-/** Classe de test des contructeurs de la classe Cercle.
-  * 
-  @author Ayoub Bouchama
-  */
+/**
+ * Classe de test des contructeurs de la classe Cercle.
+ * 
+ * @author Ayoub Bouchama <ayoub.bouchama@etu.toulouse-inp.fr>
+ */
 
 public class CercleTest {
 
-		// précision pour les comparaisons réelle
-		public final static double EPSILON = 0.001;
-	
-		// Les points du sujet
-		private Point centre, p1, p2;
+	// précision pour les comparaisons réelle
+	public final static double EPSILON = 0.001;
 
-		// Les cercles du sujet
-		private Cercle C1, C2, C3;
+	// Points de test
+	private Point p1, p2;
 
-		// Le rayon du sujet	
-		double rayon;
-		
-		// La couleur du sujet	
-		Color couleur;
-	
-/** Initialiser les variables de test. */
-@Before public void setUp() {
-			
-	// Construire les points
-	centre 	= 	new Point(0, 0);
-	p1 		= 	new Point(0, 0);
-	p2 		= 	new Point(10, 0);
-			
-	// Initialiser le rayon
-	rayon 	= 	5;
-		
-	// Initialiser la couleur
-	couleur = 	Color.RED;
-			
-	// Construire les cercles
-	C1 		= 	new Cercle(centre, rayon);
-	C2 		= 	new Cercle(p1, p2);
-	C3 		= 	new Cercle(p1, p2, couleur);			
-}
-	
-/** Vérifier si deux points ont mêmes coordonnées.
-* @param p1 le premier point
-* @param p2 le deuxième point
-*/
-static void memesCoordonnees(String message, Point p1, Point p2) {
-	assertEquals(message + " (x)", p1.getX(), p2.getX(), EPSILON);
-	assertEquals(message + " (y)", p1.getY(), p2.getY(), EPSILON);
-}
-	
-/** Tester le constructeur du cercle à partir de son centre et de son rayon. */
-@Test public void testE11() {
+	// Cercles de test
+	private Cercle C1, C2;
 
-	// Tester la validité du 1er constructeur de la classe Cercle
-	memesCoordonnees("Constructeur E11 incorrecte", centre, C1.getCentre());
-	assertEquals(rayon, C1.getRayon(), EPSILON);
-        assertEquals(Color.BLUE, C1.getCouleur());
-    }
+	public void memescoordonnees(Point p1, Point p2) {
+		assertEquals("Les coordonnées du point ne sont pas les mêmes", p1.getX(), p2.getX(), EPSILON);
+		assertEquals("Les coordonnées du point ne sont pas les mêmes", p1.getY(), p2.getY(), EPSILON);
+	}
 
-/** Tester le constructeur du cercle à partir de deux points diamètralement opposés appartenant au cercle. */
-@Test public void testE12() {
-        
-	// Initialiser les variables de test		
-	Point centreAttendu = new Point(5, 0);
-	double rayonAttendu = 5;
+	// Test utilisant différents points pour chaque cercle
 
-	// Tester la validité du 2ème constructeur de la classe Cercle
-        memesCoordonnees("Constructeur E12 incorrecte", centreAttendu, C2.getCentre());
-        assertEquals(rayonAttendu, C2.getRayon(), EPSILON);
-        assertEquals(Color.BLUE, C2.getCouleur());
-}
+	@Test
+	public void E11() {
+		p1 = new Point(1, 2);
+		p2 = new Point(3, 4);
+		C1 = new Cercle(p1, 5);
+		C2 = new Cercle(p2, 6);
+		memescoordonnees(C1.getCentre(), p1);
+		memescoordonnees(C2.getCentre(), p2);
+		assertEquals("Le rayon du cercle n'est pas le même", C1.getRayon(), 5, EPSILON);
+		assertEquals("Le rayon du cercle n'est pas le même", C2.getRayon(), 6, EPSILON);
+		try {
+			C1 = new Cercle(p1, -5);
+			fail("Le rayon du cercle ne peut pas être négatif");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(p1, 0);
+			fail("Le rayon du cercle ne peut pas être nul");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(null, 5);
+			fail("Le centre du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+	}
 
-/** Tester le constructeur du cercle à partir de deux points diamètralement opposés appartenant au cercle et de sa couleur. */
-@Test public void testE13() {
-        
-	// Initialiser les variables de test.
+	@Test
+	public void E12() {
+		p1 = new Point(1, 2);
+		p2 = new Point(3, 4);
+		C1 = new Cercle(p1, p2);
+		C2 = new Cercle(p2, p1);
+		memescoordonnees(C1.getCentre(), new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2));
+		memescoordonnees(C2.getCentre(), new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2));
+		assertEquals("Le rayon du cercle n'est pas le même", C1.getRayon(), p1.distance(p2)/2, EPSILON);
+		assertEquals("Le rayon du cercle n'est pas le même", C2.getRayon(), p1.distance(p2)/2, EPSILON);
+		try {
+			C1 = new Cercle(p1, null);
+			fail("Le centre du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(null, p1);
+			fail("Le centre du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(p1, p1);
+			fail("Le rayon du cercle ne peut pas être nul");
+		} catch (AssertionError e) {
+			// OK
+		}
+	}
 
-	Point centreAttendu = new Point(5, 0);
-        double rayonAttendu = 5;
-        Color couleurAttendu = couleur;
-        
-	// Tests de la validité du 3ème constructeur de la classe Cercle
-	memesCoordonnees("Constructeur E13 incorrecte", centreAttendu, C3.getCentre());
-	assertEquals(rayonAttendu, C3.getRayon(), EPSILON);
-        assertEquals(couleurAttendu, C3.getCouleur());
-    }
+	@Test
+	public void E13() {
+		p1 = new Point(1, 2);
+		p2 = new Point(3, 4);
+		C1 = new Cercle(p1, p2, Color.RED);
+		C2 = new Cercle(p2, p1, Color.BLUE);
+		memescoordonnees(C1.getCentre(), new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2));
+		memescoordonnees(C2.getCentre(), new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2));
+		assertEquals("Le rayon du cercle n'est pas le même", C1.getRayon(), p1.distance(p2)/2, EPSILON);
+		assertEquals("Le rayon du cercle n'est pas le même", C2.getRayon(), p1.distance(p2)/2, EPSILON);
+		assertEquals("La couleur du cercle n'est pas la même", C1.getCouleur(), Color.RED);
+		assertEquals("La couleur du cercle n'est pas la même", C2.getCouleur(), Color.BLUE);
+		try {
+			C1 = new Cercle(p1, null, Color.RED);
+			fail("Le centre du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(null, p1, Color.RED);
+			fail("Le centre du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(p1, p1, Color.RED);
+			fail("Le rayon du cercle ne peut pas être nul");
+		} catch (AssertionError e) {
+			// OK
+		}
+		try {
+			C1 = new Cercle(p1, p2, null);
+			fail("La couleur du cercle ne peut pas être null");
+		} catch (AssertionError e) {
+			// OK
+		}
+	}
+
 }
