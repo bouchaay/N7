@@ -1,0 +1,79 @@
+network:
+  name: InternetFinal
+  version: 0.1
+  hosts:
+    - Client1
+      mode : netns
+      init : ./scripts/Client1
+ 
+    - Web1
+      mode : docker
+      image : apache_n7:latest
+      files : ./files/Web1/var:/
+ 
+ 
+    - Box1
+      mode : docker
+      image : dhcp_n7:latest
+      files : ./files/Box1/etc:/
+ 
+ 
+    - Box2
+      mode : docker
+      image : dhcp_n7:latest
+      files : ./files/Box2/etc:/
+ 
+    - Client2
+      mode : netns
+      init : ./scripts/Client2
+ 
+    - RouteurFaiAcces
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/RouteurFaiAcces/etc:/
+ 
+ 
+    - R1
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/R1/etc:/
+ 
+    - R2
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/R2/etc:/
+ 
+ 
+    - RouteurFaiServices
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/RouteurFaiServices/etc:/
+ 
+ 
+    - ServerWEB
+      mode : docker
+      image : apache_n7:latest
+      files : ./files/ServerWEB/var:/
+ 
+    - ServerDNS
+      mode : docker
+      image : dns_n7:latest
+      files : ./files/ServerDNS/etc:/
+ 
+  links :
+    - Box2:eth0!Client2:eth0
+ 
+  bridges:
+    - Switch0
+      interfaces: Client1:eth0!Web1:eth0!Box1:eth0!
+    - Switch1
+      interfaces: Box1:eth1!Box2:eth1!RouteurFaiAcces:eth0!
+    - Switch2
+      interfaces: RouteurFaiAcces:eth1!R1:eth1!R2:eth0!
+    - Switch3
+      interfaces: R2:eth1!R1:eth0!RouteurFaiServices:eth0!
+    - Switch4
+      interfaces: RouteurFaiServices:eth1!ServerWEB:eth0!ServerDNS:eth0!
+ 
+  consoles :
+    - all
