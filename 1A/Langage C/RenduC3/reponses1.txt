@@ -1,0 +1,38 @@
+Dans ce fichier `reponses1.txt`, 
+
+
+[Question 1.1] Indiquer 
+- comment obtenir le ou les exécutables par compilation séparée.
+
+On exécute les commandes suivantes :
+
+    c99 -Wextra -pedantic -c file.c
+    c99 -Wextra -pedantic -c test_file.c
+    c99 -Wextra -pedantic -c exemple_file.c
+    c99 file.o test_file.o -o test_file
+    c99 file.o exemple_file.o -o exemple_file
+
+On va obtenir 2 exécutables : test_file et exemple_file.
+
+- les dépendances entre les fichiers qui constituent l’application.
+
+    les dépendances de exemple_file : file.o | exemple_file.o
+    les dépendances de test_file : file.o | test_file.o
+
+- le rôle de la règle `.PHONY` dans Makefile.
+
+    En utilisant '.PHONY' dans un Makefile, on peut spécifier que les éléments listés ne représentent pas des fichiers dans le répertoire, mais plutôt des règles. Cela garantit que lorsqu'on utilise 'make' avec un élément listé en tant que cible, comme 'make clean', le terminal ne tente pas d'appliquer 'make' à un fichier portant le même nom, mais exécute plutôt la règle correspondante dans le Makefile.
+
+
+[Question 1.5] Indiquer
+- Quel est le sous-programme non-visible des autres modules et défini dans le module File.
+
+    Le module 'cellule' n'est pas visible depuis les autres modules car il n'est pas déclaré dans le fichier de spécification 'File.h'.
+
+- Que se passe-t-il si on enlève le mot-clé static à la compilation ?
+
+    Les programmes se compilent sans problème car aucune autre fonction ayant le même nom n'est utilisée dans les modules compilés.
+ 
+- Quel est le risque de ne pas le mettre ?
+
+    En utilisant 'static', on peut garantir que l'utilisation de la méthode statique est limitée au module en question. Si le module 'File' est utilisé ailleurs ou dans un autre module qui a une fonction ayant le même nom, cela pourrait entraîner des problèmes de référence. En utilisant 'static', on peut s'assurer que la fonction est utilisée localement dans le module et qu'elle est propre à ce dernier, ce qui évite l'utilisation d'une autre fonction ayant le même nom dans un autre module.

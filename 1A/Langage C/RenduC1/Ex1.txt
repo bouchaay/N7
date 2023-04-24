@@ -1,0 +1,37 @@
+// Auteur : Ayoub BOUCHAMA
+
+[B1.1] 
+
+portée des variables
+
+a : ligne 13 -> ligne 17
+r : ligne 30 -> ligne 33
+n : ligne 8 -> ligne 37
+p : ligne 9 -> ligne 37
+
+[B1.2] 
+
+Oui, ce programme contient des exemples de masquage de variable.
+La variable n était masquée entre les lignes 18 et 22.
+La variable p était masquée plusieurs fois (exemple : entre les lignes 9 et 15).
+
+[B1.3]
+
+Oui, on peut savoir ce que va afficher ce programme.
+Il va afficher les valeurs de chaque variable et son 
+adresse a chaque étape (masquée ou pas).
+
+[B1.4]
+
+Car la valeur de p va changer au cours du programme même si
+on a utilisé le masquage des variable du programme.
+
+[B1.5]
+
+Non, la valeur de p ne va pas changer après l' initialisation
+de la ligne 14. Il va contenir la même adresse.
+
+[B1.6]
+
+L'instruction du printf a la ligne 20 va afficher la nouvelle
+valeur de *p mais p ne va pas changer.
