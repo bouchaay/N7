@@ -167,8 +167,8 @@ end
 %% Les tracés superposés des densités spectrales de puissance des deux chaines
 
 % Densité spectrale de puissace du signal généré sur la voie en phase
-DSP_phase_QPSK = pwelch(I_QPSK, [], [], [], Fe, 'twosided');
-DSP_phase_8PSK = pwelch(I_8PSK, [], [], [], Fe, 'twosided');
+DSP_phase_QPSK = pwelch(I_QPSK, [], [], 4096, Fe, 'centered');
+DSP_phase_8PSK = pwelch(I_8PSK, [], [], 4096, Fe, 'centered');
 F_phase_QPSK = linspace(-Fe/2, Fe/2, length(DSP_phase_QPSK));
 F_phase_8PSK = linspace(-Fe/2, Fe/2, length(DSP_phase_8PSK));
 figure;

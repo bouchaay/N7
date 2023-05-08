@@ -1,0 +1,920 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\RequirePackage{helvet} % Pretty font
+%\usepackage{mathptmx}
+\usepackage[default,osf]{raleway} 
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper,hmargin=2cm,vmargin=1.5cm]{geometry}
+\usepackage[english,french]{babel} % Last language, language by default
+\usepackage{graphicx,enumitem,lipsum}
+\usepackage[colorlinks=true,urlcolor=RoyalBlue4]{hyperref}
+\usepackage[x11names]{xcolor}
+\usepackage{hyperref}
+\newcommand{\Gray}[1]{\textcolor{gray}{\textit{#1}}}
+\parindent 0pt
+\pagestyle{empty}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+
+\pagestyle{fancy}
+\fancyhf{} % efface les en-têtes et pieds de page par défaut
+\fancyhead[L]{INP ENSEEIHT - Première année SN} % ajoute l'en-tête à gauche de chaque page
+\renewcommand{\headrulewidth}{0.4pt} % ajoute une règle fine en haut de chaque page
+\fancyfoot[C]{\thepage} % ajoute la numérotation de page au milieu du pied de page
+\renewcommand{\footrulewidth}{0.4pt} % ajoute une règle fine en bas de chaque page
+\pagenumbering{arabic}
+
+
+\hfill
+\includegraphics[width=4cm]{inp_n7.png}
+
+\vspace*{8mm}
+
+\begin{center}
+\LARGE
+{\bfseries
+INP ENSEEIHT\\[2mm]
+Institut national polytechnique en France\\[3mm]
+}
+\large 
+L'École nationale supérieure d'électrotechnique, d'électronique, d'informatique, d'hydraulique et des télécommunications \\[2mm]
+Première année\\[10mm]
+\Huge
+{\bfseries Etude de chaines de transmissions en bande de base
+}\\
+\Gray{\LARGE (Télécommunications - Partie 1)}\\[6mm]
+\huge 
+Analyse des caractéristiques de transmission de signaux numériques en bande de base\\[8mm]
+
+\Large 
+Projet réalisé par \Gray{(Ayoub Bouchama)} \\[1mm]
+et \Gray{(Oussama Elguerraoui)} \\[6mm]
+Projet de Télécommunication \\[6mm]
+Dirigée par  \Gray{(Maalaoui Asma)}\\[8mm]
+Projet achevé et rendu le \Gray{(14 Avril)}\\[10mm]
+
+\end{center}
+
+Lien utile vers les page des realisateurs du projet :\\[3mm]
+Ayoub Bouchama, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/ayoubbouchama/}{Profil LinkedIn}) }\\
+Oussama ElGuerraoui, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/oussama-elguerraoui-4770b51aa/}{Profil LinkedIn}) }\\
+
+% Page 2
+\newpage
+\parskip 7pt
+
+\selectlanguage{french}
+
+{\bfseries Titre :}
+
+Etude de chaines de transmissions en bande de base
+
+{\bfseries Résumé} \Gray{(en français)} {\bfseries :}
+
+Le présent volet du projet avait pour principal objectif de nous familiariser avec les aspects fondamentaux liés à l'étude des chaînes de transmission en bande de base. Pour ce faire, une série d'activités ont été entreprises, incluant notamment l'étude de trois modulateurs de bande de base distincts dans le but de les comparer en termes d'efficacité spectrale, en s'appuyant sur le tracé superposé des DSP des différents signaux générés pour un même débit binaire. Par la suite, l'étude des interférences entre symboles ainsi que l'application du critère de Nyquist ont été considérées dans le cadre d'une chaîne de transmission sans canal de propagation, c’est-à-dire sans bruit mais également sans filtrage introduit par le canal, et par la suite, en intégrant un canal de propagation pour deux valeurs de BW différentes. Cette approche a permis de comparer les taux d’erreur binaire obtenus et d'en tirer des conclusions. Enfin, l'impact du bruit et du filtrage adapté a été étudié, avec un accent particulier mis sur la notion d'efficacité en puissance. Plus précisément, trois chaînes de transmission différentes ont été implémentées sans bruit dans un premier temps, puis avec l'intégration d'un bruit gaussien. Les taux d'erreur binaire ont ensuite été comparés entre les différentes chaînes de transmission, permettant ainsi de conclure sur celle qui offre les meilleures performances.
+
+{\bfseries Mots-clés :}
+
+Transmission, bande de base, modulateurs, efficacité spectrale, critère de Nyquist, taux d'erreur binaire, bruit, filtrage adapté.
+
+\vspace*{3mm}
+\hrulefill
+\vspace*{3mm}
+
+\selectlanguage{english}
+
+{\bfseries Title:}
+Study of transmission chains in base band
+
+
+{\bfseries Abstract} \Gray{(in english)}{\bfseries:}
+
+The main objective of this part of the project was to familiarize the team members with the fundamental aspects related to the study of baseband transmission channels. To achieve this, a series of activities were undertaken, including the study of three distinct baseband modulators in order to compare them in terms of spectral efficiency, based on the superimposed plot of the DSP of the different signals generated for the same bit rate. Subsequently, the study of inter-symbol interference and the application of the Nyquist criterion were considered in the context of a transmission channel without propagation, i.e. without noise but also without filtering introduced by the channel, and then by integrating a propagation channel for two different BW values. This approach allowed to compare the obtained bit error rates and draw conclusions. Finally, the impact of noise and adapted filtering was studied, with a particular focus on the concept of power efficiency. Specifically, three different transmission channels were implemented without noise initially, and then with the integration of Gaussian noise. The bit error rates were then compared between the different transmission channels, allowing to conclude on the one that offers the best performance.
+
+{\bfseries Keywords:}
+
+Transmission, baseband, modulators, spectral efficiency, Nyquist criterion, bit error rate, noise, matched filtering.
+
+% Page 3
+\newpage
+\tableofcontents
+\listoffigures
+
+\newpage
+\section{Introduction} 
+\\[10mm]
+Le domaine des télécommunications connaît une croissance rapide avec l'émergence de nouvelles technologies et l'augmentation constante de la demande en matière de communications à distance. La transmission de signaux est un élément clé des systèmes de communication modernes, qu'il s'agisse de signaux audio, vidéo ou de données. La transmission de signaux de haute qualité est essentielle pour assurer une communication fluide et efficace. Pour atteindre cet objectif, il est crucial de comprendre les principes fondamentaux des chaînes de transmission en bande de base. Cette première partie du projet présente une étude détaillée de ces principes et de leurs applications pratiques dans le domaine des télécommunications. Nous nous concentrerons en particulier sur les aspects liés à l'efficacité spectrale et à l'efficacité en puissance des chaînes de transmission, en étudiant différents modulateurs de bande de base et en examinant les effets des interférences et du bruit sur la performance des chaînes de transmission. Enfin, nous présenterons des solutions pour optimiser les performances des chaînes de transmission et des conclusions pratiques basées sur les résultats de nos expériences et nos codes matlab implémentés.\\ [15mm]
+
+\section{Etude de modulateurs bande de base} 
+
+Les modulateurs de bande de base permettent de transformer un signal de basse fréquence en un signal à large bande passante, adapté à une transmission sur des distances importantes, tout en préservant les caractéristiques essentielles du signal d'origine. Ils sont donc un élément clé des chaînes de transmission en télécommunications, car ils permettent de transmettre des signaux de manière efficace et fiable.\\[8mm]
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=17cm]{transmissionBdB.png}
+            \caption{Transmission en bande de base \label{fig : bandebaseimg}}
+        \end{figure}
+\newpage
+Tout d'abord, notre attention s'est portée sur l'étude des modulateurs de bande de base, avec une attention particulière portée à l'identification des éléments ayant un impact sur l'efficacité spectrale obtenue pour la transmission.
+
+Pour ce faire, il sera nécessaire de mettre en place plusieurs modulateurs bande de base, avec une fréquence d'échantillonnage $F_e = 24000 Hz$ afin de transmettre un débit binaire $Rb = 3000$ bits par seconde. Pour le facteur de suréchantillonnage $N_s$ nous l'avons déterminé pour chaque cas, de manière à respecter ces paramètres 
+\Gray{(sachant que dans le domaine numérique, la durée d'un symbole $T_s$ est composée de $N_s$ points distants de $T_e$, où $T_e$ représente la période d'échantillonnage)}
+
+    \subsection{Calcul du nombre d'échantillons par symbole Ns pour chaque 
+    modulateur}
+    \label{NombreEchantillonNs}
+    \subsubsection{Symboles binaires à moyenne nulle}
+La relation entre le débit binaire $R_b$ et la fréquence de symbole $R_s$ est donnée par :
+$$ R_s = \frac{1}{T_s} = \frac{R_b}{N_b} $$ 
+où $N_b$ représente le nombre de bits par symbole. Or, on a $N_b = 1$, donc : 
+$$R_s = R_b$$
+En utilisant les valeurs que nous avons utiliser pour implémenter nos modulateurs ($F_e = 24000 Hz$, $R_b = 3000 bits/s$), on peut calculer la période d'échantillonnage :
+$$T_b = \frac{1}{R_b} = \frac{1}{3000} = 3.33 \times 10^{-4} s$$
+La période d'échantillonnage Te est donnée par : 
+$$T_e = \frac{1}{F_e} = \frac{1}{24000} = 4.17 \times 10^{-5} s$$
+On a $R_b = R_s$, donc :
+$$R_s = 3000  symboles/s$$
+La période de symbole $T_s$ est donnée par :
+$$T_s = \frac{1}{R_s} = \frac{1}{3000} = 3.33 \times 10^{-4} s$$
+Le nombre d'échantillons par symbole $N_s$ est donc :
+$$N_s = \frac{T_s}{T_e} = \frac{0,000333}{0,0000417} = 8$$
+
+\subsubsection{symboles 4-aires à moyenne nulle}
+En procédant comme précédement, mais maintenant avec un nombre de bits par symbole $N_b = 2$, on a la relation entre le débit binaire $R_b$ et la fréquence de symbole $R_s$ est donnée par :
+$$ R_s = \frac{1}{T_s} = \frac{R_b}{N_b} $$
+donc :
+$$R_s = \frac{R_b}{2} = 1500symboles/s$$
+donc :
+$$T_s = \frac{1}{R_s} = \frac{1}{1500} = 6.66 \times 10^{-4} s$$
+Le nombre d'échantillons par symbole $N_s$ est donc :
+$$N_s = \frac{T_s}{T_e} = \frac{0,000666}{0,0000417} = 16$$
+
+    \subsection{Etude du premier modulateur}
+Le modulateur en question utilise une technique de mappage des symboles binaires à moyenne nulle. Pour ce faire, les bits sont d'abord regroupés en paquets et chaque paquet est alors assigné à un symbole. Ce symbole est ensuite transmis en utilisant un filtre de mise en forme rectangulaire de hauteur 1 et de durée égale à la durée du symbole.\\
+Donc, le nombre d'échantillons par symbole $N_s_1$ est  :
+$$N_s_1 = 8$$
+
+Pour mettre en place ce modulateur, il faut tout d'abord réaliser le mapping des symboles binaires à moyenne nulle. Ensuite, un filtre de mise en forme rectangulaire doit être implémenté, avec une hauteur de 1 et une durée égale à la durée du symbole. Ce filtre permet de mettre en forme le signal modulé avant sa transmission.
+    \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{SignalModule1.png}
+            \caption{Signal modulé 1 \label{fig : SignalModule1}}
+        \end{figure}
+
+        Pour générer le signal, après avoir générer une suite binaire de taille N = 1000, le premier élément à considérer est le mapping des symboles binaires à moyenne nulle. Cela est effectué en multipliant les bits aléatoires générés (0 ou 1) par 2, puis en soustrayant 1 pour obtenir des symboles de -1 et 1.
+
+Ensuite, un filtre de mise en forme rectangulaire est utilisé pour obtenir un signal de la même durée que la période d'échantillonnage, avec une hauteur de 1. Ce signal est ensuite suréchantillonné, c'est-à-dire que le nombre d'échantillons par symbole est multiplié par un facteur de suréchantillonnage Ns. Le signal suréchantillonné est ensuite filtré avec un filtre passe-bas, en utilisant un filtre passe-bas idéal dont la réponse impulsionnelle est un rectangle de durée $N_s*T_e$.
+
+Le signal modulé est encore tracé en fonction du temps, en utilisant la fonction plot() de MATLAB. La figure obtenue montre le signal modulé en amplitude en fonction du temps.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPSignalModule1.png}
+            \caption{La densité spectrale du signal modulé 1 \label{fig : DSPSignalModule1}}
+        \end{figure}
+
+Ensuite nous avons procédé au tracage de la densité spectrale du signal modulé 1 dans une échelle logarithmique en utilisant la fonction fft() et fftshift() pour recentrer les fréquences autours de 0 comme dessus. (Figure \ref{fig : DSPSignalModule1})
+
+Le calcul de la densité spectrale théorique de ce modulateur s'effectue par l'expression :
+$$ DSP_t_h_e_o_r_i_q_u_e_1 = \sigma_a_1^{2} * T_s_1 * sinc(\pi*f*T_s_1)^{2} $$
+
+Avec $\sigma_a_1^{2} = 1$, la variance des symboles émis (car les symboles sont $[-1 \ 1]$ et $T_s_1$ la période symbole émis dans le modulateur 1.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPEsTh1.png}
+            \caption{Les densités spectrales estimé et théorique du signal modulé 1 \label{fig : DSPEsThSignalModule1}}
+        \end{figure}
+
+En définitive, nous avons représenté simultanément la densité spectrale de puissance estimée pour le signal modulé 1 ainsi que sa densité spectrale théorique en échelle semi-logarithmique de fréquence. (Figure \ref{fig : DSPEsThSignalModule1})
+
+En observant cette figure \ref{fig : DSPEsThSignalModule1}, nous pouvons remarquer que le tracé de la densité spectrale de puissance (DSP) simulée se superpose très bien à celui de la DSP théorique du signal généré. Cette superposition suggère que la DSP estimée est très proche de la DSP théorique, ce qui montre la précision des calculs effectués pour l'estimation de la DSP.
+En somme, la superposition entre la DSP simulée et la DSP théorique suggère que l'estimation de la DSP a été réalisée avec succès et que les calculs ont été menés avec une grande précision. Cela va nous être très utile pour comprendre les propriétés spectrales du signal et pour concevoir le modulateur du traitement du signal binaire convenable.
+    \subsection{Etude du deuxième modulateur}
+
+Ce modulateur utilise une modulation à quatre états pour transmettre des données binaires. Les symboles 4-aires sont mappés à partir de la séquence de bits à transmettre en leur attribuant une moyenne nulle. Un filtre de mise en forme rectangulaire est utilisé pour façonner le signal de sortie. Ce filtre a une hauteur de 1 et une durée égale à la durée du symbole. La mise en forme du signal permet de limiter la bande passante nécessaire pour transmettre le signal et d'atténuer les effets de l'interférence inter-symbole. Le signal modulé est ensuite sur-échantillonné pour assurer un échantillonnage suffisamment fin pour pouvoir le transmettre sur le canal de transmission. La densité spectrale de puissance est ensuite estimée pour vérifier les propriétés de qualité de la modulation.
+Le nombre d'echantillon par symbole $N_s_2$ de ce deuxième modulateur est :
+$$ N_s_2 = 16 $$
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{SignalModule2.png}
+            \caption{Signal modulé 2 \label{fig : SignalModule2}}
+        \end{figure}
+
+Le modulateur 2 consiste à moduler un signal en util∗ Ts1)isant une modulation 4-aires, avec des symboles possibles égaux à -3, -1, 3, et 1. La première étape de l'implémentation consiste à générer une séquence de bits aléatoires à transmettre, de longueur 2N. Ensuite, cette séquence est mappée sur les symboles 4-aires à moyenne nulle, en utilisant la fonction bit2int qui convertit les paires de bits en un entier de 0 à 3, puis en multipliant par 2 et en soustrayant 3. Le signal ainsi obtenu est ensuite suréchantillonné par un facteur Ns en utilisant la fonction kron pour insérer des zéros entre les échantillons. Le filtre de mise en forme est ensuite appliqué, en utilisant un filtre rectangulaire de hauteur 1 et de durée égale à la durée de symbole. Le signal modulé est finalement obtenu en filtrant le signal suréchantillonné par le filtre de mise en forme. Le signal modulé est ensuite prêt à être transmis sur le canal de communication.
+
+Le signal modulé est ensuite représenté en fonction du temps en utilisant la fonction plot() de MATLAB. La figure illustre le signal modulé en amplitude en fonction du temps.
+
+Nous avons ensuite calculer la densité spectrale de puissance de ce modulateur en utilisant le signal modulé précédent et la fonction pwelch(x2, [], [], [], Fe, 'twosided'), ainsi que sa densité spectrale théorique en utilisant la formule :
+
+$$ DSP_t_h_e_o_r_i_q_u_e_2 = \sigma_a_2^{2} * T_s_2 * sinc(\pi*f*T_s_2)^{2} $$
+
+Avec $\sigma_a_2^{2} = 5$, la variance des symboles émis (car les symboles sont $[-3 \ -1 \ \ 1 \ \ 3]$ et $T_s_2$ la période des symbole émis dans le modulateur 2.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPSignalModule2.png}
+            \caption{La densité spectrale du signal modulé 2 \label{fig : DSPSignalModule2}}
+        \end{figure}
+Après cela, nous avons tracé la densité spectrale du signal modulé 2 sur une échelle logarithmique en utilisant les fonctions fft() et fftshift() pour recentrer les fréquences autour de 0 comme illustré ci-dessus et finalement nous avons tracé la densité spectrale estimée et théorique du modulateur 2 sur une meme figure pour effectuer une etude comparatif entre les deux courbes.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPEsTh2.png}
+            \caption{Les densités spectrales estimé et théorique du signal modulé 2 \label{fig : DSPEsThSignalModule2}}
+        \end{figure}
+
+En examinant la Figure \ref{fig : DSPEsThSignalModule2}, nous pouvons constater que le tracé de la densité spectrale de puissance (DSP) simulée pour le modulateur 2 se superpose très bien à celui de la DSP théorique du signal généré. Cette superposition suggère que l'estimation de la DSP pour ce modulateur a été réalisée avec succès et avec une grande précision.
+En Bref, la superposition entre la DSP simulée et la DSP théorique pour le modulateur 2 indique que les calculs d'estimation de la DSP ont été menés avec succès et que les informations obtenues seront utiles pour concevoir un modulateur de traitement du signal binaire adapté à nos besoins.
+
+    \subsection{Etude du troisième modulateur}
+
+    Ce troisième et dernier modulateur utilise une technique de mappage des symboles binaires à moyenne nulle similaire au premier modulateur.\\
+Le nombre d'échantillons par symbole $N_s_3$ est donc  :
+$$N_s_3 = 8$$
+
+Pour mettre en place ce modulateur, il a tout d'abord réaliser le mapping des symboles binaires à moyenne nulle. Ensuite, un filtre de mise en forme rectangulaire doit être implémenté, avec une hauteur de 1 et une durée égale à la durée du symbole.
+
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{SignalModule3.png}
+            \caption{Signal modulé 3 \label{fig : SignalModule3}}
+\end{figure}
+
+Pour générer le signal, après avoir générer une suite binaire de taille N = 1000, le premier élément effectué était le mapping des symboles binaires à moyenne nulle. Cela est effectué en multipliant les bits aléatoires générés (0 ou 1) par 2, puis en soustrayant 1 pour obtenir des symboles de -1 et 1. (similaire au $1_e_r$ modulateur)
+
+Ensuite, un filtre de mise en forme rectangulaire est utilisé pour obtenir un signal de la même durée que la période d'échantillonnage, avec une hauteur de 1. Ce signal est ensuite suréchantillonné, c'est-à-dire que le nombre d'échantillons par symbole est multiplié par un facteur de suréchantillonnage Ns. Le signal suréchantillonné est ensuite filtré avec un filtre passe-bas, en utilisant un filtre passe-bas idéal dont la réponse impulsionnelle est un rectangle de durée $N_s*T_e$.
+
+Le signal modulé est encore tracé en fonction du temps, en utilisant la fonction plot() de MATLAB. La figure obtenue montre le signal modulé en amplitude en fonction du temps.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPSignalModule3.png}
+            \caption{ La densité spectrale du signal modulé 3 \label{fig : DSPSignalModule3}}
+\end{figure}
+
+Ensuite nous avons procédé au tracage de la densité spectrale du signal modulé 1 dans une échelle logarithmique en utilisant la fonction fft() et fftshift() pour recentrer les fréquences autours de 0 comme dessus. (Figure \ref{fig : DSPSignalModule3})
+\newpage
+Le calcul de la densité spectrale théorique de ce modulateur s'effectue par l'expression :
+\[
+DSP_{theorique3} = \frac{\sigma_{a3}^{2}}{T_{s3}} 
+\left \{
+   \begin{array}{r c l}
+      T_{s} & \text{si } \ |f| < f_{limite1} \\
+      \frac{T_{s}}{2} \cdot (1 + \cos\left(\frac{\pi T_{s}}{\alpha}(|f| - f_{limite1})\right)) & \text{pour } \ f_{limite1} < |f| < f_{limite2} \\
+      0 & \text{ailleurs}
+   \end{array}
+\right .
+\]
+Avec $\sigma_a_3^{2} = 1$, la variance des symboles émis (car les symboles sont $[-1 \ 1]$), $\alpha$ le roll off et $T_s_3$ la période symbole émis dans le modulateur 3 et les fréquences limites sont :\\
+$$f_l_i_m_i_t_e_1 = \frac{1-\alpha}{2T_s_3} \ \ & \text{et} & \ \ f_l_i_m_i_t_e_2 = \frac{1+\alpha}{2T_s_3}$$
+
+Après, on a procédé au tracage de la densité spectrale de puissance estimée et théorique dans un meme figure pour effectuer une etude comparatif entre les deux courbes.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{DSPEsTh3.png}
+            \caption{ Les densités spectrales estimé et théorique du signal modulé 3 \label{fig : DSPTHEsSignal3}}
+\end{figure}
+
+En observant la courbe représentant la densité spectrale de puissance (DSP) pour le modulateur 3 dans la Figure \ref{fig : DSPTHEsSignal3}, nous pouvons remarquer une excellente correspondance avec la DSP théorique du signal généré. Cette similitude entre la DSP estimée et la DSP théorique indique que l'estimation a été réalisée avec précision et que les résultats obtenus peuvent être utilisés pour comprendre les propriétés spectrales du signal.
+
+En somme, la concordance entre la DSP simulée et la DSP théorique pour le modulateur 3 témoigne de la précision des calculs d'estimation de la DSP et suggère que les résultats obtenus seront utiles pour la conception de notre modulateur de traitement du signal binaire.
+
+    \subsection{Analyse comparative des trois modulateurs implémentés}
+ Dans le cadre d'une analyse comparative des divers modulateurs étudiés précédemment, en tenant compte de leur caractéristique énergétique ainsi que de leur tracé de la densité spectrale de puissance, il a été observé qualitativement que le troisième modulateur est le plus efficace en termes d'efficacité spectrale. En effet, sa bande passante est la moins étendue, suivie par celle du modulateur 2, tandis que celle du modulateur 1 est la plus étendue.\\
+ 
+ Théoriquement, nous allons à présent comparer l'efficacité spectrale des trois modulateurs, définie par :
+ $$\eta = \frac{R_b}{B}$$
+ où $R_b$ est le débit binaire et $B$ est la bande de fréquence au-delà de laquelle l'atténuation minimale est de 20 dB. \\
+ 
+Pour le modulateur 1, nous avons $B = 1.6 \times 10^4 $, d'où $\eta = 0.19$ \\
+ Pour le modulateur 2, nous avons $B = 5 \times 10^3 $, d'où $\eta = 0.6$ \\
+ Pour le modulateur 3, nous avons $B = 2.5 \times 10^3 $, d'où $\eta = 1.2$ \\
+ 
+ En termes d'efficacité spectrale, le modulateur 3 s'avère être le plus efficace. Le modulateur 2 semble étre d'une efficacité spectrale plus meilleur que le premier comme l'indique le calcul précédent. Pourtant, on peut le démontrer de la manière suivante : \\
+ Le modulateur 1 utilise un mapping de symbole binaire à moyenne nulle, donc d'après ce qu'on a développé précédement dans la section du calcul de $N_s$ (Section \ref{NombreEchantillonNs}), on a :
+ \begin{equation}
+      R_s_1 = R_b
+ \end{equation}
+ Le modulateur 2 utilise un mapping de symbole 4-aire à moyenne nulle, donc d'après ce qu'on a développé précédement dans la section du calcul de $N_s$ (Section \ref{NombreEchantillonNs}), on a :
+ \begin{equation}
+      R_s_2 = \frac{R_b}{2}
+ \end{equation}
+ De (1) et (2), on déduit que :
+ $$ R_s_2 = \frac{R_s_1}{2}$$
+ On a :
+ $$B = k*R_s$$
+ avec $R_s$ le débit symbole du modulateur, et $k=1$, d'où :
+ $$ B_2 = \frac{B_1}{2}$$
+ Ce qui montre que le modulateur 2 est plus efficace en termes d'efficacité spectrale que le modulateur 1.
+ 
+ 
+ Pour augmenter l'efficacité spectrale, les paramètres à prendre en compte sont la diminution du paramètre $k$ donc $B$ car on a :
+ $$ \eta = \frac{log2(M)}{k} = \frac{R_b}{B}$$
+ ou bien on peut procéder à l'augmentation du nombre de symbole $M$.
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=12cm]{DSP3Modulateurs.png}
+            \caption{ Les densités spectrales superposées des trois modulateurs\label{fig : DSP3Modulateurs}}
+\end{figure}
+
+\section{Examen des interférences entre les symboles et la condition de Nyquist}
+
+Dans cette section, Nous devrons mettre en place une chaine de transmission en bande de base sans bruit et l'analyser en nous concentrant sur les interférences entre symboles, leur impact sur la transmission, ainsi que l'influence du respect ou du non-respect du critère de Nyquist. À cet effet, nous devrons utiliser une fréquence d'échantillonnage $F_e \ = \ 24000 \ H_z$, permettant de transmettre un débit binaire $R_b \ = \ 3000 \ bits$ par seconde via un mapping binaire à moyenne nulle. Nous devrons également déterminer le facteur de suréchantillonnage $N_s$ pour répondre aux paramètres énoncés. Pour ce faire, nous déploierons des filtres de mise en forme et de réception, dont les réponses impulsionnelles rectangulaires de durées égales à la durée du symbole et de hauteur 1 seront rigoureusement identiques.
+
+    \subsection{Etude sans canal de propagation}
+Dans un premier temps, nous procéderons à l'étude de la chaine de transmission sans canal de propagation, c'est-à-dire sans bruit ni filtrage introduit par le canal, avec une réponse impulsionnelle du canal $hc(t) \ = \ \delta(t)$. Cette démarche nous permettra de nous concentrer exclusivement sur l'analyse du bloc modulateur/démodulateur.
+
+Nous utiliserons, dans cette étude, un modulateur qui repose sur un mapping binaire à moyenne nulle. Comme indiqué précédemment (Section \ref{NombreEchantillonNs}), nous utiliserons donc un facteur de suréchantillonnage $N_s$ égal à 8.
+
+Nous avons commencé par initialiser plusieurs paramètres tels que la fréquence d'échantillonnage, le débit binaire, le nombre de bits à transmettre, la fréquence de symbole, etc.
+
+Ensuite, la première partie de notre étude consiste à simuler la transmission sans canal de propagation en utilisant un mapping binaire à moyenne nulle pour générer des symboles modulés. Le signal modulé est ensuite suréchantillonné, filtré avec un filtre de mise en forme, modulé et finalement reçu et démodulé à l'aide d'un filtre de réception.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{SignalModuleSansCanal.png}
+            \caption{Le signal x modulé \label{fig : SignalModuleSansCanal}}
+\end{figure}
+
+On a calculé également la réponse impulsionnelle globale de la chaîne de transmission, tracé le diagramme de l'oeil pour évaluer la qualité de la transmission et effectué la décision binaire en comparant les échantillons reçus avec un seuil.
+
+À partir de la courbe de la réponse impulsionnelle globale de la chaîne de transmission, nous avons pu déterminer les instants d'échantillonnage optimaux qui vérifient le critère de Nyquist. Nous avons ainsi trouvé que l'indice de l'échantillon à prélever $t_0$ est égal à $T_s$, donc $n_0 \ = \ N_s$ car :
+$$ g(T_s) \neq 0 \
+\text{et} \ \forall p \in \mathbb{Z}, \ g(T_s+pT_s) = 0 $$
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{gSansCanal.png}
+            \caption{Réponse impulsionnelle globale g sans canal de propagation \label{fig : gSansCanal}}
+\end{figure}
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{OeilSansCanal.png}
+            \caption{Diagramme de l'oeil sans canal de propagation\label{fig : OeilSansCanal}}
+\end{figure}
+
+On a calculé également le taux d'erreur binaire ($TEB$) pour évaluer la qualité de la transmission. Le filtrage sans canal de propagation a produit un taux d'erreur binaire nul quand $n_0 = N_s$ puisqu'on a respecté le critère de Nyquist. Cependant, pour $n_0 \ = \ 3$, on a obtenu un très grand taux d'erreur binaire $TEB$ qui dépasse les 50\% : Cela est du au interférences entre symboles puisqu'on a pas respecté le critère de Nyquist.
+
+    \subsection{Etude avec canal de propagation sans bruit}
+
+Nous allons maintenant considérer un canal de propagation à bande limitée BW qui n'introduit pas de bruit. Pour cela, nous allons reprendre notre schéma modulateur/démodulateur optimal implanté précédemment et y ajouter un filtre passe-bas représentant le canal de propagation.
+Nous allons utilisé pour cela deux valeurs de BW.
+    \subsubsection{Etude avec canal sans bruit pour BW = 8000 Hz}
+
+    On a étudié le canal de propagation de bande limitée ($BW_1 \ = \ 8000 \ H_z$) en ajoutant un filtre passe-bas à la chaîne de transmission modulateur/démmodulateur précédemment implantée.
+
+Le filtre passe-bas est généré avec une réponse impulsionnelle $h_c$ à l'aide de la fonction sinc, avec une fréquence normalisée :
+$$f_{norm_1} = \frac{BW_1}{F_e}$$
+
+La réponse impulsionnelle globale de la chaîne de transmission est calculée en convoluant la réponse impulsionnelle du filtre de mise en forme $h$, la réponse impulsionnelle du filtre passe-bas $h_c$ et la réponse impulsionnelle du filtre de réception $h_r$ :
+$$ g = h * h_r *h_c$$
+
+Le tracé de la réponse impulsionnelle globale de la chaîne de transmission est ensuite effectué (\ref{fig : gBW1}).
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=8cm]{gBW1.png}
+            \caption{Réponse impulsionnelle globale $g$ avec canal de propagation (BW1)\label{fig : gBW1}}
+\end{figure}
+
+Le diagramme de l'oeil est ensuite tracé (\ref{fig : OeilBW1}), en utilisant la fonction "filtrage\_sans\_delai" qui permet de réaliser le filtrage en gérant les retard introduit, avec les filtres $h$, $h_c$ et $h_r$ et le signal d'entrée $x$.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=8cm]{OeilBW1.png}
+            \caption{Diagramme de l'oeil avec canal de propagation (BW1)\label{fig : OeilBW1}}
+\end{figure}
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=8cm]{HFHRHCBW1.png}
+            \caption{Comparaison de |H(f)Hr(f)| et de |Hc(f)| (BW1)\label{fig : HFHRHCBW1}}
+\end{figure}
+
+La comparaison de la réponse en fréquence de $|H(f)H_r(f)|$ et de $|H_c(f)|$ est tracée sur une même figure.
+
+L'échantillonnage est effectué en prélevant tous les Ns échantillons du signal filtré avec gestion du retard. La décision est ensuite prise en comparant chaque échantillon à 0, et les bits reçus sont récupérés en convertissant la map estimée. Le taux d'erreur binaire est ensuite calculé en comparant les bits reçus avec les bits originaux.
+
+Nous remarquons que la bande de fréquences de la réponse en fréquence du canal, représentée par la courbe de |Hc|, est plus grande que celle de la courbe de |H|*|Hr|, cela indique que le canal de transmission introduit des interférences et des distorsions supplémentaires qui sont réparties sur une bande de fréquences plus large. Cela va effectivement rendre la récupération du signal modulé plus difficile, car les signaux indésirables peuvent interférer avec le signal utile sur une plus grande plage de fréquences.
+
+    \subsubsection{Etude avec canal sans bruit pour BW = 1000 Hz}
+
+    Ici, On a étudié le canal de propagation de bande limitée ($BW_2 \ = \ 1000 \ H_z$) en ajoutant un filtre passe-bas à la chaîne de transmission modulateur/démmodulateur précédemment implantée (Comme fait dans le premier cas)
+
+Rien ne va changer par rapport à la première étude juste les résultats.
+
+Le filtre passe-bas est généré avec une réponse impulsionnelle $h_c$ à l'aide de la fonction sinc, avec une fréquence normalisée :
+$$f_{norm_2} = \frac{BW_2}{F_e}$$
+
+La réponse impulsionnelle globale de la chaîne de transmission est calculée en convoluant la réponse impulsionnelle du filtre de mise en forme $h$, la réponse impulsionnelle du filtre passe-bas $h_c$ et la réponse impulsionnelle du filtre de réception $h_r$ :
+$$ g = h * h_r *h_c$$
+
+Le tracé de la réponse impulsionnelle globale de la chaîne de transmission est ensuite effectué (\ref{fig : gBW2}).
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{gBW2.png}
+            \caption{Réponse impulsionnelle globale g avec canal de propagation (BW1)\label{fig : gBW2}}
+\end{figure}
+
+Le diagramme de l'oeil est ensuite tracé (\ref{fig : OeilBW2}), en utilisant la fonction "filtrage\_sans\_delai" qui permet de réaliser le filtrage en gérant les retard introduits, avec les filtres $h$, $h_c$ et $h_r$ et le signal d'entrée $x$.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{OeilBW2.png}
+            \caption{Diagramme de l'oeil avec canal de propagation (BW2)\label{fig : OeilBW2}}
+\end{figure}
+
+La comparaison de la réponse en fréquence de $|H(f)H_r(f)|$ et de $|H_c(f)|$ est tracée sur une même figure.
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{HFHRHCBW2.png}
+            \caption{Comparaison de |H(f)Hr(f)| et de |Hc(f)| (BW2)\label{fig : HFHRHCBW2}}
+\end{figure}
+
+Nous constatons que la bande de fréquences de la réponse en fréquence du canal de transmission, représentée par la courbe de |Hc|, est étroite ou égale à celle de la courbe de |H|*|Hr|, cela indique que le canal de transmission ne présente pas de distorsion ou d'interférence importante sur une plage de fréquences plus large.
+
+Cela va faciliter la récupération du signal modulé car le canal de transmission n'affecte pas le signal de manière significative sur une bande de fréquences plus large.
+
+\subsubsection{Etude Comparative de g entre BW1 et BW2}
+Nous remarquons que la réponse impulsionnelle globale associée à la bande passante $BW_1$ (figure \ref{fig : gBW1}) est plus courte dans le temps que celle associée à $BW_2$ (figure \ref{fig : gBW2}). Ceci est logique car la bande passante d'un système a une influence directe sur la réponse impulsionnelle globale du système. Plus la bande passante est large, plus la réponse impulsionnelle globale sera courte dans le temps.
+
+Plus la bande passante est étroite, plus la réponse impulsionnelle globale sera longue dans le temps. Cela est dû au fait que les signaux à haute fréquence sont atténués ou retardés par un système à bande passante étroite, ce qui entraîne un délai ou une distorsion de la réponse impulsionnelle globale.
+
+\section{Etude de l’impact du bruit et du filtrage adapté\\ \Gray{'notion d’efficacité en puissance'}}
+
+La dernière partie de l'étude sera consacrée à l'analyse du bruit dans les systèmes de transmission numérique, en se concentrant sur l'impact du bruit introduit par le canal sur la qualité de la transmission. Nous examinerons également l'influence du filtrage adapté pour réduire le bruit dans le signal de transmission. Enfin, nous calculerons et estimerons le taux d'erreur binaire (TEB) pour comparer les performances des différents systèmes de transmission en termes d'efficacité en puissance.
+    \subsection{Etude de la première chaine de transmission}
+Nous allons mettre en place la première chaîne de transmission en utilisant une fréquence d'échantillonnage Fe de 24 kHz, un débit binaire Rb de 3000 bits par seconde, un mapping des symboles binaires avec une moyenne nulle, ainsi qu'une réponse impulsionnelle rectangulaire pour le filtre de mise en forme et le filtre de réception, ayant une durée égale à celle du symbole et une hauteur de 1. 
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=3cm]{filtre rectangulaire 1.png}
+            \caption{Filtre de mise en forme et de réception
+            \label{fig : FiltreRec1}}
+\end{figure}
+
+nous utiliserons donc un facteur de suréchantillonnage $N_s$ égal à 8.
+
+\subsubsection{L'étude de la première chaine sans bruit}
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{ch1diagoeilsansbr.png}
+            \caption{Diagramme d'oeil sans bruit
+            \label{fig : OeilChaine1}}
+\end{figure}
+
+
+    En ce qui concerne le choix des instants optimaux d'échantillonnage, nous avons observé sur le diagramme d'oeil que la plus grande ouverture, c'est-à-dire la plus grande distance entre les points, se situe à l'indice 8, correspondant à $N_s$. Ainsi, à l'instant $T_s$, il n'y a pas d'interférence de symbole, et l'instant optimal pour l'échantillonnage est donc : 
+    $$t_0 \ = \ T_s$$
+    Cela conduit à un taux d'erreur binaire nul, comme indiqué dans le script de la première chaîne.
+\begin{itemize}
+    \item Détection du décision :  \par
+    
+    \[
+a_{m} = Z(n0 + mNs)/Ns = 
+\left \{
+   \begin{array}{r c l}
+      1 \\
+      -1
+   \end{array}
+\right .
+\]
+
+    \item Détection de l'information binaire : 
+    \[
+bit =  
+\left \{
+   \begin{array}{r c l}
+      0 & \text{si } \ a_{m} =  -1\\
+      1 & \text{si } \ a_{m} = 1 \\
+     
+   \end{array}
+\right .
+\]
+
+    
+\end{itemize}
+
+\subsubsection{L'étude de la première chaine avec bruit}
+
+Après l'introduction du bruit, nous avons remarqué que l'instant optimal d'échantillonnage n'était plus clairement identifiable sur le diagramme d'oeil. En effet, le bruit a altéré la forme des symboles et créé des interférences entre eux, rendant difficile la détermination de l'instant d'échantillonnage qui permettrait de minimiser ces interférences. Par conséquent, nous avons constaté que la présence de bruit avait un impact négatif sur la qualité de la transmission et rendait le choix de l'instant d'échantillonnage optimal plus complexe. 
+
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=6cm]{c1do0.png}
+            \includegraphics[width=6cm]{c1do1.png}
+            \includegraphics[width=6cm]{c1do2.png}
+            \includegraphics[width=6cm]{c1do3.png}
+            \includegraphics[width=6cm]{c1do4.png}
+            \includegraphics[width=6cm]{c1do5.png}
+            \includegraphics[width=6cm]{c1do6.png}
+            \includegraphics[width=6cm]{c1do7.png}
+            \includegraphics[width=6cm]{c1do8.png}
+            \caption{ Diagrammes de l’oeil en sortie du filtre de réception pour Eb/N0 = 0:8
+            \label{fig : Oeil}}
+\end{figure}
+
+Nous remarquons que plus la valeur de $\frac{E_b}{N_0}$ augmente plus le diagramme de l'oeil est plus ouvert.
+
+En effet, plus cette valeur est élevée, plus le signal est fort par rapport au bruit et plus la qualité de la transmission est bonne. Dans ce cas, le diagramme de l'oeil sera plus ouvert, ce qui signifie que la forme des symboles est plus clairement identifiable et que le choix de l'instant d'échantillonnage optimal est plus facile à déterminer.
+
+En revanche, si la valeur de $\frac{E_b}{N_0}$ est faible, cela signifie que le bruit est plus fort par rapport au signal, ce qui réduit la qualité de la transmission. Dans ce cas, le diagramme de l'oeil sera plus fermé, ce qui rendra la forme des symboles moins claire et le choix de l'instant d'échantillonnage optimal plus difficile à déterminer. \\
+En général, pour une même chaîne de transmission, plus la valeur de $\frac{E_b}{N_0}$ est élevée, meilleur sera le taux d'erreur binaire ($TEB$) et plus la qualité de la transmission sera bonne.
+\newpage
+Le calcul du taux d'erreur binaire ($TEB$) est une mesure importante qui va nous permettre d'évaluer la qualité des chaînes de transmission numérique. Il va nous permettre de quantifier le taux d'erreurs de transmission dans les données binaires, c'est-à-dire le nombre d'erreurs de bits qui se produisent pendant la transmission par rapport au nombre total de bits transmis.
+
+Le TEB est donc un indicateur de la qualité de la transmission numérique, car il mesure la capacité de la chaîne de transmission à transmettre les données avec précision et fiabilité. Plus le $TEB$ est faible, meilleur est le taux de transmission et plus la qualité de la transmission est élevée. \\
+
+Pour le taux d'erreur binaire, on a un mapping avec symboles binaires à moyenne nulle, donc :
+$$ TES = Q( \sqrt{ 2 \frac{E_{b}}{N_{0}}}) $$ \\ 
+D'où :
+$$TEB = \frac{TES}{log_{2}(2)} = Q( \sqrt{ 2 \frac{E_{b}}{N_{0}}})$$
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TEB1.png}
+  \caption{TEB simulé de la première chaine de transmission}
+  \label{fig:TEBCHAINE1}
+  \vspace{0.2cm}
+  \end{figure}
+
+  \begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TES1.png}
+  \caption{TES simulé de la première chaine de transmission}
+  \label{fig:TESCHAINE1}
+  \vspace{0.2cm}
+  \end{figure}
+
+ Nous constatons que le TEB et TES diminuent à mesure que la valeur de $\frac{E_b}{N_0}$ augmente, ce qui est cohérent avec la signification de ces valeurs : à mesure que la puissance du signal augmente par rapport au bruit, la qualité de la transmission s'améliore.
+
+ En effet, Le rapport $\frac{E_b}{N_0}$ représente la puissance du signal divisée par la densité spectrale de bruit en bande passante. Ainsi, lorsque cette valeur augmente, cela signifie que la puissance du signal est proportionnellement plus grande que le bruit dans la bande passante. Cela se traduit par une meilleure qualité de la transmission, car le signal est plus robuste face aux perturbations du bruit. Par conséquent, les $TEB$ et $TES$ diminuent, c'est-à-dire qu'il y a moins d'erreurs dans la transmission des données binaires. En d'autres termes, plus la puissance du signal est grande par rapport au bruit, meilleure est la qualité de la transmission.\\
+
+D'un autre côté, nous constatons que l'estimation des $TEB$ et $TES$ est en accord avec les $TEB$ et $TES$ théoriques de cette chaîne de transmission. Ceci indique que les filtres et les paramètres utilisés pour construire cette chaîne de transmission sont appropriés et bien adaptés pour cette application. En effet, cela montre que la transmission est fiable et que les erreurs de transmission sont limitées, ce qui est essentiel pour assurer une communication de qualité entre les systèmes de transmission numérique.
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TEBTH1.png}
+  \caption{TEB simulé et TEB théorique}
+  \label{fig:nom_de_la_figure}
+  \vspace{0.2cm}  
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TESTH1.png}
+  \caption{TES simulé et TES théorique}
+  \label{fig:TESTHEORIQUE}
+  \vspace{0.2cm}  
+\end{figure}
+\newpage
+    \subsection{Etude de la deuxième chaine de transmission}
+Nous allons implanter la deuxième chaine avec une fréquence d’échantillonnage
+Fe = 24 kHz, un d´ebit binaire $R_b \ = \ 3000 \ bits$ par seconde, un mapping des symboles binaires à moyenne nulle, la réponse impulsionnelle du filtre de mise en forme rectangulaire de durée égale à la durée symbole et de hauteur 1, la réponse impulsionnelle du filtre de réception  rectangulaire de durée égale à la moitié de la durée symbole et de hauteur 1.
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=3cm]{filtre rectangulaire 1.png}
+            \includegraphics[width=3cm]{filtremoité.png}
+            \caption{Filtre de mise en forme et de réception respectivement
+            \label{fig : filtre}}
+\end{figure}
+nous utiliserons donc un facteur de suréchantillonnage $N_s$ égal à 8.
+
+\subsubsection{L'étude de la deuxième chaine sans bruit}
+
+   En ce qui concerne le choix des instants optimaux d'échantillonnage, nous avons utilisé le diagramme d'oeil pour déterminer la plage de temps où il n'y a pas d'interférence entre les symboles. Sur ce diagramme, nous avons remarqué que les plus grandes ouvertures entre les points se trouvent entre l'indice 4 et l'indice 8, correspondant donc à un intervalle de temps de $[\frac{T_s}{2}, T_s]$. Ainsi, les instants optimaux pour l'échantillonnage se situent dans cette plage de temps, soit $t_0 \in [\frac{T_s}{2}, T_s]$. Dans notre implémentation, nous avons choisi $n_0 = N_s$, ce qui correspond à un instant d'échantillonnage optimal. Cette décision a conduit à un $TEB$ nul, comme indiqué dans le script de la première chaîne. Nous pouvons donc conclure que notre choix de filtres et de paramètres pour cette chaîne de transmission est adapté.\\
+
+   \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=8cm]{diagoeil2.png}
+            \caption{Diagramme d'oeil sans bruit de la deuxième chaine de transmission
+            \label{fig : Oeil}}
+\end{figure}
+
+    En ce qui concerne détection de la décision, celle-ci va étre effectuée comme fait pour la première chaine de transmission :
+    
+    \[
+a_{m} = \frac{Z(n_0 + mN_s)}{N_s} = 
+\left \{
+   \begin{array}{r c l}
+      1 \\
+      -1
+   \end{array}
+\right .
+\]
+
+    \item Détection de l'information binaire comme la chaine 1 : 
+    \[
+bit =  
+\left \{
+   \begin{array}{r c l}
+      0 & \text{si } \ a_{m} =  -1\\
+      1 & \text{si } \ a_{m} = 1 \\
+     
+   \end{array}
+\right .
+\]
+
+    
+\end{itemize}
+\subsubsection{L'étude de la deuxième chaine avec bruit}
+Suite à l'introduction du bruit, nous avons observé que la forme des symboles sur le diagramme d'oeil était altérée et que des interférences apparaissaient entre eux. En conséquence, l'identification de l'instant optimal d'échantillonnage pour minimiser ces interférences est devenue plus difficile. En d'autres termes, la présence de bruit a eu un effet négatif sur la qualité de la transmission et a compliqué le choix de l'instant d'échantillonnage optimal.
+
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=6cm]{c2do0.png}
+            \includegraphics[width=6cm]{c2do1.png}
+            \includegraphics[width=6cm]{c2do2.png}
+            \includegraphics[width=6cm]{c2do3.png}
+            \includegraphics[width=6cm]{c2do4.png}
+            \includegraphics[width=6cm]{c2do5.png}
+            \includegraphics[width=6cm]{c2do6.png}
+            \includegraphics[width=6cm]{c2do7.png}
+            \includegraphics[width=6cm]{c2do8.png}
+            \caption{ diagramme de l’oeil en sortie du filtre de réception pour  Eb/N0 = 0:8
+            \label{fig : Oeil}}
+\end{figure}
+
+Le $TEB$ est une mesure cruciale pour évaluer la qualité des transmissions numériques, car il permet de quantifier le taux d'erreurs de transmission dans les données binaires. En d'autres termes, il permet de calculer le nombre d'erreurs de bits qui se produisent lors de la transmission par rapport au nombre total de bits transmis. Ainsi, le TEB est un indicateur important de la fiabilité et de la précision de la chaîne de transmission numérique.
+
+Un $TEB$ faible est donc souhaitable, car cela signifie que le taux d'erreurs de transmission est réduit, ce qui indique une qualité de transmission plus élevée et une capacité supérieure de la chaîne de transmission à transmettre les données avec précision et fiabilité. En somme, le calcul du $TEB$ est un outil indispensable pour évaluer et améliorer la qualité des transmissions numériques.
+Pour le calcul du taux d'erreur binaire théorique, on a des symboles binaires à moyenne nulle donc : 
+$$ TES = Q( \sqrt{ 2 \frac{E_{b}}{N_{0}}}) $$ 
+\\Alors :
+  \ $$TEB = \frac{TES}{log_{2}(2)} = Q( \sqrt{ 2 \frac{E_{b}}{N_{0}}})$$
+
+\begin{itemize}
+    \item Détection du décision :  \par
+    
+    \[
+a_{m} = 
+\left \{
+   \begin{array}{r c l}
+      1 & \text{si} \ z( \\
+      -1
+   \end{array}
+\right .
+\]
+
+    \item Détection de l'information binaire : 
+    \[
+bit =  
+\left \{
+   \begin{array}{r c l}
+      0 & \text{si } \ a_{m} =  -1\\
+      1 & \text{si } \ a_{m} = 1 \\
+     
+   \end{array}
+\right .
+\]
+
+    
+\end{itemize}
+
+\clearpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{TEB2.png}
+  \caption{TEB simulé de la deuxième chaine}
+  \label{fig:nom_de_la_figure}
+  \vspace{0.2cm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{TES2.png}
+  \caption{TES simulé de la deuxième chaine}
+  \label{fig:nom_de_la_figure}
+  \vspace{0.2cm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TEBTH2.png}
+  \caption{TEB simulé et TEB théorique de la deuxième chaine}
+  \label{fig:nom_de_la_figure}
+  \vspace{0.2cm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{TESTH2.png}
+  \caption{TES simulé et TES théorique de la deuxième chaine}
+  \label{fig:nom_de_la_figure}
+  \vspace{0.2cm}
+\end{figure}
+
+\newpage
+    \subsection{Etude de la troisième chaine de transmission}
+    Nous allons implanter la troisième chaine avec une fréquence d’échantillonnage
+Fe = 24 kHz, un d´ebit binaire $R_b \ = \ 3000 \ bits$ par seconde, un mapping des symboles 4-aire à moyenne nulle, la réponse impulsionnelle du filtre de mise en forme rectangulaire de durée égale à la durée symbole et de hauteur 1, la réponse impulsionnelle du filtre de réception  rectangulaire de durée égale à la moitié de la durée symbole et de hauteur 1. \\
+\begin{itemize}
+\item 
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=3cm]{filtre rectangulaire 1.png}
+            \caption{Filtre de mise en forme et de réception
+            \label{fig : OeilBW1}}
+\end{figure}
+\end{itemize}
+
+\\On a déja calculé la valeur de Ns pour les symboles 4-aire à moyenne nulle au partie 1. Donc :
+$$N_s \ = \ 16$$
+
+\subsubsection{L'étude de la troisième chaine sans bruit}
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=10cm]{c3do.png}
+            \caption{Diagramme d'oeil sans bruit
+            \label{fig : OeilBW1}}
+\end{figure}
+
+\begin{itemize}
+    \item Le choix des instants optimaux d’échantillonnage : \par
+    On observe sur le diagramme d'oeil, on a la plus grande ouverture c'est à dire la plus grandes distances entre les points est à l'indice 16  ce qui est égale Ns, donc à l'instant Ts on n'a pas d'intérférance de symbole. Alors l'instant optimal pour l'échantillage est $t_0 \ = \ T_s$. Ce qui donne un $TEB$ nul (regardez le script du premiére chaine).
+
+    \item Détection du décision :  \par
+
+
+ $$   a_{m} = z(N_{s} +m.N_{s})/N_{s} $$
+    
+
+
+    \item Détection de l'information binaire : 
+    \[
+bit =  
+\left \{
+   \begin{array}{r c l}
+      00 & \text{si } \ a_{m} =  -3\\
+      01 & \text{si } \ a_{m} = -1 \\
+      10 & \text{si}  \ a_{m} = 1 \\
+      11 & \text{si}  \ a_{m} = 3
+      
+     
+   \end{array}
+\right .
+\]
+
+    
+\end{itemize}
+
+\subsubsection{L'étude de la troisième chaine avec bruit}
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=6cm]{c3do0.png}
+            \includegraphics[width=6cm]{c3do1.png}
+            \includegraphics[width=6cm]{c3do2.png}
+            \includegraphics[width=6cm]{c3do3.png}
+            \includegraphics[width=6cm]{c3do4.png}
+            \includegraphics[width=6cm]{c3do5.png}
+            \includegraphics[width=6cm]{c3do6.png}
+            \includegraphics[width=6cm]{c3do7.png}
+            \includegraphics[width=6cm]{c3do8.png}
+            \caption{ Diagrammes de l’oeil en sortie du filtre de réception pour Eb/N0 = 0:8
+            \label{fig : Oeil3}}
+
+            
+\end{figure}
+Comme pour les deux chaînes précédentes, nous constatons que le moment optimal pour l'échantillonnage ne peut pas être déterminé à partir du diagramme d'œil. Cette difficulté à déterminer le moment optimal pour l'échantillonnage à partir du diagramme d'œil est due au bruit qui est introduit dans la chaîne de transmission.
+\newpage
+\begin{itemize}
+    \item Calcul de la décision
+
+    \[
+a_{m} =  
+\left \{
+   \begin{array}{r c l}
+      3 & \text{si} \  z(N_{s} +m.N_{s}) >= 3.N_{s} \\
+      1 & \text{si} \  	0 \leq z(N_{s} +m.N_{s}) < 3.N_{s} \\
+      -1 & \text{si} \  	-3.N_{s}  \leq  z(N_{s} +m.N_{s}) < 0  \\
+      -3 &  \text{si} \    -3.N_{s} \geq z(N_{s} +m.N_{s})  
+   \end{array}
+\right .
+\]
+
+    \item Détection de l'information binaire : 
+    \[
+bit =  
+\left \{
+   \begin{array}{r c l}
+      00 & \text{si } \ a_{m} =  -3\\
+      01 & \text{si } \ a_{m} = -1 \\
+      10 & \text{si}  \ a_{m} = 1 \\
+      11 & \text{si}  \ a_{m} = 3
+    \end{array}
+
+
+\end{itemize}
+
+Après l'ajout de bruit dans la chaîne de transmission, il est devenu difficile de déterminer l'instant optimal d'échantillonnage à partir du diagramme d'œil car le bruit a altéré la forme des symboles et créé des interférences entre eux. Cela a entraîné une réduction de la qualité de la transmission et a compliqué le choix de l'instant d'échantillonnage optimal. Nous avons observé que la valeur de $\frac{E_b}{N_0}$ est un facteur déterminant pour la qualité de la transmission car elle détermine le rapport signal sur bruit. Lorsque cette valeur est élevée, le signal est plus fort par rapport au bruit, ce qui améliore la qualité de la transmission et rend le choix de l'instant d'échantillonnage plus facile grâce à un diagramme d'œil plus ouvert. En revanche, lorsque la valeur de $\frac{E_b}{N_0}$ est faible, le bruit est plus fort par rapport au signal, ce qui réduit la qualité de la transmission et rend le choix de l'instant d'échantillonnage plus difficile grâce à un diagramme d'œil plus fermé. En somme, la valeur de $\frac{E_b}{N_0}$ est un paramètre crucial pour la qualité de la transmission et détermine le taux d'erreur binaire ($TEB$) de la chaîne de transmission.
+\clearpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=9cm]{TEB3.png}
+  \caption{TEB simulé de la troisième chaine}
+  \label{fig:nom_de_la_figure}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=9cm]{TES3.png}
+  \caption{TES simulé de la troisième chaine}
+  \label{fig:nom_de_la_figure}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=9cm]{TEBTH3.png}
+  \caption{TEBs simulé et théorique de la troisième chaine}
+  \label{fig:nom_de_la_figure}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=9cm]{TESTH3.png}
+  \caption{TESs simulé et théorique de la troisième chaine}
+  \label{fig:nom_de_la_figure}
+\end{figure}
+
+\newpage
+\subsection{Etude comparative des chaines de transmission implantées}
+\subsubsection{La comparaison des chaines de transmission 1 et 2} 
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=9cm]{TEBs12.png}
+            \caption{TEBs simulés des chaines 1 et 2
+            \label{fig : TEBS12}}
+\end{figure}
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=9cm]{TESs12.png}
+            \caption{TEBs simulés des chaines 1 et 2
+            \label{fig : TESS12}}
+\end{figure}
+
+La chaine de transmission 1 présente un taux d'erreur binaire inférieur à celui de la chaine de transmission 2, ce qui suggère une efficacité en puissance supérieure pour la première. Cette différe\\nce peut être attribuée à l'adaptation du filtre de réception, car la chaine 2 a un filtre plus court que celui de la chaine 1, ce qui peut causer une interférence entre les symboles et augmenter le taux d'erreur.
+
+En théorie, il est possible de comparer le rapport signal sur bruit ($SNR$) par bit des deux chaînes, étant donné que :
+$$ \frac{SNR}{bit} \ = \ \frac{E_{b}}{N_{0}} * R_{b} $$ \\
+Puisque la valeur de $R_b$ reste constante, nous pouvons uniquement comparer les deux chaînes en utilisant le rapport énergie par bit sur bruit ($\frac{E_b}{N_0}$).
+
+On a :
+$$TEB = Q( \sqrt{2\frac{E_{b}}{N_{0}}}) $$
+Ce qui donne :
+$$ \frac{E_{b}}{N_{0}} = \frac{1}{2} {Q^{-1}(TEB)}^{2} $$
+Comme $Q$ est croissante, donc $Q^{-1}$ est croissante, alors :
+$$ TEB_{1} \leq TEB_{2} \iff {Q^{-1}(TEB_{1})} \leq {Q^{-1}(TEB_{2})} $$
+On peut déduire que :
+$$ \frac{SNR_1}{bit_{1}} \leq \frac{SNR_2}{bit_{2}} $$
+Lorsque $\frac{SNR}{bit}$ augmente, l'efficacité en puissance diminue.
+
+Donc l'efficacité de puissance du chaine 1 est plus grand que celle du chaine 2.
+
+\newpage
+\subsubsection{La comparaison des chaines de transmission 1 et 3}
+Nous constatons que le taux d'erreur binaire de la chaîne de transmission 1 est inférieur à celui de la chaîne de transmission 3, ce qui suggère une efficacité en puissance supérieure pour la première. Cette différence peut être expliquée par deux facteurs. Tout d'abord, la chaîne 1 a un facteur de suréchantillonnage ($N_s$) de 8 tandis que la chaîne 3 a un $N_s$ de 16, ce qui entraîne une augmentation de la bande passante. De plus, la chaîne 1 envoie un seul bit par symbole, alors que la chaîne 3 envoie deux bits par symbole, ce qui la rend plus sensible à la perte d'une information binaire.
+
+Le facteur de suréchantillonnage ($N_s$) est une technique utilisée pour améliorer la qualité du signal en augmentant le nombre d'échantillons par symbole. Cependant, cela augmente également la bande passante, ce qui peut entraîner une augmentation du bruit et une diminution de la qualité du signal si la chaîne de réception n'est pas correctement configurée.
+
+En outre, la chaîne 1 envoie un seul bit par symbole, ce qui signifie que chaque symbole ne peut transmettre qu'une seule information binaire. En revanche, la chaîne 3 envoie deux bits par symbole, ce qui signifie que chaque symbole peut transmettre deux informations binaires. Cela la rend plus vulnérable à la perte d'une information binaire, ce qui peut entraîner une augmentation du taux d'erreur binaire.\\\\
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=11cm]{TEBs13.png}
+            \caption{TEBs simulés des chaines 1 et 3
+            \label{fig : TEBS13}}
+\end{figure}
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=11cm]{TESs13.png}
+            \caption{TEBs simulés des chaines 1 et 3
+            \label{fig : TESS13}}
+\end{figure}
+\newpage
+\section{Conclusion}
+
+En comparant les trois modulateurs étudiés dans notre projet, il a été observé que le Modulateur 3, qui utilise un mapping de symboles binaires à moyenne nulle et un filtre de mise en forme en racine de cosinus surélevé, a les meilleures performances en termes de puissance spectrale et de taux d'erreur binaire (TEB) comparé aux deux autres modulateurs.
+
+Cela est dû au fait que le filtre en racine de cosinus surélevé est un filtre en bande passante qui permet de réduire l'interférence intersymbole et d'augmenter la robustesse du système de communication en présence de bruit. De plus, le mapping de symboles binaires à moyenne nulle permet de minimiser la consommation d'énergie du système.
+
+En conclusion, le Modulateur 3 est recommandé pour votre système de communication en raison de ses performances supérieures en termes de puissance spectrale et de taux d'erreur binaire.
+
+\section{Références}
+
+\href{https://cours.espci.fr/site.php?id=99&fileid=445}{ESPCI PARIS PSL}\\
+\href{https://moodle-n7.inp-toulouse.fr/course/view.php?id=2014}{Cours et TDs de Télécommunication}
+\end{document}
