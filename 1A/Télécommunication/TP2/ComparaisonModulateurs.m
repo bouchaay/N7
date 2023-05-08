@@ -176,7 +176,7 @@ semilogy(F_phase_QPSK, DSP_phase_QPSK)
 hold on;
 semilogy(F_phase_8PSK, DSP_phase_8PSK)
 legend('DSP I de QPSK', 'DSP I de 8-PSK')
-title('Densité spectrales de puissance des signaux I (partie réeel de xe')
+title('Densité spectrales de puissance des signaux I (partie réel de xe')
 xlabel('Signal I (QPSK), Signal I (8-PSK)')
 grid on;
 
@@ -190,7 +190,7 @@ semilogy(F_quadrature_QPSK, DSP_quadrature_QPSK)
 hold on;
 semilogy(F_quadrature_8PSK, DSP_quadrature_8PSK)
 legend('DSP Q de QPSK', 'DSP Q de 8-PSK')
-title('Densité spectrales de puissance des signaux I (partie réel de xe)')
+title('Densité spectrales de puissance des signaux Q (partie imaginaire de xe)')
 xlabel('Signal Q (QPSK), Signal Q (8-PSK)')
 grid on;
 
