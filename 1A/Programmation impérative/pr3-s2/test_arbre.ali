@@ -1,0 +1,82 @@
+V "GNAT Lib v6"
+M P W=b
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_LOOPS
+RV NO_RECURSION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U test_arbre%b		test_arbre.adb		0fbb3753 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W arbre%s		arbre.adb		arbre.ali
+W exceptions%s		exceptions.ads		exceptions.ali
+
+D ada.ads		20230324221246 3ffc8e18 ada%s
+D a-except.ads		20230324221246 291912d5 ada.exceptions%s
+D a-ioexce.ads		20230324221246 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20230324221246 119b8fb3 ada.streams%s
+D a-tags.ads		20230324221246 01f5e3ef ada.tags%s
+D a-textio.ads		20230324221246 386df5d4 ada.text_io%s
+D a-unccon.ads		20230324221246 f9eb8f06 ada.unchecked_conversion%s
+D arbre.ads		20230505015654 7a056812 arbre%s
+D arbre.adb		20230505021534 c45c9d5e arbre%b
+D exceptions.ads	20230505010534 8eae01a3 exceptions%s
+D interfac.ads		20230324221246 4be8ce1b interfaces%s
+D i-cstrea.ads		20230324221246 e53d8b8e interfaces.c_streams%s
+D system.ads		20230324221246 2da59038 system%s
+D s-crtl.ads		20230324221246 0ebbdb71 system.crtl%s
+D s-exctab.ads		20230324221246 54135002 system.exception_table%s
+D s-ficobl.ads		20230324221246 078245e4 system.file_control_block%s
+D s-parame.ads		20230324221246 7e2a0d7f system.parameters%s
+D s-soflin.ads		20230324221246 14e1eb6c system.soft_links%s
+D s-stache.ads		20230324221246 a37c21ec system.stack_checking%s
+D s-stalib.ads		20230324221246 09bd3940 system.standard_library%s
+D s-stoele.ads		20230324221246 2dc34a04 system.storage_elements%s
+D s-traent.ads		20230324221246 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20230324221246 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20230324221246 1b7d22d2 system.wch_con%s
+D test_arbre.adb	20230505020902 c37dab36 test_arbre%b
+X 1 ada.ads
+16K9*Ada 19e8 25|2r6 2r34
+X 6 a-textio.ads
+49K13*Text_IO 471e16 25|2w10 2r38
+263U14*Put_Line 25|67s9
+X 8 arbre.ads
+8+10 T_Cle 25|9r37
+11+10 T_Donnee 25|9r55
+14*5 Cle_Racine{8+10} 25|9r78
+17i5 Max_Fils{integer} 25|9r95
+20i5 Max_Donnee{integer} 25|9r111
+22k9*Arbre 85e10 25|1w6 9r31
+25P10 T_ABR 25|13r24[9]
+28A10 T_Array_Donnee(character)<integer> 25|14r33[9]
+31U15 Initialiser 25|16s9[9]
+35V14 Est_Vide{boolean} 25|18s23[9] 24s27[9] 30s27[9] 36s27[9] 42s27[9] 48s27[9]
+. 56s27[9]
+38V14 Est_Feuille{boolean} 25|19s23[9] 25s23[9] 31s27[9] 37s27[9] 43s27[9]
+. 49s27[9] 57s27[9]
+42V14 Taille{integer} 25|17s23[9] 23s23[9] 29s23[9] 35s23[9] 41s23[9] 47s23[9]
+. 55s23[9]
+49U15 Inserer 25|22s9[9] 28s9[9] 34s9[9] 40s9[9] 46s9[9] 52s9[9] 53s9[9]
+. 54s9[9]
+57V14 La_Donnee{28A10[25|9]} 25|60s23[9]
+X 10 exceptions.ads
+5K9*Exceptions 21e15 25|3w6 3r40
+X 25 test_arbre.adb
+6U11*Test_Arbre 6b11 71l5 71t15
+9K13 Arbre_Test[8|22] 10r9 13r13 14r22
+12U15 Tester_Arbre_Fonctionnel 12b15 68l9 68t33 70s5
+13p9 A{8|25P10[9]} 16m21 16r21 17r30 18r32 19r35 22m17 22r17 23r30 24r36
+. 25r35 28m17 28r17 29r30 30r36 31r39 34m17 34r17 35r30 36r36 37r39 40m17
+. 40r17 41r30 42r36 43r39 46m17 46r17 47r30 48r36 49r39 52m17 52r17 53m17
+. 53r17 54m17 54r17 55r30 56r36 57r39 60r33
+14a9 TabDonnees{8|28A10[9]} 60m9 61r23 62r23 63r23 64r23 65r23
+
