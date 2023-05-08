@@ -78,6 +78,15 @@ ylabel('Amplitude')
 title('Tracé du signal généré sur voie en quadrature')
 grid on;
 
+% Tracé de la densité spectrale de puissance de xe
+F = linspace(-Fe/2, Fe/2, length(DSP));
+figure;
+semilogy(F, DSP);
+xlabel('Fréquence (Hz)')
+ylabel('DSP')
+title('Densité spectrale de puissance de l enveloppe complexe')
+grid on;
+
 %% Canal de transmission
 
 for j = 1:7
@@ -110,6 +119,9 @@ for j = 1:7
     xsin = r.*sin(2*pi*fp*T);
     xcos = r.*cos(2*pi*fp*T);
     y = xcos - 1i*xsin;
+
+    % Filtre de récéption
+    hr = h;
 
     % Filtrage
     z = filter(hr, 1, [y zeros(1, retard)]);
@@ -159,7 +171,7 @@ for j = 1:7
     end
 
     % Taux d'erreur binaire
-    TEB_ESTIME(j) = sum(bits_estime ~= bits)/N;
+    TEB_ESTIME(j) = sum(bitsEstimesReal ~= bits)/N;
 
     % Taux d'erreur theorique
     TEB_THEORIQUE(j) = qfunc(sqrt(2*EbN0));

@@ -171,8 +171,8 @@ xlabel('Signal I (QPSK), Signal I (8-PSK)')
 grid on;
 
 % Densité spectrale de puissace du signal généré sur la voie en phase
-DSP_quadrature_QPSK = pwelch(Q_QPSK, [], [], [], Fe, 'twosided');
-DSP_quadrature_8PSK = pwelch(Q_8PSK, [], [], [], Fe, 'twosided');
+DSP_quadrature_QPSK = pwelch(Q_QPSK, [], [], 4096, Fe, 'centered');
+DSP_quadrature_8PSK = pwelch(Q_8PSK, [], [], 4096, Fe, 'centered');
 F_quadrature_QPSK = linspace(-Fe/2, Fe/2, length(DSP_quadrature_QPSK));
 F_quadrature_8PSK = linspace(-Fe/2, Fe/2, length(DSP_quadrature_8PSK));
 figure;
