@@ -1,3 +1,11 @@
+% -------------------------------------------------------------------------
+%                   Implémentation du modulateur DVB-S2
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
 close all;
 clc;
 clear;
@@ -107,5 +115,3 @@ title('TEB éstimé avec bruit et TEB théorique');
 xlabel('SNR (dB)');
 ylabel('TEB');
 legend('TEB éstimé', 'TEB théorique');
-
-

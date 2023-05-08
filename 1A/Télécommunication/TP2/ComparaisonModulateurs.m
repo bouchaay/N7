@@ -1,3 +1,12 @@
+% -------------------------------------------------------------------------
+%                Etude comparative entre les deux modulateurs
+%                    Modulation QPSK | Modulation 8-PSK
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
 close all;
 clc;
 clear;
@@ -166,6 +175,7 @@ figure;
 semilogy(F_phase_QPSK, DSP_phase_QPSK)
 hold on;
 semilogy(F_phase_8PSK, DSP_phase_8PSK)
+legend('DSP I de QPSK', 'DSP I de 8-PSK')
 title('Densité spectrales de puissance des signaux I (partie réeel de xe')
 xlabel('Signal I (QPSK), Signal I (8-PSK)')
 grid on;
@@ -179,8 +189,9 @@ figure;
 semilogy(F_quadrature_QPSK, DSP_quadrature_QPSK)
 hold on;
 semilogy(F_quadrature_8PSK, DSP_quadrature_8PSK)
-title('Densité spectrales de puissance des signaux I (partie réeel de xe')
-xlabel('Signal I (QPSK), Signal I (8-PSK)')
+legend('DSP Q de QPSK', 'DSP Q de 8-PSK')
+title('Densité spectrales de puissance des signaux I (partie réel de xe)')
+xlabel('Signal Q (QPSK), Signal Q (8-PSK)')
 grid on;
 
 % Les taux d'erreur binaire QPSK et 8-PSK
