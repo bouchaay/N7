@@ -1,0 +1,177 @@
+V "GNAT Lib v6"
+M P W=b
+P SS ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_IMPLICIT_DYNAMIC_CODE
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_RECURSION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV SPARK_05
+
+U main%b		main.adb		2fc1f9cb NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+Z ada.unchecked_deallocation%s
+W arbre%s		arbre.adb		arbre.ali
+W cli%s			cli.adb			cli.ali
+W exceptions%s		exceptions.ads		exceptions.ali
+W system%s		system.ads		system.ali
+W system.concat_6%s	s-conca6.adb		s-conca6.ali
+W system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+W system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
+
+D ada.ads		20230324221246 3ffc8e18 ada%s
+D a-charac.ads		20230324221246 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230324221246 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20230324221246 ea62afbc ada.command_line%s
+D a-except.ads		20230324221246 291912d5 ada.exceptions%s
+D a-finali.ads		20230324221246 bf4f806b ada.finalization%s
+D a-inteio.ads		20230324221246 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20230324221246 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20230324221246 119b8fb3 ada.streams%s
+D a-string.ads		20230324221246 90ac6797 ada.strings%s
+D a-strmap.ads		20230324221246 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20230324221246 3f91d4c5 ada.strings.unbounded%s
+D a-suteio.ads		20230324221246 26d8e9aa ada.strings.unbounded.text_io%s
+D a-tags.ads		20230324221246 01f5e3ef ada.tags%s
+D a-textio.ads		20230324221246 386df5d4 ada.text_io%s
+D a-tiinio.ads		20230324221246 aa04e5d6 ada.text_io.integer_io%s
+D a-tiunio.ads		20230324221246 759c6b0c ada.text_io.unbounded_io%s
+D a-unccon.ads		20230324221246 f9eb8f06 ada.unchecked_conversion%s
+D a-uncdea.ads		20230324221246 f15a5ed1 ada.unchecked_deallocation%s
+D arbre.ads		20230509010740 fa156628 arbre%s
+D arbre.adb		20230509013630 1f306e48 arbre%b
+D cli.ads		20230509004442 368a92eb cli%s
+D exceptions.ads	20230509003952 71509d8c exceptions%s
+D interfac.ads		20230324221246 4be8ce1b interfaces%s
+D i-cstrea.ads		20230324221246 e53d8b8e interfaces.c_streams%s
+D main.adb		20230509013132 45f289c3 main%b
+D system.ads		20230324221246 2da59038 system%s
+D s-atocou.ads		20230324221246 b45c2d8d system.atomic_counters%s
+D s-conca6.ads		20230324221246 d2c72db2 system.concat_6%s
+D s-crtl.ads		20230324221246 0ebbdb71 system.crtl%s
+D s-exctab.ads		20230324221246 54135002 system.exception_table%s
+D s-ficobl.ads		20230324221246 078245e4 system.file_control_block%s
+D s-finmas.ads		20230324221246 7811a767 system.finalization_masters%s
+D s-finroo.ads		20230324221246 4ff27390 system.finalization_root%s
+D s-imgint.ads		20230324221246 02dbe0c2 system.img_int%s
+D s-memory.ads		20230324221246 597d6634 system.memory%s
+D s-parame.ads		20230324221246 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20230324221246 ede33ef8 system.pool_global%s
+D s-secsta.ads		20230324221246 86a2856d system.secondary_stack%s
+D s-soflin.ads		20230324221246 14e1eb6c system.soft_links%s
+D s-stache.ads		20230324221246 a37c21ec system.stack_checking%s
+D s-stalib.ads		20230324221246 09bd3940 system.standard_library%s
+D s-stalib.adb		20230324221246 f2fe2716 system.standard_library%b
+D s-stoele.ads		20230324221246 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20230324221246 b16154c2 system.storage_pools%s
+D s-stposu.ads		20230324221246 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20230324221246 aedef97e system.stream_attributes%s
+D s-traent.ads		20230324221246 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20230324221246 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20230324221246 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 26|1r6 1r37 2r6 2r37 3r6 3r37 5r6 5r37 6r6 6r37 7r6 7r37 10r6
+. 10r28
+X 4 a-comlin.ads
+38K13*Command_Line 139e21 26|10w10 10r32
+X 5 a-except.ads
+54K13*Exceptions 349e19 26|7w10 7r41
+X 7 a-inteio.ads
+18K13*Integer_Text_IO[16|46] 26|2w10 2r41
+X 10 a-string.ads
+16K13*Strings 35e16 26|3r10 3r41 5w10 5r41
+X 12 a-strunb.ads
+76K21*Unbounded 489e26 26|3w18 3r49
+79R9*Unbounded_String<6|43R9> 473e14 26|14r51 18r18 19r11 20r21 21r17 23r17
+. 24r21 26r70
+94V13*To_Unbounded_String{79R9} 26|23s37 24s41 60s34
+100V13*To_String{string} 26|45s32 51s21 52s16 52s53 52s90 52s127 52s164 52s201
+. 52s238 52s275 52s312 53s20 63s42 70s26 70s119
+131V14*"&"{79R9} 26|63s40
+X 15 a-textio.ads
+49K13*Text_IO 471e16 26|1w10 1r41 6r10 6r41
+52P9*File_Type 26|17r19
+53n23*In_File{53E9} 26|45r23
+92U14*Open 26|45s5
+98U14*Close 26|73s5
+183V13*End_Of_File{boolean} 26|48s15
+263U14*Put_Line 26|70s5
+X 17 a-tiunio.ads
+25K21*Unbounded_IO 61e29 26|6w18 6r49
+52U14*Get_Line=55:42 26|49s9
+X 20 arbre.ads
+8+10 T_Cle 26|14r42
+11+10 T_Donnee 26|14r69
+13k9*Arbre 79e10 26|9w6 14r36
+16P10 T_ABR 26|16r40[14] 26r54[14]
+19U15 Initialiser 26|39s21[14]
+33V14 Cle_Presente{boolean} 26|55s40[14]
+33p28 A{16P10[26|14]} 26|55r53[14]
+33r42 C{12|79R9} 26|55r76[14]
+37U15 Inserer 26|42s21[14] 58s41[14]
+45U15 Detruire 26|76s21[14]
+49V14 La_Donnee{integer} 26|29s35[14] 69s41[14]
+53U15 Changer_Donnee 26|30s25[14]
+X 22 cli.ads
+5K9*CLI 13e8 26|8w6 8r37
+11U15*ParseCmdLine 26|36s5
+X 23 exceptions.ads
+5K9*Exceptions 27e15 26|4w6 4r37
+X 26 main.adb
+12U11*Main 12b11 78l5 78t9
+14K13 ArbreOccurences[20|13] 16r24 26r38 29r19 30r9 39r5 42r5 55r24 58r25
+. 69r25 76r5
+16p5 ArbreDeRecherche{20|16P10[14]} 39m33 39r33 42m29 42r29 55r58 56m37 56r37
+. 58m49 58r49 69r51 76m30 76r30
+17p5 FichierType{15|52P9} 45m10 45r10 48r27 49r18 73m11 73r11
+18r5 FichierNom{12|79R9} 36m23 45r42 70r129
+19r5 Mot{12|79R9} 36m18 69r69 70r36
+20r5 LigneActuelle{12|79R9} 49m31 51r31 52r26 52r63 52r100 52r137 52r174
+. 52r211 52r248 52r285 52r322 63r52
+21r5 MotActuel{12|79R9} 53r30 55r81 56r55 58r67 60m21 63m17 63r30
+22i5 NombreOccurences{integer} 69m5 70r72
+23r5 CleRacine{12|79R9} 42r47 58r78
+24r5 CleRacinePere{12|79R9} 42r58
+26U15 Incrementer 26b15 26=27 26>61 31l9 31t20 56s25
+26p27 A{20|16P10[14]} 29r45 30m40
+26r61 Cle{12|79R9} 29r48 30r43
+27i9 Donnee{integer} 29m9 30r48
+51i13 i{integer} 52r41 52r78 52r115 52r152 52r189 52r226 52r263 52r300 52r337
+. 63r67
+X 27 system.ads
+67M9*Address
+X 36 s-memory.ads
+53V13*Alloc{27|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{27|67M9} 105i<c,__gnat_realloc>22
+X 43 s-stalib.adb
+93U14 Break_Start 94i<c,__gnat_break_start>22
+

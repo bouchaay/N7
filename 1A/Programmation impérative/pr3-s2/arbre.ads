@@ -4,28 +4,16 @@
 
 generic
 
-    -- Type de clé
+    -- Type de la clé de l'arbre
     type T_Cle is private;
 
     -- Type de donnée associé à l'arrète
     type T_Donnee is private;
 
-    -- Valeur de la clé racine
-    Cle_Racine : T_Cle;
-
-    -- Maximum de fils
-    Max_Fils : Integer;
-
-    -- Maximum de données
-    Max_Donnee : Integer;
-
 package Arbre is
 
     -- Type abstrait d'arbre préfixe
     type T_ABR is limited private;
-
-    -- Type tableau de valeur des arrètes.
-    type T_Array_Donnee is array (1 .. Max_Donnee) of T_Donnee;
 
     -- Intialiser un arbre vide
     procedure Initialiser (A : out T_ABR) with
@@ -49,17 +37,25 @@ package Arbre is
     procedure Inserer (A : in out T_ABR; C : in T_Cle; CP : in T_Cle; D : in T_Donnee) with
         Post => not Est_Vide (A);
 
-    -- Supprimer une clé de l'arbre
+    -- Supprimer une clé et sa valeur de l'arbre
     procedure Supprimer (A : in out T_ABR; C : in T_Cle) with
         Pre => not Est_Vide (A);
 
+    -- Supprimer une clé de l'arbre
+    procedure Detruire (A : in out T_ABR) with
+        Pre => not Est_Vide (A);
+
     -- Rechercher une clé dans l'arbre
-    function La_Donnee (A : in T_ABR; C : in T_Cle) return T_Array_Donnee with
+    function La_Donnee (A : in T_ABR; C : in T_Cle) return T_Donnee with
+        Pre => not Est_Vide (A);
+
+    -- Changer la donnée associée à un noeud
+    procedure Changer_Donnee (A : in out T_ABR; C : in T_Cle; D : in T_Donnee) with
         Pre => not Est_Vide (A);
 
     -- Traiter les éléments de l'arbre
     generic
-        with procedure Traiter_Noeud (C : in T_Cle; V : in T_Array_Donnee);
+        with procedure Traiter_Noeud (A : T_ABR; C : in T_Cle);
         procedure Traiter (A : T_ABR);
 
 private
@@ -70,16 +66,14 @@ private
     -- Type d'un pointeur vers un noeud de l'arbre
     type T_ABR is access T_Noeud;
 
-    -- Type pour les fils de chaque noeud
-    type T_Array_Fils is array (1 .. Max_Fils) of T_ABR;
-
     -- Le noeud de l'arbre
     type T_Noeud is record
         Cle : T_Cle;
-        Donnee : T_Array_Donnee;
-        Fils : T_Array_Fils;
-        NombreFils : Integer;
-        NombreDonnee : Integer;  -- -1 si c'est une racine
+        Donnee : T_Donnee;
+        Racine : Boolean;
+        Pere : T_ABR;
+        Premier_Fils : T_ABR;
+        Frere_Suivant : T_ABR;
     end record;
 
 end Arbre;

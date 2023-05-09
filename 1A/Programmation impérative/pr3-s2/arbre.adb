@@ -3,16 +3,18 @@
 -- Implantation du module Arbre.
 
 with Ada.Text_IO;  use Ada.Text_IO;
+with Ada.Unchecked_Deallocation;
 with Exceptions;   use Exceptions;
 
 package body Arbre is
+
+    procedure Free is
+        new Ada.Unchecked_Deallocation (Object => T_Noeud, Name => T_ABR);
 
     -- Initialisation de l'arbre.
     procedure Initialiser (A : out T_ABR) is
     begin
         A := null;
-        A.all.NombreFils := 0;
-        A.all.NombreDonnee := -1;
     end Initialiser;
 
     -- Vériier si l'arbre est vide.
@@ -24,7 +26,7 @@ package body Arbre is
     -- Vérifier si le noeud est une feuille.
     function Est_Feuille (A : in T_ABR) return Boolean is
     begin
-        return A.NombreFils = 0;
+        return A.all.Premier_Fils = null;
     end Est_Feuille;
 
     -- La taille de l'arbre.
@@ -35,10 +37,7 @@ package body Arbre is
             return 0;
         else
             Size := 1;
-            for I in 1 .. A.NombreFils loop
-                Size := Size + Taille (A.Fils(I));
-            end loop;
-            return Size;
+            return Size + Taille (A.all.Premier_Fils) + Taille (A.all.Frere_Suivant);
         end if;
     end Taille;
 
@@ -48,91 +47,143 @@ package body Arbre is
         if A = null then
             return False;
         else
-            for I in 1 .. A.NombreFils loop
-                if Cle_Presente (A.Fils(I) , C) then
-                    return True;
-                end if;
-            end loop;
-            return False;
+            if A.Cle = C and A.Racine = False then
+                return True;
+            else
+                return Cle_Presente (A.Frere_Suivant, C) or Cle_Presente (A.Premier_Fils, C);
+            end if;
         end if;
     end Cle_Presente;
 
     -- Insérer un noeud dans l'arbre.
     procedure Inserer (A : in out T_ABR; C : in T_Cle; CP : in T_Cle; D : in T_Donnee) is
+    NouveauNoeud : T_ABR;
     begin
-        if A = null then
-            A = new T_Noeud'(Cle => C, NombreFils => 0, NombreDonnee => -1);
-            return;
+        if Cle_Presente (A, C) then
+            raise Cle_Existante;
+        else if A = null then
+            A := new T_Noeud'(C, D, True, null, null, null);
         else
-            for I in 1 .. A.NombreFils loop
-                if A.Fils(I).Cle = CP then
-                    if A.Fils(I).NombreFils < Max_Fils then
-                        A.Fils(I).NombreFils := A.Fils(I).NombreFils + 1;
-                        A.Fils(I).NombreDonnee := A.Fils(I).NombreDonnee + 1;
-                        A.Fils(I).Fils(A.Fils(I).NombreFils).Cle := C;
-                        A.Fils(I).Fils(A.Fils(I).NombreFils).Donnee(A.Fils(I).NombreDonnee) := D;
-                        A.Fils(I).Fils(A.Fils(I).NombreFils).NombreFils := 0;
-                        return;
-                    else
-                        raise Arbre_Sature;
-                    end if;
-                end if;
-            end loop;
-            raise Cle_Inexistante;
+            if A.Cle = CP then
+                NouveauNoeud := new T_Noeud'(C, D, False, A, null, null);
+                NouveauNoeud.Frere_Suivant := A.Premier_Fils;
+                A.Premier_Fils := NouveauNoeud;
+            else
+                Inserer (A.Frere_Suivant, C, CP, D);
+                Inserer (A.Premier_Fils, C, CP, D);
+            end if;
+        end if;
         end if;
     end Inserer;
 
-    -- Suprrimer un noeud de l'arbre. Si le pere est supprimé on supprime aussi ses fils.
+    -- Supprimer un noeud de l'arbre.
     procedure Supprimer (A : in out T_ABR; C : in T_Cle) is
+    function SupprimerRecurssive (A : in out T_ABR; C : in T_Cle) return Boolean is
     begin
         if A = null then
-            raise Cle_Inexistante;
+            return False;
         else
-            for I in 1 .. A.NombreFils loop
-                if A.Fils(I).Cle = C then
-                    A.Fils(I) := null;
-                    A.NombreFils := A.NombreFils - 1;
-                    Supprimer (A.Fils(I), A.Fils(I).Cle);
-                    return;
+            if A.Cle = C then
+                if A.Racine = True then
+                    Free (A);
+                    A := null;
                 else
-                    Supprimer (A.Fils(I), C);
-                    return;
+                    Free (A);
+                    A := null;
+                    return True;
                 end if;
-            end loop;
-            raise Cle_Inexistante;
-        end if;
-    end Supprimer;
-
-    -- Rechercher la valeur des arrêtes en utilisant la fonction Chemin.
-    function La_Donnee (A : in T_ABR; C : in T_Cle) return T_Array_Donnee is
-    TabDonnee : T_Array_Donnee;
-    J : Integer := 1;
-    begin
-    if A = null or else (Est_Feuille (A) and then A.Cle /= C) then
-        raise Cle_Inexistante;
-    else if A.Cle = C then
-        return TabDonnee;
-    else
-        for I in 1 .. A.NombreFils loop
-            if Cle_Presente (A.Fils(I), C) then
-                TabDonnee(J) := A.Fils(I).Donnee(1);
-                J := J + 1;
-                return La_Donnee (A.Fils(I), C);
+            else
+                if SupprimerRecurssive (A.Frere_Suivant, C) then
+                    return True;
+                else
+                    return SupprimerRecurssive (A.Premier_Fils, C);
+                end if;
             end if;
-        end loop;
+        end if;
+        return False;
+    end SupprimerRecurssive;
+    begin
+    if not SupprimerRecurssive (A, C) then
         raise Cle_Inexistante;
     end if;
+end Supprimer;
+
+    -- Detruire l'arbre.
+    procedure Detruire (A : in out T_ABR) is
+    begin
+        if A /= null then
+            Detruire (A.Frere_Suivant);
+            Detruire (A.Premier_Fils);
+            Free (A);
+        end if;
+    end Detruire;
+
+    -- Rechercher la valeur de l'arrète d'un noeud.
+    function La_Donnee (A : in T_ABR; C : in T_Cle) return T_Donnee is
+    Fils : T_ABR;
+    begin
+    if A = null then
+        raise Cle_Inexistante;
+    else
+        if A.Cle = C then
+            return A.Donnee;
+        else
+            Fils := A.Premier_Fils;
+            while Fils /= null loop
+                if Fils.Cle = C then
+                    return Fils.Donnee;
+                end if;
+                Fils := Fils.Frere_Suivant;
+            end loop;
+            return La_Donnee (A.Frere_Suivant, C);
+        end if;
     end if;
     end La_Donnee;
 
+    -- Changer la donnée d'une clé
+    procedure Changer_Donnee (A : in out T_ABR; C : in T_Cle; D : in T_Donnee) is
+    Fils : T_ABR;
+    begin
+    if A = null then
+        raise Cle_Inexistante;
+    else
+        if A.Cle = C then
+            A.Donnee := D;
+        else
+            Fils := A.Premier_Fils;
+            while Fils /= null loop
+                if Fils.Cle = C then
+                    Fils.Donnee := D;
+                end if;
+                Fils := Fils.Frere_Suivant;
+            end loop;
+            Changer_Donnee (A.Frere_Suivant, C, D);
+        end if;
+    end if;
+    end Changer_Donnee;
+
+
+    -- Rechercher la valeur des
+
     -- Traiter un noeud.
     procedure Traiter (A : in T_ABR) is
+    Fils : T_ABR;
     begin
-        Traiter_Noeud (A.Cle, A.Donnee);
-        for I in 1 .. A.NombreFils loop
-            Traiter (A.Fils(I));
+    if A = null then
+        raise Cle_Inexistante;
+    else if Est_Feuille (A) then
+        Traiter_Noeud (A, A.Cle);
+    else
+        Traiter_Noeud (A, A.Cle);
+        Fils := A.Premier_Fils;
+        while Fils /= null loop
+            Traiter (Fils);
+            Fils := Fils.Frere_Suivant;
         end loop;
+    end if;
+    end if;
     end Traiter;
+        
 
 end Arbre;
 

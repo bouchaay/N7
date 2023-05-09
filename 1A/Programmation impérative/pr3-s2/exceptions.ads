@@ -16,6 +16,12 @@ package Exceptions is
     -- Exception sur une racine inexistante
     Racine_Inexistante : exception;
 
+    -- Exception sur un arbre saturé
     Arbre_Sature : exception;
+
+    -- Exception sur une suppression de racine
+    Suppression_Racine : exception;
+
+    Usage_Error : exception;
 
 end Exceptions;
