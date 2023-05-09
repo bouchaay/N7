@@ -4,5 +4,7 @@
 *.class
 *.tar
 *.mat
+*.ali
+*.o
 .classpath
 .project
