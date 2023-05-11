@@ -16,7 +16,7 @@ Fe = 24000; % Fréquence d'échantillonnage
 Rb = 3000; % Débit binaire
 Tb = 1/Rb; % Période d'échantillonnage
 Te = 1/Fe; % Période d'échantillonnage
-N = 10000; % Nombre de bits
+N = 1000000; % Nombre de bits
 Rs = Rb; % Fréquence de symbole
 Ts = 1/Rs; % Période de symbole
 Ns = Fe/Rs; % Nombre d'échantillons par symbole
@@ -149,7 +149,7 @@ for j = 1:7
     Px = mean(x.^2);
 
     % Eb/N0
-    EbN0 = 10^(j-1/10);
+    EbN0 = 10^((j-1)/10);
 
     % Bruit
     sigma = sqrt(Ns*Px/(2*k*EbN0)); % k = log2(M)

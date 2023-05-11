@@ -16,7 +16,7 @@ Fe = 24000; % Fréquence d'échantillonnage
 Rb = 3000; % Débit binaire
 Tb = 1/Rb; % Période d'échantillonnage
 Te = 1/Fe; % Période d'échantillonnage
-N = 10000; % Nombre de bits
+N = 1000000; % Nombre de bits
 Rs = 1/Tb; % Fréquence de symbole
 Ts = 1/Rs; % Période de symbole
 Ns = Ts/Te; % Nombre d'échantillons par symbole
@@ -107,8 +107,8 @@ for j = 1:7
     EbN0 = 10^((j-1)/10);
 
     % Calcul de la puissance du bruit
-    sigma = sqrt((Ns*Px)./(2*log2(M)*EbN0));
-    sigmaxe = sqrt((Ns*Pxe)./(2*log2(M)*EbN0));
+    sigma = sqrt((Ns*Px)/(2*k*EbN0));
+    sigmaxe = sqrt((Ns*Pxe)/(2*k*EbN0));
 
     % Bruit gaussien
     bruit = sigma*randn(1, length(x));
@@ -123,7 +123,7 @@ for j = 1:7
     r2 = xe + bruitComplexe;
 
     % retour en bande base
-    T = Te: Te: Te*length(x);
+    T = 0: Te: Te*(length(x)-1);
     xsin = r.*sin(2*pi*fp*T);
     xcos = r.*cos(2*pi*fp*T);
     y = xcos - 1i*xsin;

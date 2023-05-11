@@ -100,7 +100,7 @@ end
 %% Modulateur 8-PSK
 
 % Génération des bits
-N = 3000000;
+N = 300000;
 bits = randi([0 1], 1, N);
 
 % Mapping des bits
@@ -151,7 +151,6 @@ for j = 1:7
 
     % Echantillonage 
     z_ech = z(1:Ns:end);
-    scatterplot(z_ech);
 
     % Demapping
     bitsDemappe = pskdemod(z_ech, M1, pi/M1);
@@ -176,7 +175,7 @@ semilogy(F_phase_QPSK, DSP_phase_QPSK)
 hold on;
 semilogy(F_phase_8PSK, DSP_phase_8PSK)
 legend('DSP I de QPSK', 'DSP I de 8-PSK')
-title('Densité spectrales de puissance des signaux I (partie réel de xe')
+title('Densités spectrales des signaux I (partie réel de xe)')
 xlabel('Signal I (QPSK), Signal I (8-PSK)')
 grid on;
 
@@ -190,7 +189,7 @@ semilogy(F_quadrature_QPSK, DSP_quadrature_QPSK)
 hold on;
 semilogy(F_quadrature_8PSK, DSP_quadrature_8PSK)
 legend('DSP Q de QPSK', 'DSP Q de 8-PSK')
-title('Densité spectrales de puissance des signaux Q (partie imaginaire de xe)')
+title('Densités spectrales des signaux Q (partie imaginaire de xe)')
 xlabel('Signal Q (QPSK), Signal Q (8-PSK)')
 grid on;
 

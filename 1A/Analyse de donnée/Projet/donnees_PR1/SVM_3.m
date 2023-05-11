@@ -21,11 +21,11 @@ function [X_VS,Y_VS,Alpha_VS,c,code_retour] = SVM_3(X,Y,sigma)
     H = (Y*Y').*G;
     Aeq = Y';
     options = optimoptions('quadprog','MaxIterations',5000);
-    [Alpha_VS,~,code_retour] = quadprog(H,f,[],[],Aeq,beq,lb,ub,[],options);
+    [alpha,~,code_retour] = quadprog(H,f,[],[],Aeq,beq,lb,ub,[],options);
 
     % Calcul de c et des vecteurs de support
-    X_VS = X(Alpha_VS>eps,:);
-    Y_VS = Y(Alpha_VS>eps);
-    Alpha_VS = Alpha_VS(Alpha_VS>eps);
+    X_VS = X(alpha>eps,:);
+    Y_VS = Y(alpha>eps);
+    Alpha_VS = alpha(alpha>eps);
     c = mean(Y_VS - G(Alpha_VS>eps,:)*(Alpha_VS.*Y_VS));
 end
