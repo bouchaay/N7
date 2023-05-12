@@ -1,0 +1,150 @@
+class Expression {
+    +filepath: string;
+    +Expression(regex: string);
+}
+
+Expression "1" *-- "0..*" AbstractBlock
+
+abstract class AbstractBlock {
+    +{abstract} color: string;
+    +id: string;
+    +invert: boolean;
+    +{abstract} getName(): string;
+    +toRegex(): java.util.regex.Pattern;
+}
+
+abstract class TerminalBlock extends AbstractBlock {
+    //Blocs qui ne peuvent pas contenir d'autres blocs//
+    ..
+    -toRegexFragment(): string;
+}
+
+abstract class Block extends AbstractBlock {
+    +children: Array<AbstractBlock>;
+    -toRegexFragment(): string;
+}
+
+Block "1" *-- "0..*" AbstractBlock
+
+class BlockCaptureGroup extends Block {
+    //Groupe de capture//
+    ..
+    +{static} color = "mint"
+}
+
+class BlockRepeat extends Block {
+    //Répété entre ... et ... fois//
+    ..
+    +{static} color = "orange"
+    +timesMinimum: Integer;
+    +timesMaximum: Integer;
+    +lazy: boolean;
+}
+
+class BlockRepeatExactly extends BlockRepeat {
+    //Répété exactement ... fois //
+}
+class BlockRepeatAtMost extends BlockRepeat {
+    //Répété au plus ... fois //
+}
+class BlockRepeatAtLeast extends BlockRepeat {
+    //Répété au moins ... fois //
+}
+class BlockOneOrMore extends BlockRepeatAtLeast {
+    //Au moins une fois//
+    ..
+    +timesMinimum = 1;
+}
+class BlockZeroOrMore extends BlockRepeatAtLeast {
+    //Zéro fois ou plus//
+    ..
+    +timesMinimum = 0;
+}
+
+class BlockOptional extends BlockRepeat {
+    //Élement optionnel//
+    ..
+    +timesMaximum = 1;
+    +timesMinimum = 0;
+}
+
+abstract class BlockSurrounded extends Block {
+    +{static} color = "green"
+}
+class BlockWord extends BlockSurrounded {
+
+    //Mot //
+}
+class BlockLine extends BlockSurrounded {
+
+    //Ligne //
+}
+
+abstract class BlockAssertion extends Block {
+    +{static} color = "green"
+}
+class BlockLookahead extends BlockAssertion {
+
+    //Après, il y a//
+}
+class BlockLookbehind extends BlockAssertion {
+
+    //Avant, il y a//
+}
+
+class BlockLiteral extends TerminalBlock {
+    //Texte//
+    ..
+    +{static} color = "white"
+    +literal: string;
+}
+
+class BlockCharacterRange extends TerminalBlock {
+    //Un de ces caractères ...//
+    ..
+    +{static} color = "magenta"
+    characters: Array<String>
+}
+class BlockAlphanumericOrUnderscore extends BlockCharacterRange {
+
+    //Caractère alphanumérique ou tiret du bas //
+}
+class BlockNewline extends BlockCharacterRange {
+
+    //Retour à la ligne //
+}
+class BlockDigit extends BlockCharacterRange {
+
+    //Chiffre //
+}
+class BlockAnyCharacter extends BlockCharacterRange {
+
+    //N'importe quel caractère //
+}
+class BlockUnicodeClass extends BlockCharacterRange {
+    //Un caractère de la classe unicode ...//
+    ..
+    +unicodeClass: string;
+}
+
+class BlockCaptureGroupReference extends TerminalBlock {
+    //Valeur d'un groupe de capture//
+    ..
+    +{static} color = "red"
+    +group: string;
+}
+
+
+class BlockRawRegex extends TerminalBlock {
+    //Expression régulière//
+    ..
+    +{static} color = "transparent"
+    +regex: java.util.regex.Pattern;
+}
+
+class BlockOr extends AbstractBlock {
+    //Choix//
+    ..
+    +{static} color = "cyan"
+    +children: Array<Array<AbstractBlock>>;
+}
