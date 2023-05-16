@@ -1,22 +1,22 @@
 #!/bin/bash
 
-#interface RouteurFaiServices
+# L'interface liée au RouteurFaiServices
 ip link set dev eth0 up
 ip a a 170.4.255.130/26 dev eth0
 
-#interface RouteurFaiAccess
+# L'interface liée au RouteurFaiAccess
 ip link set dev eth1 up
 ip a a 170.4.255.66/26 dev eth1
 
-#activer le routage
-echo 1 > /proc/sys/net/ipv4/ip_forward
+# activer le forwarding
+#echo 1 > /proc/sys/net/ipv4/ip_forward
 
-#ajouter les routes
+# Routage statique
 #ip route add 192.168.150.128/26 via 170.4.255.68
 #ip route add 192.168.150.192/26 via 170.4.255.68
 #ip route add 170.4.255.0/26 via 170.4.255.68
 #ip route add 170.4.255.192/26 via 170.4.255.132
 
-#Activer le routage dynamique
+# Activer le routage dynamique
 service quagga start
 sleep 2

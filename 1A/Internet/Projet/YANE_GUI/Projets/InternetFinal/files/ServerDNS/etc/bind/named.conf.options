@@ -1,8 +1,6 @@
 options {
         directory "/var/cache/bind";
-	forwarders {
-         1.0.0.0;
-         };
+	forwarders{};
         auth-nxdomain no;
         listen-on-v6 { any; };
         statistics-file "/var/cache/bind/named.stats";

@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Interface eth0 Client2
+# L'interface du deuxième client
 ip link set dev eth0 up
 #ip a a 192.168.150.200/26 dev eth0
 
-# Static routing
+# Le routage statique
 #ip route add 170.4.255.0/26 via 192.168.150.201
 #ip route add 170.4.255.64/26 via 192.168.150.201
 #ip route add 170.4.255.128/26 via 192.168.150.201
 #ip route add 170.4.255.192/26 via 192.168.150.201
 #ip route add 192.168.150.128/26 via 192.168.150.201
 
-# Add a default route
+# Ajouter la route par défaut
 ip route add default via 192.168.150.201
 
-# Activate DHCP client
-dhclient eth0
+# Activer l'attribution de l'adresse IP par DHCP
+#dhclient eth0

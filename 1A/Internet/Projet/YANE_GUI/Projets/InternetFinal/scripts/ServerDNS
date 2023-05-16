@@ -18,72 +18,19 @@ ip route add default via 170.4.255.195
 # Activer le service BIND9
 service bind9 start
 
-# Ajouter la zone forward et la zone reverse au fichier named.conf.local
-ZONES="
-zone \"ayoubbouchama.com\" {
-        type master;
-        file \"/etc/bind/forward.ayoubbouchama.com\";
-        allow-transfer { 170.4.255.197; };
-        allow-update { none; };
- };
-
-zone \"197.255.4.170.in-addr.arpa\" {
-        type master;
-        file \"/etc/bind/reverse.ayoubbouchama.com\";
-        allow-transfer { 170.4.255.197; };
-        allow-update { none; };
- };"
-
-echo -e "$ZONES" >> "/etc/bind/named.conf.local"
-
-# Créer les zones lockup file
-# Zone Forward
-ZONEFORWARD="
-;
-; BIND data file for local loopback interface
-;
-$TTL    604800
-@       IN      SOA     www.ayoubbouchama.com. root.ayoubbouchama.com. (
-			      6         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-; Commentout below three lines
-@      IN      NS      www.ayoubbouchama.com.
-@      IN      A       170.4.255.197
-www    IN      A       170.4.255.197
-"
-echo -e "$ZONEFORWARD" >> "/etc/bind/forward.ayoubbouchama.com"
-
-# Zone Reverse
-ZONEREVERSE="
-;
-; BIND data file for local loopback interface
-;
-\$TTL    604800
-@       IN      SOA     www.ayoubbouchama.com. root.ayoubbouchama.com. (
-                              5         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-
-;
-@       IN      NS      www.ayoubbouchama.com.
-@       IN      PTR     ayoubbouchama.com.
-www     IN  A           170.4.255.197
-197     IN  PTR         www.ayoubbouchama.com.
-"
-echo -e "$ZONEREVERSE" >> "/etc/bind/reverse.ayoubbouchama.com"
-
-# Les permissions
-# Lecture et exécution pour tout le monde, écriture pour proriétaire seulement
+# Donner les permissions
 chmod -R 755 /etc/bind
-
-# changer le propriétaire du dossier bind
 chown -R bind:bind /etc/bind
+
+# Redémarrer le service
+service bind9 restart
+
+# Tester la configuration
+named-checkconf /etc/bind/named.conf
+named-checkconf /etc/bind/named.conf.local
+named-checkzone monsupersite.com /etc/bind/zones/monsupersite.db
+named-checkzone clientsite.com /etc/bind/zones/clientsite.db
+named-checkzone 255.4.170.in-addr.arpa /etc/bind/zones/reverse.arpa
 
 
 

@@ -1,17 +1,17 @@
 #!/bin/bash
 
-#interface Box1
+# L'interface liée à la Box1
 ip link set dev eth0 up
 ip a a 170.4.255.3/26 dev eth0
 
-#interface R1 et R2
+# L'interface liée à R1 et R2
 ip link set dev eth1 up
 ip a a 170.4.255.68/26 dev eth1
 
-#activer le routage
-echo 1 > /proc/sys/net/ipv4/ip_forward
+# Activer le forwarding
+#echo 1 > /proc/sys/net/ipv4/ip_forward
 
-#ajouter les routes
+# Routage statique
 #ip route add 192.168.150.128/26 via 170.4.255.2
 #ip route add 192.168.150.192/26 via 170.4.255.4
 #ip route add 170.4.255.128/26 via 170.4.255.66

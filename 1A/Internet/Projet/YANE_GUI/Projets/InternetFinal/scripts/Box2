@@ -15,7 +15,7 @@ ip a a 170.4.255.4/26 dev eth1
 #ip route add 170.4.255.64/26 via 170.4.255.3
 #ip route add 170.4.255.128/26 via 170.4.255.3
 #ip route add 170.4.255.192/26 via 170.4.255.3
-#ip route add 192.168.150.128/26 via 170.4.255.2
+ip route add 192.168.150.128/26 via 170.4.255.2
 
 # Activer le service DHCP
 service isc-dhcp-server start
@@ -25,6 +25,7 @@ ip route add default via 170.4.255.3
 
 # Activer le NAT
 iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 # Filtrages
 
@@ -42,13 +43,18 @@ iptables -A FORWARD -p icmp -j ACCEPT
 iptables -A INPUT -i eth0 -p udp --dport 67:68 --sport 67:68 -j ACCEPT
 
 # Accepter le trafic UDP du serveur DNS
-iptables -t filter -A FORWARD -d 170.4.255.197/26 -p udp --dport 53 -j ACCEPT
-iptables -t filter -A FORWARD -s 170.4.255.197/26 -p udp --sport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp --sport 53 -j ACCEPT
 
 # Accepter le trafic TCP du serveur HTTP
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 80 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 80 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --sport 80 -j ACCEPT
 
 # Accepter le trafic TCP du serveur HTTPS
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 443 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --sport 443 -j ACCEPT
+
+# Acceder au serveur web du client 1
+iptables -t nat -A PREROUTING -p tcp --dport 80 -d 170.4.255.4 -j DNAT --to 192.168.150.131:80
+
+

@@ -1,22 +1,22 @@
 #!/bin/bash
 
-#interface R1 et R2
+# L'interface liée à R1 et R2
 ip link set dev eth0 up
 ip a a 170.4.255.132/26 dev eth0
 
-#interface servers
+# L'interface liée aux serveurs
 ip link set dev eth1 up
 ip a a 170.4.255.195/26 dev eth1
 
-#activer le routage
-echo 1 > /proc/sys/net/ipv4/ip_forward
+# Activer le forwarding
+#echo 1 > /proc/sys/net/ipv4/ip_forward
 
-#ajouter les routes
+# Routage statique
 #ip route add 170.4.255.64/26 via 170.4.255.131
 #ip route add 170.4.255.0/26 via 170.4.255.131
 #ip route add 192.168.150.128/26 via 170.4.255.131
 #ip route add 192.168.150.192/26 via 170.4.255.131
-ip route add default via 170.4.255.131
+#ip route add default via 170.4.255.131
 
 # Activer le routage dynamique
 service quagga start
@@ -35,24 +35,19 @@ iptables -A OUTPUT -p icmp -j ACCEPT
 iptables -A FORWARD -p icmp -j ACCEPT
 
 # Accepter le trafic UDP du serveur RIP
-iptables -A INPUT -i eth0 -p udp --dport 520 --sport 520 -j ACCEPT
+iptables -A INPUT -p udp --dport 520 -j ACCEPT
+iptables -A OUTPUT -p udp --sport 520 -j ACCEPT
+iptables -A FORWARD -p udp --dport 520 -j ACCEPT
 
 # Accepter le trafic UDP du serveur DNS
-iptables -t filter -A FORWARD -d 170.4.255.197/26 -p udp --dport 53 -j ACCEPT
-iptables -t filter -A FORWARD -s 170.4.255.197/26 -p udp --sport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp --sport 53 -j ACCEPT
 
 # Accepter le trafic TCP du serveur HTTP
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 80 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 80 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --sport 80 -j ACCEPT
 
 # Accepter le trafic TCP du serveur HTTPS
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 443 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --sport 443 -j ACCEPT
 
-# Accepter le trafic TCP du serveur HTTP
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 80 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 80 -j ACCEPT
-
-# Accepter le trafic TCP du serveur HTTPS
-iptables -t filter -A FORWARD -d 31.5.254.195/26 -p tcp --dport 443 -j ACCEPT
-iptables -t filter -A FORWARD -s 31.5.254.195/26 -p tcp --sport 443 -j ACCEPT
