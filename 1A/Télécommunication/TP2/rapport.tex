@@ -43,7 +43,7 @@ Institut national polytechnique en France\\[3mm]
 L'École nationale supérieure d'électrotechnique, d'électronique, d'informatique, d'hydraulique et des télécommunications \\[2mm]
 Première année\\[10mm]
 \Huge
-{\bfseries Etude de chaines de transmission sur porteuse
+{\bfseries Etude de chaines de transmission sur fréquence porteuse
 }\\
 \Gray{\LARGE (Télécommunications - Partie 2)}\\[6mm]
 \huge 
@@ -54,7 +54,7 @@ Projet réalisé par \Gray{(Ayoub Bouchama)} \\[1mm]
 et \Gray{(Oussama Elguerraoui)} \\[6mm]
 Projet de Télécommunication \\[6mm]
 Dirigée par  \Gray{(Maalaoui Asma)}\\[8mm]
-Projet achevé et rendu le \Gray{(... Mai)}\\[10mm]
+Projet achevé et rendu le \Gray{(26 Mai)}\\[10mm]
 
 \end{center}
 
@@ -70,15 +70,15 @@ Oussama ElGuerraoui, \Gray{Département SN, Groupe F (\href{https://www.linkedin
 
 {\bfseries Titre :}
 
-Etude de chaines de transmissions en bande de base
+Etude de chaines de transmissions sur fréquence porteuse.
 
 {\bfseries Résumé} \Gray{(en français)} {\bfseries :}
 
-Le présent volet du projet avait pour principal objectif de nous familiariser avec les aspects fondamentaux liés à l'étude des chaînes de transmission en bande de base. Pour ce faire, une série d'activités ont été entreprises, incluant notamment l'étude de trois modulateurs de bande de base distincts dans le but de les comparer en termes d'efficacité spectrale, en s'appuyant sur le tracé superposé des DSP des différents signaux générés pour un même débit binaire. Par la suite, l'étude des interférences entre symboles ainsi que l'application du critère de Nyquist ont été considérées dans le cadre d'une chaîne de transmission sans canal de propagation, c’est-à-dire sans bruit mais également sans filtrage introduit par le canal, et par la suite, en intégrant un canal de propagation pour deux valeurs de BW différentes. Cette approche a permis de comparer les taux d’erreur binaire obtenus et d'en tirer des conclusions. Enfin, l'impact du bruit et du filtrage adapté a été étudié, avec un accent particulier mis sur la notion d'efficacité en puissance. Plus précisément, trois chaînes de transmission différentes ont été implémentées sans bruit dans un premier temps, puis avec l'intégration d'un bruit gaussien. Les taux d'erreur binaire ont ensuite été comparés entre les différentes chaînes de transmission, permettant ainsi de conclure sur celle qui offre les meilleures performances.
+Les transmissions sur fréquence porteuse sont essentielles pour transférer des informations à travers différents médias de communication. Cette technique utilise une onde sinusoïdale de fréquence constante, appelée porteuse, modulée avec le signal à transmettre. Les transmissions sur fréquence porteuse permettent de transporter des signaux analogiques et numériques, tels que l'audio, la vidéo et les données, à travers divers canaux de communication. Elles sont largement utilisées dans les télécommunications, la radiodiffusion, la télévision, les réseaux informatiques et les systèmes de communication par satellite, offrant une transmission fiable sur de longues distances avec une bonne qualité de signal et une résistance aux interférences. Différentes techniques de modulation, comme l'amplitude, la fréquence et la phase, sont utilisées pour adapter les signaux aux canaux de communication. Les transmissions sur fréquence porteuse sont une technologie fondamentale qui continue d'évoluer avec les avancées des technologies de communication.
 
 {\bfseries Mots-clés :}
 
-Transmission, bande de base, modulateurs, efficacité spectrale, critère de Nyquist, taux d'erreur binaire, bruit, filtrage adapté.
+Transmissions, fréquence porteuse, modulation, signal, médias de communication, câbles, fibres optiques, ondes radio, support, analogique, numérique, modulation d'amplitude, modulation de fréquence, modulation de phase.
 
 \vspace*{3mm}
 \hrulefill
@@ -87,16 +87,16 @@ Transmission, bande de base, modulateurs, efficacité spectrale, critère de Nyq
 \selectlanguage{english}
 
 {\bfseries Title:}
-Study of transmission chains in base band
 
+Study of carrier frequency transmission chains.
 
 {\bfseries Abstract} \Gray{(in english)}{\bfseries:}
 
-The main objective of this part of the project was to familiarize the team members with the fundamental aspects related to the study of baseband transmission channels. To achieve this, a series of activities were undertaken, including the study of three distinct baseband modulators in order to compare them in terms of spectral efficiency, based on the superimposed plot of the DSP of the different signals generated for the same bit rate. Subsequently, the study of inter-symbol interference and the application of the Nyquist criterion were considered in the context of a transmission channel without propagation, i.e. without noise but also without filtering introduced by the channel, and then by integrating a propagation channel for two different BW values. This approach allowed to compare the obtained bit error rates and draw conclusions. Finally, the impact of noise and adapted filtering was studied, with a particular focus on the concept of power efficiency. Specifically, three different transmission channels were implemented without noise initially, and then with the integration of Gaussian noise. The bit error rates were then compared between the different transmission channels, allowing to conclude on the one that offers the best performance.
+Carrier frequency transmissions are essential for transferring information across different communication media. This technique utilizes a constant-frequency sinusoidal wave, known as the carrier, which is modulated with the signal to be transmitted. Carrier frequency transmissions enable the transport of analog and digital signals, such as audio, video, and data, through various communication channels. They are widely used in telecommunications, broadcasting, television, computer networks, and satellite communication systems, providing reliable transmission over long distances with good signal quality and resistance to interference. Different modulation techniques, such as amplitude, frequency, and phase modulation, are employed to adapt the signals to the communication channels. Carrier frequency transmissions represent a fundamental technology that continues to evolve with advancements in communication technologies.
 
 {\bfseries Keywords:}
 
-Transmission, baseband, modulators, spectral efficiency, Nyquist criterion, bit error rate, noise, matched filtering.
+Transmissions, carrier frequency, modulation, signal, communication media, cables, optical fibers, radio waves, support, analog, digital, amplitude modulation, frequency modulation, phase modulation.
 
 % Page 3
 \newpage
@@ -392,9 +392,9 @@ avec $M \ = \ 2^k \ = \ 2^3 \ = 8$, ce qui montre que notre démodulation a ét�
 
 \subsection{Comparaison des modulateurs QPSK et 8-PSK}
 \subsubsection{En termes d'efficacité en puissance}
-En termes d'efficacité en puissance, le modulateur QPSK est plus efficace que le modulateur 8PSK,. En effet, le 8PSK est une modulation plus complexe que le QPSK, car elle utilise huit phases différentes pour transmettre l'information, alors que le QPSK n'en utilise que quatre. Cette complexité accrue rend le 8PSK plus susceptible aux erreurs de transmission, ce qui se reflète dans un TEB plus élevé.d'émission plus faible que le modulateur QPSK.
+En termes d'efficacité en puissance, le modulateur QPSK est plus efficace que le modulateur 8PSK,. En effet, le 8PSK est une modulation plus complexe que le QPSK, car elle utilise huit phases différentes pour transmettre l'information, alors que le QPSK n'en utilise que quatre. Cette complexité accrue rend le 8PSK plus susceptible aux erreurs de transmission, ce qui se reflète dans un TEB plus élevé le modulateur QPSK.
 
-Ceci est également assuré par les tracés des tauxx binaires des deux modulateurs.
+Ceci est également assuré par les tracés des taux binaires des deux modulateurs.
 
 \begin{figure}[ht!]
     \centering
