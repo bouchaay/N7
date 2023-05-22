@@ -52,3 +52,6 @@ BitsEstimes = SymbolesEstimes > 0;
 % Taux d'erreur binaire
 TEB = sum(BitsEstimes ~= bits)/N;
 
+% Afficher le taux d'erreur binaire
+fprintf("Le taux d'erreur binaire sans bruit et sans erreur de phase : %f\nS", TEB);
+

@@ -3,104 +3,66 @@ clc;
 clear;
 
 % Les paramètres
+Phi_0 = 0;
+Phi_40 = (40*pi)/180;
+Phi_100 = (100*pi)/180;
+Echelle = 0:6;
 
-Fe = 24000; % Fréquence d'échantillonnage
-Rb = 6000; % Débit binaire
-Tb = 1/Rb; % Période d'échantillonnage
-Te = 1/Fe; % Période d'échantillonnage
-Rs = 1/Tb; % Fréquence de symbole
-Ts = 1/Rs; % Période de symbole
-Ns = Ts/Te; % Nombre d'échantillons par symbole
-N = 1000000; % Nombre de bits à transmettre
-k = 1; % Nombre de bits par symbole
-M = 2^k; % Nombre de symboles
-phi = [0, (40*pi)/180, (100*pi)/180]; % phase en rad
+%% Calculer les taux d'erreur binaires
 
-% Génération des bits
-bits = randi([0 1], 1, N);
+% Phase 0°
+[TEB_ORIGINAL_0, ~] = Correction(Phi_0);
 
-% Mapping des bits
-ak = 2*bits - 1;
+% Phase 40°
+[TEB_ORIGINAL_40, TEB_CORRIGE_40] = Correction(Phi_40);
 
-% Sur-echantillonnage
-symbolesSurEchantionnes = kron(ak, [1 zeros(1,Ns-1)]);
+% Phase 100°
+[TEB_ORIGINAL_100, TEB_CORRIGE_100] = Correction(Phi_100);
 
-% Filtre de mise en forme
-h = ones(1, Ns);
+%% Afficher les résultats (Tracés)
 
-% Enveloppe Complexe
-xe = filter(h, 1, symbolesSurEchantionnes);
-
-%% Canal de transmission
-
-for j = 1:7
-
-    % Puissance du signal
-    Pxe = mean(xe.^2);
-
-    % Eb/N0
-    EbN0 = 10^((j-1)/10);
-
-    % Bruit
-    sigma = sqrt(Ns*Pxe/(2*k*EbN0)); % k = log2(M)
-
-    % Bruit blanc gaussien
-    bruit = sigma*randn(1, length(xe)) + 1i*sigma*randn(1, length(xe));
-
-    % Signal reçu
-    r = xe + bruit;
-
-    % Introduction de l'erreur phase
-    for k = 1:3
-
-        rAvecErreur = r*exp(1i*phi(k));
-
-        % Filtre de réception
-        hr = h;
-
-        % Filtrage
-        z = filter(hr,1, rAvecErreur);
-
-        % Echantillonnage
-        zm = z(Ns:Ns:end);
-
-        % La phase estimée
-        phiEstime = 1/2*angle(sum(zm.^2));
-
-        % Correction de la phase
-        zc = zm*exp(-1i*phiEstime);
-
-        % Partie réelle du signal échantillonné
-        zmReal = real(zm);
-        zcReal = real(zc);
-
-        % Décision
-        SymbolesEstimesOrig = zmReal/Ns;
-        SymbolesEstimesOrig = sign(SymbolesEstimesOrig);
-        SymbolesEstimesCor = zcReal/Ns;
-        SymbolesEstimesCor = sign(SymbolesEstimesCor);
-
-        % Demapping
-        BitsEstimesOrig = SymbolesEstimesOrig > 0;
-        BitsEstimesCor = SymbolesEstimesCor > 0;
-
-        % Taux d'erreur binaire
-        TEB_ESTIME_ORIGINAL(j,k) = sum(BitsEstimesOrig ~= bits)/N;
-        TEB_ESTIME_CORRIGE(j,k) = sum(BitsEstimesCor ~= bits)/N;
-    end
-end
-
-
-figure;
-semilogy(0:6, TEB_ESTIME_ORIGINAL(:,1));
-semilogy(0:6, TEB_ESTIME_ORIGINAL(:,2));
-semilogy(0:6, TEB_ESTIME_ORIGINAL(:,3));
+% Tracé du TEB original et corrigé pour la phase 40°
+figure(1);
+semilogy(Echelle, TEB_ORIGINAL_40, 'b');
 hold on;
-semilogy(0:6, TEB_ESTIME_CORRIGE(:,1));
-semilogy(0:6, TEB_ESTIME_CORRIGE(:,2));
-semilogy(0:6, TEB_ESTIME_CORRIGE(:,3));
-legend('TEB original phi = 0', 'TEB original phi = 40', 'TEB original phi = 100', 'TEB corrigé phi = 0', 'TEB corrigé phi = 40', 'TEB corrigé phi = 100');
-xlabel('Eb/N0 (dB)');
+semilogy(Echelle, TEB_CORRIGE_40, 'r');
+semilogy(Echelle, TEB_ORIGINAL_40, '*');
+semilogy(Echelle, TEB_CORRIGE_40, '*');
+title('TEB original et corrigé pour la phase 40°');
+xlabel('SNR (dB)');
 ylabel('TEB');
-title('Comparaison entre le TEB original et le TEB corrigé');
+legend('TEB original', 'TEB corrigé');
 grid on;
+
+% Tracé du TEB original et corrigé pour la phase 100°
+figure(2);
+semilogy(Echelle, TEB_ORIGINAL_100, 'b');
+hold on;
+semilogy(Echelle, TEB_CORRIGE_100, 'r');
+semilogy(Echelle, TEB_ORIGINAL_100, '*');
+semilogy(Echelle, TEB_CORRIGE_100, '*');
+title('TEB original et corrigé pour la phase 100°');
+xlabel('SNR (dB)');
+ylabel('TEB');
+legend('TEB original', 'TEB corrigé');
+grid on;
+
+% Tracé des TEB originaux et corrigés dans le même graphe
+figure(3);
+semilogy(Echelle, TEB_ORIGINAL_0, 'b');
+hold on;
+semilogy(Echelle, TEB_ORIGINAL_40, 'r');
+semilogy(Echelle, TEB_CORRIGE_40, 'r');
+semilogy(Echelle, TEB_ORIGINAL_100, 'g');
+semilogy(Echelle, TEB_CORRIGE_100, 'g');
+semilogy(Echelle, TEB_ORIGINAL_0, '*');
+semilogy(Echelle, TEB_ORIGINAL_40, '*');
+semilogy(Echelle, TEB_CORRIGE_40, '*');
+semilogy(Echelle, TEB_ORIGINAL_100, '*');
+semilogy(Echelle, TEB_CORRIGE_100, '*');
+title('TEB original et corrigé pour les phases 0°, 40° et 100°');
+xlabel('SNR (dB)');
+ylabel('TEB');
+legend('TEB original 0°', 'TEB original 40°', 'TEB corrigé 40°', 'TEB original 100°', 'TEB corrigé 100°');
+grid on;
+
