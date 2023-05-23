@@ -1,3 +1,11 @@
+% -------------------------------------------------------------------------
+%  Etude de la chaine de transmission sans bruit et sans erreur de phase
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
 close all;
 clc;
 clear;

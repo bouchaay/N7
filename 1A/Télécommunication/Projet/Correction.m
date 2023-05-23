@@ -1,4 +1,16 @@
-% fonction qui prend en parmètre la phase et retourne le TEB original et corrigé
+% -------------------------------------------------------------------------
+%          Fonction qui prend en paramètre une phase et retourne le
+%            taux d'erreur binaire de la chaine original et corrigé
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
+% phi : l'erreur de phase à introduire dans la chaine de transmission.
+% TEB_ESTIME_ORIGINAL : le taux d'erreur binaire de la chaine codé.
+% TEB_ESTIME_CORRIGE : le taux d'erreur binaire de la chaine corrigé.
+
 function [TEB_ESTIME_ORIGINAL, TEB_ESTIME_CORRIGE] = Correction(phi)
 
     % Les paramètres

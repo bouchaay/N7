@@ -1,3 +1,11 @@
+% -------------------------------------------------------------------------
+%            Chaine de transmission avec codage par transition
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
 close all;
 clc;
 clear;
@@ -25,9 +33,9 @@ semilogy(Echelle, TEB_CORRIGE_40, 'b');
 hold on;
 semilogy(Echelle, TEB_CODE_40, 'r');
 semilogy(Echelle, TEB_CORRIGE_CODE_40, 'g');
-semilogy(Echelle, TEB_CORRIGE_40, '*');
-semilogy(Echelle, TEB_CODE_40, '*');
-semilogy(Echelle, TEB_CORRIGE_CODE_40, '*');
+semilogy(Echelle, TEB_CORRIGE_40, 'b*');
+semilogy(Echelle, TEB_CODE_40, 'r*');
+semilogy(Echelle, TEB_CORRIGE_CODE_40, 'g*');
 title('TEB corrigé, codé et corrigé+codé pour la phase 40°');
 xlabel('SNR (dB)');
 ylabel('TEB');
@@ -40,9 +48,9 @@ semilogy(Echelle, TEB_CORRIGE_100, 'b');
 hold on;
 semilogy(Echelle, TEB_CODE_100, 'r');
 semilogy(Echelle, TEB_CORRIGE_CODE_100, 'g');
-semilogy(Echelle, TEB_CORRIGE_100, '*');
-semilogy(Echelle, TEB_CODE_100, '*');
-semilogy(Echelle, TEB_CORRIGE_CODE_100, '*');
+semilogy(Echelle, TEB_CORRIGE_100, 'b*');
+semilogy(Echelle, TEB_CODE_100, 'r*');
+semilogy(Echelle, TEB_CORRIGE_CODE_100, 'g*');
 title('TEB corrigé, codé et corrigé+codé pour la phase 100°');
 xlabel('SNR (dB)');
 ylabel('TEB');

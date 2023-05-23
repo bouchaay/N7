@@ -1,3 +1,11 @@
+% -------------------------------------------------------------------------
+%           Chaine de transmission avec bruit et erreur de phase
+% -------------------------------------------------------------------------
+%                                Ayoub Bouchama
+%                              Oussama ElGuerraoui
+%                                  'Groupe F' 
+% -------------------------------------------------------------------------
+
 close all;
 clc;
 clear;
@@ -109,7 +117,7 @@ figure;
 semilogy(Echelle, TEB_ESTIME, 'r');
 hold on;
 semilogy(Echelle, TEB_THEORIQUE, 'b');
-semilogy(Echelle, TEB_ESTIME, '*');
+semilogy(Echelle, TEB_ESTIME, 'r*');
 legend('TEB estimé', 'TEB théorique');
 xlabel('Eb/N0 (dB)');
 ylabel('TEB');
@@ -121,8 +129,8 @@ figure;
 semilogy(Echelle, TEB_ESTIME, 'r');
 hold on;
 semilogy(Echelle, TEB_PHASE_NULLE, 'b');
-semilogy(Echelle, TEB_ESTIME, '*');
-semilogy(Echelle, TEB_PHASE_NULLE, '*');
+semilogy(Echelle, TEB_ESTIME, 'r*');
+semilogy(Echelle, TEB_PHASE_NULLE, 'b*');
 legend('TEB phase 40°', 'TEB phase 0°');
 xlabel('Eb/N0 (dB)');
 ylabel('TEB');
@@ -136,8 +144,8 @@ hold on;
 semilogy(Echelle, TEB_THEORIQUE, 'y');
 semilogy(Echelle, TEB_ESTIME_100, 'b');
 semilogy(Echelle, TEB_THEORIQUE_100, 'g');
-semilogy(Echelle, TEB_ESTIME_100, '*');
-semilogy(Echelle, TEB_ESTIME, '*');
+semilogy(Echelle, TEB_ESTIME_100, 'b*');
+semilogy(Echelle, TEB_ESTIME, 'r*');
 legend('TEB phase 40°', 'TEB théorique phase 40°', 'TEB phase 100°', 'TEB théorique phase 100°');
 xlabel('Eb/N0 (dB)');
 ylabel('TEB');
