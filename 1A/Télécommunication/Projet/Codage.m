@@ -82,21 +82,31 @@ function [TEB_ESTIME_CODE, TEB_ESTIME_CORRIGE_CODE] = Codage(phi)
         z = filter(hr,1, rAvecErreur);
 
         % Echantillonnage
-        zm = z(Ns:Ns:end);
+        cm = z(Ns:Ns:end);
 
         % La phase estimée
-        phiEstime = 1/2*angle(sum(zm.^2));
+        phiEstime = 1/2*angle(sum(cm.^2));
 
         % Correction de la phase
-        zc = zm.*exp(-1i*phiEstime);
+        cc = cm.*exp(-1i*phiEstime);
 
         % Partie réelle du signal échantillonné
-        zmReal = real(zm);
-        zcReal = real(zc);
+        cmReal = real(cm);
+        ccReal = real(cc);
+
+        % Décodage
+        zm = zeros(1,N);
+        zc = zeros(1,N);
+        zm(1) = cmReal(1);
+        zc(1) = ccReal(1);
+        for i= 2:N
+            zm(i) = cmReal(i)*cmReal(i-1);
+            zc(i) = ccReal(i)*ccReal(i-1);
+        end
 
         % Décision
-        SymbolesEstimesOrig = sign(zmReal);
-        SymbolesEstimesCor = sign(zcReal);
+        SymbolesEstimesOrig = sign(zm);
+        SymbolesEstimesCor = sign(zc);
 
         % Demapping
         BitsEstimesOrig = SymbolesEstimesOrig > 0;

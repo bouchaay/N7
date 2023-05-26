@@ -121,7 +121,7 @@ semilogy(Echelle, TEB_ESTIME, 'r*');
 legend('TEB estimé', 'TEB théorique');
 xlabel('Eb/N0 (dB)');
 ylabel('TEB');
-title('Comparaison entre le TEB estimé et le TEB théorique');
+title('Comparaison entre le TEB estimé et le TEB théorique pour phase 40°');
 grid on;
 
 % Tracés des taux d'erreur binaire estimés pour une phase 0° et 40°

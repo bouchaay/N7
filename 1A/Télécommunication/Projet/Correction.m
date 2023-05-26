@@ -10,7 +10,6 @@
 % phi : l'erreur de phase à introduire dans la chaine de transmission.
 % TEB_ESTIME_ORIGINAL : le taux d'erreur binaire de la chaine codé.
 % TEB_ESTIME_CORRIGE : le taux d'erreur binaire de la chaine corrigé.
-
 function [TEB_ESTIME_ORIGINAL, TEB_ESTIME_CORRIGE] = Correction(phi)
 
     % Les paramètres
