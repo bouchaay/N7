@@ -1,0 +1,522 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\RequirePackage{helvet} % Pretty font
+%\usepackage{mathptmx}
+\usepackage[default,osf]{raleway} 
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper,hmargin=2cm,vmargin=1.5cm]{geometry}
+\usepackage[english,french]{babel} % Last language, language by default
+\usepackage{graphicx,enumitem,lipsum}
+\usepackage[colorlinks=true,urlcolor=RoyalBlue4]{hyperref}
+\usepackage[x11names]{xcolor}
+\usepackage{hyperref}
+\newcommand{\Gray}[1]{\textcolor{gray}{\textit{#1}}}
+\parindent 0pt
+\pagestyle{empty}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+
+\pagestyle{fancy}
+\fancyhf{} % efface les en-têtes et pieds de page par défaut
+\fancyhead[L]{INP ENSEEIHT - Première année SN} % ajoute l'en-tête à gauche de chaque page
+\renewcommand{\headrulewidth}{0.4pt} % ajoute une règle fine en haut de chaque page
+\fancyfoot[C]{\thepage} % ajoute la numérotation de page au milieu du pied de page
+\renewcommand{\footrulewidth}{0.4pt} % ajoute une règle fine en bas de chaque page
+\pagenumbering{arabic}
+
+
+\hfill
+\includegraphics[width=4cm]{inp_n7.png}
+
+\vspace*{8mm}
+
+\begin{center}
+\LARGE
+{\bfseries
+INP ENSEEIHT\\[2mm]
+Institut national polytechnique en France\\[3mm]
+}
+\large 
+L'École nationale supérieure d'électrotechnique, d'électronique, d'informatique, d'hydraulique et des télécommunications \\[2mm]
+Première année\\[10mm]
+\Huge
+{\bfseries Introduction à la synchronisation
+}\\
+\Gray{\LARGE (Télécommunications - Projet)}\\[6mm]
+\huge 
+Impact d'une erreur de phase porteuse et méthode de récupération\\[8mm]
+
+\Large 
+Projet réalisé par \Gray{(Ayoub Bouchama)} \\[1mm]
+et \Gray{(Oussama Elguerraoui)} \\[6mm]
+Introduction aux Télécommunications \\[6mm]
+Dirigée par  \Gray{(Maalaoui Asma)}\\[8mm]
+Projet achevé et rendu le \Gray{(26 Mai)}\\[10mm]
+
+\end{center}
+
+Lien utile vers les page des realisateurs du projet :\\[3mm]
+Ayoub Bouchama, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/ayoubbouchama/}{Profil LinkedIn}) }\\
+Oussama ElGuerraoui, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/oussama-elguerraoui-4770b51aa/}{Profil LinkedIn}) }\\
+
+% Page 2
+\newpage
+\parskip 7pt
+
+\selectlanguage{french}
+
+{\bfseries Titre :}
+
+Introduction à la synchronisation.
+
+{\bfseries Résumé} \Gray{(en français)} {\bfseries :}
+
+La synchronisation est un aspect essentiel des systèmes de communication qui garantit une transmission précise et fiable des informations. Elle consiste à aligner le timing et la phase du signal émis avec l'horloge de référence du récepteur. Lorsque la synchronisation est réalisée, le récepteur peut interpréter correctement le signal reçu et extraire les informations souhaitées. Cependant, toute erreur dans la phase de la porteuse peut avoir un impact considérable sur la qualité et la précision des données reçues.
+
+Une erreur de phase de la porteuse, également appelée décalage de phase ou distorsion de phase, peut entraîner une distorsion du signal, une perte d'informations et une réduction du rapport signal sur bruit. Une erreur de phase peut entraîner une mauvaise interprétation des symboles par le récepteur, entraînant ainsi une corruption des données et une perte potentielle de synchronisation.
+
+Pour atténuer l'impact de l'erreur de phase et récupérer la synchronisation, des méthodes de correction de phase sont utilisées. Celles-ci peuvent inclure l'utilisation de boucles à verrouillage de phase (PLL) ou d'algorithme de démodulation cohérente, qui ajustent progressivement la phase du signal reçu pour le faire correspondre à la référence du récepteur. Ces techniques permettent de compenser les erreurs de phase et de maintenir la synchronisation entre l'émetteur et le récepteur, assurant ainsi une transmission précise des données.
+
+{\bfseries Mots-clés :}
+
+synchronisation, erreur de phase, porteuse, signal, distorsion, modulation de phase, modulation d'amplitude en quadrature (QAM), modulation par décalage de phase (PSK).
+
+\vspace*{3mm}
+\hrulefill
+\vspace*{3mm}
+
+\selectlanguage{english}
+
+{\bfseries Title:}
+
+Introduction to Synchronization.
+
+{\bfseries Abstract} \Gray{(in english)}{\bfseries:}
+
+
+Synchronization is crucial in communication systems for accurate and reliable transmission of information. It involves aligning the timing and phase of the transmitted signal with the receiver's reference clock. Proper synchronization allows the receiver to correctly interpret the received signal and extract the desired information. However, any error in the carrier phase can significantly impact the quality and accuracy of the received data.
+
+Carrier phase error, also known as phase offset or phase distortion, can cause signal distortion, loss of information, and a decrease in the signal-to-noise ratio. This is particularly important in systems using phase modulation, such as Quadrature Amplitude Modulation (QAM) or Phase Shift Keying (PSK), where the carrier phase is used to encode data. A phase error can lead to incorrect interpretation of symbols by the receiver, resulting in data corruption and potential loss of synchronization.
+
+To mitigate the impact of phase error and recover synchronization, phase correction methods are employed. These may involve the use of Phase-Locked Loops (PLL) or coherent demodulation algorithms, which gradually adjust the phase of the received signal to match the receiver's reference. These techniques compensate for phase errors and maintain synchronization between the transmitter and receiver, ensuring accurate data transmission.
+
+{\bfseries Keywords:}
+
+synchronization, phase error, carrier, signal, distortion, phase modulation, Quadrature Amplitude Modulation (QAM), Phase Shift Keying (PSK).
+
+% Page 3
+\newpage
+\tableofcontents
+\listoffigures
+
+\newpage
+\section{Introduction}
+
+\section{Impact d'une erreur de phase porteuse}
+La Figure ci-dessous illustre la représentation simplifiée d'une transmission en modulation BPSK, utilisant une porteuse, à travers une chaîne passe-bas équivalente, en présence d'une erreur de phase de la porteuse $\varphi$. Dans ce contexte, nous supposons la présence de deux filtres ayant la même réponse impulsionnelle : une fonction porte de durée $T_s$ et d'amplitude égale à 1. Le bruit introduit par le canal de transmission, représenté par l'enveloppe complexe $n_e(t)$, est réel dans ce cas et possède une densité spectrale de puissance constante $N_0$, indépendante de la fréquence.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=18cm]{fig1.png}
+    \caption{Chaine de transmission passe-bas équivalente avec une erreur de phase $\varphi$ \label{fig : chainepassebasequiv}}
+\end{figure}
+\subsection{Etude théorique}
+\subsubsection{Condition qui permet de respecter le critère de Nyquist}
+La condition qui permet de respecter le critère de Nyquist pour une transmission sans interférence inter-symbole (ISI) est de trouver l'instant optimal pour échantillonnage. Donc il faut trouver l'instant $t_0$ telque :
+
+$$ g(T_s) \neq 0 \
+\text{et} \ \forall p \in \mathbb{Z}, \ g(t_0+pT_s) = 0 $$ \\
+
+avec : $$ g(t) = h(t) * h_r(t) $$ \\
+
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=3cm]{filtre rectangulaire 1.png}
+            \caption{Filtre de mise en forme et de réception 
+            \label{fig : filtre}}
+\end{figure}
+
+On calcule g : 
+
+Pour 0 < t < Ts :
+
+$$ g(t) = \int_{0}^{t} 1 \cdot 1 \, d\tau = \int_{0}^{t} 1 \, d\tau = [ \tau ]_{0}^{t} = t $$
+
+\\
+Pour Ts < t < 2Ts :
+
+$$ g(t) = \int_{t - Ts}^{Ts} 1 \cdot 1 \, d\tau = \int_{t - Ts}^{Ts} 1 \, d\tau = [ \tau ]_{t - Ts}^{Ts} = Ts - (t - Ts) = 2Ts - t $$
+
+Donc :
+
+ \[
+g(t) =  
+\left \{
+   \begin{array}{r c l}
+      t & \text{si } \ \ 0 < t < Ts\\
+      2Ts - t & \text{si } \ \ Ts < t < 2Ts \\
+      0 & \text{sinon}
+    \end{array}
+
+\\non
+Alors :
+
+$$ g(T_s) \neq 0 \
+\text{et} \ \forall p \in \mathbb{Z}, \ g(Ts+pT_s) = 0 $$ \\
+
+Donc la condition qui permet de respecter le critère de Nyquist sur cette chaine de transmission est de prendre $t_0 = T_s$.
+
+
+
+
+
+
+\subsubsection{Expression du signal en sortie de l'echantillonneur pour un erreur de phase $\varphi$}
+Pour une transmission BPSK (Binary Phase Shift Keying), le signal en sortie de l'émetteur est une séquence de symboles modulés avec une phase de 0 ou $\pi$. L'erreur de phase porteuse $\varphi$ introduit une rotation de phase supplémentaire dans le signal reçu.
+
+le signal en sortie du modulateur de bande en base :
+
+$$ x_e(t) = \sum_{k} a_k \delta(t - kTs)*h(t) = \sum_{k} a_k h(t - kTs) $$
+
+le signal en sortie du canal :
+
+$$ r(t) = (\sum_{k} a_k h(t - kTs) + I_n(t)) e^{j \varphi}$$
+
+le signal en sortie du filtre de reception :
+
+$$ Z(t) = r(t)*h_r(t) = \sum_{k} a_k h(t - kTs)*h_r(t)e^{j \varphi} + I_w(t) =\sum_{k} a_k g(t - kTs)e^{j \varphi} + I_w(t)   $$
+
+
+Donc, le signal en sortie de l'échantillonneur $Z(T_S + mTs)$ peut être exprimé comme suit :
+$$Z(Ts + mTs) = a_m T_s e^{j \varphi} + I_w(T_s + mTs)  $$
+
+
+
+\subsubsection{TEB de la liaison, conditionnellement à une erreur de phase $\varphi$}
+$D_{min}$ est la distance minimale entre les symboles du $BPSK$, c'est-à-dire la distance entre les deux points de constellation les plus proches. Dans le cas du BPSK, les symboles sont espacés de manière égale le long de l'axe réel, avec des phases de 0 et pi (180 degrés).
+
+\clearpage
+\begin{figure}[ht!]
+            \centering
+            \includegraphics[width=8cm]{Dmin.jpg}
+            \caption{Shéma montrant le calcul de $D_{min}$ 
+            \label{fig : Dmin}}
+\end{figure}
+
+Lorsqu'il y a une erreur de phase phi, cela entraîne une rotation de l'axe de référence des symboles. La distance minimale Dmin est donc donnée par la projection de la distance entre les symboles d'origine sur l'axe réel après la rotation, ce qui est égal à $T_scos(\varphi)$.
+
+Donc,la distance minimale entre deux symboles reçus est :
+$$D_{min} = T_s cos(\varphi)$$
+
+$$TEB = TES = Q(\frac{D_{min}}{2\sigma_{I_w}})$$
+Alors le taux d'erreur binaire vaudra :
+$$TEB = Q(\frac{T_s }{2\sigma_{I_w}} cos(\varphi))$$
+avec $\sigma^2_{T_w}$ la puissance du bruit en sortie du filtre de récéption $h_r(t)$.
+\subsubsection{Puissance du bruit $\sigma^2_{T_w}$ en sortie du filtre de réception}
+La puissance du bruit en sortie du filtre de réception est égale à :
+$$\sigma^2_{T_w} = \frac{N_0}{2}\int_{-\infty}^{\infty} |H_r(f)|^2 df$$
+Et puisque :
+$$\int_{-\infty}^{\infty} |H_r(f)|^2 df = \int_{-\infty}^{\infty} |h_r(t)|^2 dt$$
+Alors, on obtient l'expression de la puissance suivante :
+$$\sigma^2_{T_w} = \frac{N_0}{2}\int_{-\infty}^{\infty} |h_r(t)|^2 dt = \frac{N_0T_s}{2}$$
+\subsubsection{Energie des symboles à l'entrée du récépteur $E_s$}
+L'energie des symboles $E_s$ à l'entrée du récépteur est égale à :
+$$E_s = P_xT_s$$
+Or, on a par un calcul simple :
+$$ P_x = \int_{-\infty}^{\infty} S_x(f) df = 1 $$
+D'où :
+$$E_s = T_s $$
+\subsubsection{Taux d'erreur binaire en fonction de $\frac{E_b}{N_0}$}
+D'après ce qui précède, on a :
+$$TEB = Q(\frac{T_s }{2\sigma_{I_w}} cos(\varphi))$$
+
+\\ 
+On a M = 2 donc : 
+$$ E_b = E_s = T_s \Rightarrow T_s =  E_b$$  \\
+
+ D'autre part :
+
+$$\sigma_{T_w} =\sqrt{\frac{N_0T_s}{2}} = \sqrt{\frac{N_0 E_b}{2}}  $$ 
+
+Donc : 
+
+$$ \frac{T_s}{2\sigma_{T_w}} = \frac{\sqrt{2} E_b}{2 \sqrt{N_0 E_b} } = \sqrt{\frac{2 E_b}{N_0}}  $$
+
+D'où l'expression finale du taux d'erreur binaire :
+
+$$TEB = Q( \sqrt{\frac{ 2 E_b}{N_0}} cos(\varphi))$$
+
+
+
+
+  
+
+\subsection{Implantation de la chaine de transmission}
+\subsubsection{La chaine de transmission sans erreur de phase et sans bruit}
+On a implanté la chaine de transmission avec une fréquence d’échantillonnage $F_e = 24000
+H_z$, pour transmettre un débit binaire $R_b = 6000 \ bits \ par \ seconde$.
+
+On a ensuite tracé la constellation de l'échantillonneur et nous observons que le signal de sortie n'est pas bruité et pareil au constellation à la sortie du mapping.
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=8cm]{ConstellSansBruitSansErreur.png}
+    \caption{Constellation à la sortie de l'échantillonneur $\varphi$ \label{fig : constellation}}
+\end{figure}
+
+On s'est ensuite avéré que le taux d'erreur binaire à la fin de la démodulation est nulle ce qui était attendu puisque la modulation et la démodulation ont été faite sans bruit et sans erreur.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=16cm]{TebSansBruitSansErreur.png}
+    \caption{Capture d'ecran du taux d'erreur binaire sans bruit et sans erreur $\varphi$ \label{fig : CaptureEcranTeb}}
+\end{figure}
+\subsubsection{La chaine de transmission avec erreur de phase et sans bruit}
+Dans cette section, nous avons introduit une erreur de phase à la chaîne de transmission précédente pour évaluer son impact sur la constellation et le taux d'erreur binaire (TEB). En faisant varier la valeur de $\varphi$, nous avons observé des changements significatifs dans la constellation à la sortie de l'échantillonneur, ainsi que des variations importantes du TEB.
+
+L'erreur de phase introduite modifie la position et l'orientation des symboles dans la constellation. En fonction de la valeur de $\varphi$, la constellation peut subir des rotations, des déformations ou des décalages. Ces changements affectent directement la détection des symboles et peuvent entraîner des erreurs de décodage.
+
+Par conséquent, le TEB varie considérablement en fonction de l'erreur de phase introduite. Des valeurs plus élevées de $\varphi$ peuvent entraîner des distorsions plus importantes de la constellation, ce qui rend la détection des symboles plus difficile et augmente le risque d'erreurs de décodage. En revanche, des valeurs plus faibles de $\varphi$ peuvent réduire les distorsions et améliorer la précision de la détection, conduisant à un TEB plus faible.
+
+\clearpage
+Pour $\varphi = 40°$, la constellation obtenue est :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=6cm]{ConstellAvecErreur40.png}
+    \caption{Constellation à la sortie de l'échantillonneur pour $\varphi=40°$\label{fig : constellation40}}
+\end{figure}
+
+Pour $\varphi = 100°$, la constellation obtenue est :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=6cm]{ConstellAvecErreur100.png}
+    \caption{Constellation à la sortie de l'échantillonneur pour $\varphi=100°$\label{fig : constellation100}}
+\end{figure}
+
+Pour $\varphi = 180°$, la constellation obtenue est :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=6cm]{ConstellAvecErreur180.png}
+    \caption{Constellation à la sortie de l'échantillonneur pour $\varphi=180°$\label{fig : constellation180}}
+\end{figure}
+
+Ainsi, on a obtenue un taux d'erreur binaire égale à 0 pour la valeur de $\varphi=40°$, mais un taux d'erreur binaire maximale égale à 1 pour la valeur de $\varphi=100°$ et $\varphi=180°$.
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=16cm]{TebAvecErreurPrint.png}
+    \caption{Taux d'erreur binaire pour différent valeur de $\varphi$\label{fig : TebAvecErreurCapture}}
+\end{figure}
+
+Le tracé du taux d'erreur binaire dans une echelle logarithmique adaptée est le suivant :
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{TebAvecErreur.png}
+    \caption{Tracé du taux d'erreur binaire pour différent valeur de $\varphi$\label{fig : TebAvecErreur}}
+\end{figure}
+
+\subsubsection{La chaine de transmission avec erreur de phase et avec bruit}
+
+On a implanté dans cette section la chaine de transmission complète avec erreur de phase et avec bruit. Ainsi, on a tracé le taux d'erreur binaire pour une valeur de $\varphi = 40°$ en fonction de $\frac{E_b}{N_0}$ qui varie de 0 à 6.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{TebBPSK40.png}
+    \caption{Tracé du taux d'erreur binaire estimé et théorique pour $\varphi = 40°$\label{fig : TebAvecErreur}}
+\end{figure}
+
+On a ensuite comparé les teux d'erreur binaire avec deux phases différentes, l'une $\varphi_1=0°$ et l'autre $\varphi_2=40°$ en surposant leur tracé dans la meme figure dans une echelle logarithmique adaptée.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{Teb0Teb40.png}
+    \caption{Tracé du taux d'erreur binaire pour $\varphi_1 = 40°$ et $\varphi_2 = 0°$\label{fig : TebAvecErreur040}}
+\end{figure}
+
+On s'est avéré que la chaine de transmission avec une erreur de phase nulle est plus efficace en puissance puisqu'il ne contient pas d'erreur de phase qui va affecter la démodulation. Donc, on va pouvoir récupérer le signal d'entrée comme on veut contrairement à pour la phase $\varphi = 40°$, celle-ci va affecter la démodulation et va dégrader la récupération du signal.
+
+On a ensuite comparée les deux tracés des taux d'erreur binaire pour les deux phases $\varphi=40°$ et $\varphi=100°$ en superposant les courbes en une seule figure dans une echelle ligarithmique adaptée.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{Teb40Teb100.png}
+    \caption{Tracé du taux d'erreur binaire pour $\varphi_1 = 40°$ et $\varphi_2 = 100°$\label{fig : TebAvecErreur40100}}
+\end{figure}
+
+Nous remarquons que le taux d'erreur binaire (TEB) de la chaîne de transmission augmente lorsque l'erreur de phase $\varphi=100°$ est présente. Cette augmentation est due à l'ambiguïté de $\pi$ et à la présence de $cos(\varphi)$ dans l'expression du TEB, ce qui peut changer le signe de la composante de la phase du signal. L'ambiguïté de $\pi$  entraîne une incertitude dans l'estimation précise de la phase. Par conséquent, cela conduit à une détérioration des performances de la chaîne de transmission, en augmentant le TEB. Pour corriger cette erreur de phase, des techniques de correction adaptées peuvent être appliquées afin de réduire le TEB et améliorer la qualité du signal reçu comme le codage par transition qu'on abordera dans les prochaines sections.
+
+
+\section{Estimation et correction de l'erreur de phase}
+Dans cette section, on va procéder à la correction de l'erreur de phase dans la chaine de transmission $BPSK$ implantée précédement. Dans notre cas, l'estimée de l’erreur de phase porteuse recherchée est définie par :
+$$\hat{\varphi} = \frac{1}{2}arg\{\sum_{m}z^{2}_m\}$$
+L'argument étant défini à $2\pi$ près, la phase sera alors estimée avec une ambiguïté de $k\pi$. Une fois l'erreur de phase estimée, le signal reçu pourra être corrigé.
+
+\subsection{Explication des résultats Obtenues}
+\subsubsection{Pour l'erreur de phase $\varphi=40°$}
+Après la correction de la chaîne de transmission, nous remarquons une diminution des valeurs du taux d'erreur binaire (TEB) en fonction de $\frac{E_b}{N_0}$. Cette diminution s'explique par plusieurs facteurs.
+
+Tout d'abord, la correction de la chaîne de transmission permet de compenser l'effet de l'erreur de phase, ce qui réduit les erreurs de démodulation. En ajustant la phase du signal reçu, il devient plus proche de la phase d'origine, ce qui facilite la détection précise des symboles. Ainsi, moins d'erreurs sont introduites lors de la démodulation, ce qui se traduit par une diminution du TEB.
+
+De plus, la correction de l'erreur de phase contribue à améliorer la linéarité de la chaîne de transmission. L'erreur de phase peut introduire des distorsions non linéaires dans le signal, ce qui peut augmenter le niveau de bruit et perturber la détection des symboles. En corrigeant cette erreur, on rétablit une linéarité plus élevée dans la transmission, ce qui réduit les erreurs et diminue le TEB.
+\subsubsection{Pour l'erreur de phase $\varphi=100°$}
+Nous observons une augmentation des valeurs du taux d'erreur binaire (TEB) par rapport à la chaîne de transmission sans correction. Cette augmentation est principalement due à l'ambiguïté introduite par l'erreur de phase de $\varphi=100$°. Lorsque cette chaîne de transmission est corrigée, le TEB peut prendre une tendance opposée à celle attendue en raison de la présence d'un terme $cos(\varphi)$ négatif dans la fonction Q.
+
+En effet, lorsque l'erreur de phase introduit une rotation du signal de 100°, cela peut entraîner une inversion de phase dans les symboles transmis. Lorsque nous effectuons la détection des symboles à l'aide de la fonction Q, qui est généralement utilisée pour estimer les erreurs de démodulation, la présence du terme $cos(\varphi)$ dans cette fonction peut amplifier l'effet de l'inversion de phase et conduire à des erreurs de détection plus importantes.
+
+Ainsi, la correction de cette chaîne de transmission peut entraîner une augmentation du TEB par rapport à la chaîne sans correction, car la correction peut révéler davantage d'erreurs de détection dues à l'ambiguïté introduite par l'erreur de phase.
+
+\subsection{Les taux d'erreur binaire des chaines de transmission corrigées}
+Après avoir introduit la correction de phase dans notre code matlab, on a tracé les taux d'erreur binaire pour les différents phase pour visualiser la différence entre le $TEB$ de la chaine de transmission originale et celle avec correction.
+
+Pour une erreur de phase $\varphi=40°$, on a :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebOrigCorrige40.png}
+    \caption{Tracé du taux d'erreur binaire original et corrigé pour $\varphi_1 = 40°$\label{fig : TebAvecErreur40100}}
+\end{figure}
+Nous avons observé que l'incorporation de la correction de phase a conduit à une diminution significative du taux d'erreur binaire, ce qui indique une amélioration notable dans la récupération du signal d'entrée. Cette correction de phase a été introduite dans le but d'ajuster et de synchroniser correctement les phases du signal, ce qui permet d'optimiser sa reconstruction.
+
+En ajustant les phases du signal, la correction de phase permet de minimiser les distorsions et les interférences qui pourraient survenir pendant la transmission ou le traitement du signal. Elle contribue ainsi à réduire les erreurs de décodage et à optimiser la fidélité de la récupération du signal d'origine.
+
+Pour une erreur de phase $\varphi=100°$, on a :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebOrigCorrige100.png}
+    \caption{Tracé du taux d'erreur binaire original et corrigé pour $\varphi_1 = 100°$\label{fig : TebAvecErreur40100}}
+\end{figure}
+
+Contrairement à la phase $\varphi=40°$, nous remarquons que le taux d'erreur binaire de la chaine de transmission pour la phase $\varphi=100°$ a augmenté et garde son aspect croissant à cause de l'ambiguité introduite par l'erreur de phase.
+
+L'ambiguïté introduite par l'erreur de phase signifie que le récepteur peut interpréter incorrectement les bits du signal, conduisant ainsi à des erreurs de décodage. Cette interprétation erronée des bits résulte de la différence entre la phase attendue et la phase réelle du signal.
+
+En conséquence, le taux d'erreur binaire augmente et présente une tendance croissante pour une phase de $\varphi=100°$. Il est important de réduire prochainement cette ambiguïté introduite par l'erreur de phase pour améliorer la précision de la récupération du signal et réduire le taux d'erreur binaire.
+
+On a ensuite été capable de comparer entre les 5 taux d'erreur binaire des 5 chaines :\\
+Chaine 1 : BPSK sans erreur de phase.\\
+Chaine 2 : BPSK avec erreur de phase $\varphi=40°$ sans correction.\\
+Chaine 3 : BPSK avec erreur de phase $\varphi=40°$ avec correction.\\
+Chaine 4 : BPSK avec erreur de phase $\varphi=100°$ sans correction.\\
+Chaine 5 : BPSK avec erreur de phase $\varphi=100°$ avec correction.\\
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebOrigCorrige040100.png}
+    \caption{Tracé du taux d'erreur binaire original et corrigé pour $\varphi_1 = 100°$\label{fig : TebAvecErreur40100}}
+\end{figure}
+
+Nous avons observé que le taux d'erreur binaire de la chaîne de transmission, corrigé avec une erreur de phase de $\varphi=40°$, est réduit au minimum, au point où il se confond avec le tracé du taux d'erreur binaire de la chaîne de transmission sans erreur de phase. Cela démontre que la correction de phase est très efficace pour améliorer les performances de la chaîne de transmission.
+
+Lorsque la correction de phase est appliquée avec une erreur de phase de $\varphi=40°$, nous constatons que le taux d'erreur binaire est considérablement réduit. En fait, il devient si faible qu'il est pratiquement indiscernable du taux d'erreur binaire de la chaîne de transmission sans erreur de phase. Cela met en évidence l'efficacité de la correction de phase pour améliorer la précision de la récupération du signal et minimiser les erreurs de décodage.
+
+En revanche, dans le cas de la chaîne de transmission avec une erreur de phase de $\varphi=100°$, le taux d'erreur binaire a tendance à s'éloigner du tracé du taux d'erreur binaire de la chaîne sans erreur de phase. Cela est dû aux ambiguïtés mentionnées précédemment, qui introduisent des discordances entre les phases attendues et les phases réellement reçues. Ces discordances provoquent des interférences, des distorsions et une interprétation incorrecte des bits, ce qui se traduit par une augmentation du taux d'erreur binaire.
+
+En résumé, la correction de phase avec une erreur de $\varphi=40°$ a permis de minimiser complètement le taux d'erreur binaire de la chaîne de transmission, au point de le confondre avec le taux d'erreur binaire de la chaîne sans erreur de phase. Cela témoigne de l'efficacité de la correction de phase pour améliorer les performances de la chaîne de transmission. En revanche, une erreur de phase de $\varphi=100°$ entraîne une augmentation du taux d'erreur binaire, qui s'éloigne du tracé de la chaîne sans erreur de phase.
+
+\section{Utilisation du codage par transition}
+Dans cette partie, nous allons mettre en place un codage par transition des symboles émis et à analyser son impact sur la chaîne de transmission. Pour cela, nous présenterons la réalisation du codage par transition au niveau de l'émetteur dans la figure suivante :
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{codage.png}
+    \caption{Codage par transition au niveau de l'emetteur\label{fig : codage}}
+\end{figure}
+
+et la réalisation du décodage par transition au niveau du récepteur dans les figure ci-dessous :
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=7cm]{decodage.png}
+    \caption{Decodage par transition au niveau de l'emetteur\label{fig : decodage}}
+\end{figure}
+
+\subsection{Etude théorique}
+\subsubsection{Élimination de l'ambiguïté de $\pi$ grâce à l'utilisation du codage par transition pour l'estimation de l'erreur de phase porteuse}
+L'utilisation du codage par transition permet de s'affranchir de l'ambiguïté de $\pi$ sur l'estimation de l'erreur de phase porteuse. Lorsqu'on encode les symboles en utilisant le codage par transition, les transitions entre les symboles adjacents sont prises en compte. Cela permet au récepteur de différencier les variations de phase induites par la modulation des symboles, même en présence d'une ambiguïté de $\pi$.
+
+En utilisant le codage par transition, les transitions entre les symboles adjacents sont détectées et utilisées pour estimer la phase porteuse. Par conséquent, même si la phase porteuse est décalée de $\pi$ (180 degrés), le récepteur est capable de reconstruire correctement la séquence de symboles d'origine en prenant en compte ces transitions.
+
+En éliminant l'ambiguïté de $\pi$, le codage par transition améliore la précision de l'estimation de l'erreur de phase porteuse, ce qui conduit à une meilleure récupération des symboles d'origine. Cela permet d'atténuer les erreurs de décodage et d'améliorer les performances globales de la chaîne de transmission.
+
+On a mis en évidence ceci en tracant le superposé du taux d'erreur binaire de la chaine de transmission orginale et celle ave codage par transition pour la phase en question $\varphi=100$
+
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebOrig+Code100.png}
+    \caption{TEB avec codage de transition pour $\varphi=100$\label{fig : decodage}}
+\end{figure}
+
+Nours remarquons que le taux d'erreur binaire prend son aspect décroissant normal.
+\subsubsection{Le taux d'erreur binaire après le codage par transition}
+Supposons que le $TEB$ sur les symboles non codés soit représenté par $TEB_{NonCode}$, et que le $TEB$ sur les symboles codés par transition soit représenté par $TEB_{Code}.
+
+Selon le codage par transition, chaque symbole est représenté par une séquence de produit de deux symboles, où la transition entre ces deux symboles indique le symbole original. Ainsi, pour chaque symbole original, il y a deux symboles codés.
+
+Si nous considérons que chaque symbole codé est transmis de manière indépendante, alors la probabilité d'erreur pour chaque symbole codé est égale à la moitié de la probabilité d'erreur pour le symbole original non codé. Cela est dû au fait que le décodage correct d'un symbole codé nécessite une détection précise de la transition entre les deux symboles, ce qui augmente la probabilité d'erreur.
+
+Par conséquent, si le $TEB$ pour les symboles non codés est $TEB_{NonCode}$, alors le $TEB$ pour les symboles codés sera le double de cela, soit $TEB_{Code} = 2TEB_{NonCode}$.
+
+On a met ceci en evidence en tracant le superposé des courbes du taux d'erreur binaire pour la chaine de transmission avec et sans codage par transition.
+
+Pour une phase $\varphi = 40°$ :
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebOrig+Code40.png}
+    \caption{TEB avec codage de transition pour $\varphi=40$\label{fig : decodage}}
+\end{figure}
+
+\subsubsection{Etude comparative entre les chaines de transmitions}
+Dans cette section, on a comparé les 3 taux d'erreur binaires pour chasue phase $\varphi$, corrigé, codé et codé+corrigé pour mettre en evidence l'impact de chaque processus sur la qualité de la transmission du signal d'entrée.
+
+- Pour une phase $\varphi = 40$° :
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebCorrige+Code40.png}
+    \caption{TEB des chaines de transmissions codé, corrigé et codé+corrigé pour $\varphi=40$\label{fig : decodage}}
+\end{figure}
+
+Tout d'abord, la chaîne de transmission avec correction pour une erreur de phase de $\varphi=40°$ se distingue par sa haute efficacité en puissance. Cette approche de correction permet de minimiser considérablement le taux d'erreur binaire (TEB), ce qui se traduit par une récupération plus précise du signal d'entrée. En réduisant les erreurs de décodage, cette correction de phase permet d'améliorer les performances globales de la chaîne de transmission.
+
+Ensuite, nous avons la chaîne de transmission avec codage par transition et correction de l'erreur de phase. Cette approche combine le codage par transition, qui permet de s'affranchir de l'ambiguïté de $\pi$ sur l'estimation de l'erreur de phase porteuse (pas d'ambiguité pour une telle erreur de phase), avec la correction de l'erreur de phase. En utilisant cette combinaison, la chaîne de transmission bénéficie des avantages des deux techniques. Cependant, il est important de noter que le codage par transition peut introduire une grande augmentation du TEB par rapport à la chaîne de transmission sans codage. Néanmoins, cette augmentation est compensée par l'efficacité de la correction de l'erreur de phase, ce qui rend cette approche globalement plus performante.
+
+Enfin, la chaîne de transmission avec codage par transition seul présente une efficacité légèrement inférieure en comparaison des deux approches précédentes. Bien que le codage par transition permette de réduire l'ambiguïté de $\pi$ sur l'estimation de l'erreur de phase (inexistante pour une telle phase), il peut introduire une augmentation significative du TEB.
+
+En résumé, nous constatons que la correction de l'erreur de phase, en particulier pour une erreur de phase de $\varphi=40°$, est la méthode la plus efficace pour améliorer les performances de la chaîne de transmission en termes de taux d'erreur binaire. La combinaison du codage par transition avec la correction de l'erreur de phase offre également de bons résultats, bien que le codage par transition puisse légèrement augmenter le TEB. Finalement, le codage par transition seul constitue une approche intermédiaire en termes d'efficacité, mais reste préférable à l'absence de toute correction.
+
+- Pour une phase $\varphi = 100$° :
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=9cm]{TebCorrige+Code100.png}
+    \caption{TEB des chaines de transmissions codé, corrigé et codé+corrigé pour $\varphi=100$\label{fig : decodage}}
+\end{figure}
+
+Lorsque nous considérons une phase de $\varphi=100°$, nous observons des différences significatives dans l'efficacité des différentes approches utilisées dans la chaîne de transmission pour corriger l'erreur de phase.
+
+Tout d'abord, la chaîne de transmission avec codage par transition et correction de l'erreur de phase se révèle être la plus efficace en termes de puissance. Cette approche combine l'utilisation du codage par transition, qui élimine l'ambiguïté de $\pi$ dans la chaîne de transmission, avec la correction de l'erreur de phase. En combinant ces deux techniques, cette approche permet d'obtenir une meilleure précision dans la récupération du signal d'entrée, ce qui se traduit par une diminution significative du taux d'erreur binaire (TEB).
+
+Ensuite, la chaîne de transmission avec codage par transition seule se positionne en deuxième place. Le codage par transition est utilisé pour éliminer l'ambiguïté de $\pi$ dans la chaîne de transmission, ce qui permet de retrouver un aspect décroissant du TEB. Bien que cette approche ne corrige pas directement l'erreur de phase, elle améliore néanmoins les performances en rendant la récupération des symboles plus précise.
+
+Enfin, la chaîne de transmission avec correction de l'erreur de phase seule est moins efficace en comparaison des deux approches précédentes. En raison de l'ambiguïté de $\pi$ mentionnée précédemment, le taux d'erreur binaire reste élevé dans cette configuration sans l'utilisation du codage par transition. Bien que la correction de l'erreur de phase puisse améliorer les performances dans certains cas, elle n'est pas suffisante pour surmonter l'ambiguïté introduite par $\pi$ dans cette configuration spécifique.
+
+En résumé, pour une phase de $\varphi=100°$, la chaîne de transmission avec codage par transition et correction de l'erreur de phase se positionne comme la plus efficace en termes de puissance, grâce à sa combinaison de codage par transition et de correction de l'erreur de phase. Le codage par transition seul vient ensuite, permettant d'éliminer l'ambiguïté de $\pi$ dans la chaîne de transmission. Enfin, la chaîne de transmission avec correction de l'erreur de phase seule se trouve en dernière position en raison de l'incapacité à résoudre l'ambiguïté mentionnée précédemment, ce qui entraîne un taux d'erreur binaire élevé.
+\newpage
+\section{Conclusion}
+En conclusion, ce projet de synchronisation dans une chaîne de transmission a permis d'explorer différentes approches pour corriger l'erreur de phase et améliorer les performances de transmission. Nous avons examiné l'efficacité de la correction de l'erreur de phase, du codage par transition et de leur combinaison dans différentes configurations.
+
+Nous avons constaté que la correction de l'erreur de phase, en particulier pour une phase de $\varphi=40°$, est très efficace pour améliorer les performances de la chaîne de transmission en termes de taux d'erreur binaire. Cette correction permet de minimiser les erreurs de décodage et d'optimiser la récupération du signal d'entrée.
+
+Le codage par transition s'est avéré être une technique efficace pour éliminer l'ambiguïté de $\pi$ dans la chaîne de transmission, ce qui permet de rétablir un taux d'erreur binaire décroissant. Cependant, il peut introduire une légère augmentation du taux d'erreur binaire par rapport à la transmission sans codage.
+
+En combinant le codage par transition et la correction de l'erreur de phase, nous avons obtenu la meilleure performance en puissance dans notre étude pour une phase $\varphi=40$. Cette combinaison a permis de corriger l'ambiguïté de $\pi$ tout en réduisant l'erreur de phase, offrant ainsi une amélioration significative du taux d'erreur binaire.
+
+En revanche, dans le cas d'une phase de $\varphi=100°$, l'ambiguïté de $\pi$ a eu un impact négatif sur les performances de la correction de l'erreur de phase seule. Dans cette configuration, l'utilisation du codage par transition, en plus de la correction de l'erreur de phase, s'est avérée la plus efficace pour réduire le taux d'erreur binaire.
+
+En résumé, ce projet a démontré l'importance de la synchronisation et de la correction de l'erreur de phase dans une chaîne de transmission. La combinaison du codage par transition et de la correction de l'erreur de phase s'est révélée particulièrement efficace pour améliorer les performances de transmission. Ces résultats offrent des perspectives intéressantes pour le développement de systèmes de communication plus robustes et fiables.
+
+
+
+\section{Référence}
+\href{https://moodle-n7.inp-toulouse.fr/course/view.php?id=2014}{TP de Télécommunication}
+\end{document}
