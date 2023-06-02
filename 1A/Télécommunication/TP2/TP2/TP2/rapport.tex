@@ -1,0 +1,435 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\RequirePackage{helvet} % Pretty font
+%\usepackage{mathptmx}
+\usepackage[default,osf]{raleway} 
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper,hmargin=2cm,vmargin=1.5cm]{geometry}
+\usepackage[english,french]{babel} % Last language, language by default
+\usepackage{graphicx,enumitem,lipsum}
+\usepackage[colorlinks=true,urlcolor=RoyalBlue4]{hyperref}
+\usepackage[x11names]{xcolor}
+\usepackage{hyperref}
+\newcommand{\Gray}[1]{\textcolor{gray}{\textit{#1}}}
+\parindent 0pt
+\pagestyle{empty}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+
+\pagestyle{fancy}
+\fancyhf{} % efface les en-têtes et pieds de page par défaut
+\fancyhead[L]{INP ENSEEIHT - Première année SN} % ajoute l'en-tête à gauche de chaque page
+\renewcommand{\headrulewidth}{0.4pt} % ajoute une règle fine en haut de chaque page
+\fancyfoot[C]{\thepage} % ajoute la numérotation de page au milieu du pied de page
+\renewcommand{\footrulewidth}{0.4pt} % ajoute une règle fine en bas de chaque page
+\pagenumbering{arabic}
+
+
+\hfill
+\includegraphics[width=4cm]{inp_n7.png}
+
+\vspace*{8mm}
+
+\begin{center}
+\LARGE
+{\bfseries
+INP ENSEEIHT\\[2mm]
+Institut national polytechnique en France\\[3mm]
+}
+\large 
+L'École nationale supérieure d'électrotechnique, d'électronique, d'informatique, d'hydraulique et des télécommunications \\[2mm]
+Première année\\[10mm]
+\Huge
+{\bfseries Etude de chaines de transmission sur porteuse
+}\\
+\Gray{\LARGE (Télécommunications - Partie 2)}\\[6mm]
+\huge 
+modulateurs DVB-S, DVB-S2\\[8mm]
+
+\Large 
+Projet réalisé par \Gray{(Ayoub Bouchama)} \\[1mm]
+et \Gray{(Oussama Elguerraoui)} \\[6mm]
+Projet de Télécommunication \\[6mm]
+Dirigée par  \Gray{(Maalaoui Asma)}\\[8mm]
+Projet achevé et rendu le \Gray{(... Mai)}\\[10mm]
+
+\end{center}
+
+Lien utile vers les page des realisateurs du projet :\\[3mm]
+Ayoub Bouchama, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/ayoubbouchama/}{Profil LinkedIn}) }\\
+Oussama ElGuerraoui, \Gray{Département SN, Groupe F (\href{https://www.linkedin.com/in/oussama-elguerraoui-4770b51aa/}{Profil LinkedIn}) }\\
+
+% Page 2
+\newpage
+\parskip 7pt
+
+\selectlanguage{french}
+
+{\bfseries Titre :}
+
+Etude de chaines de transmissions en bande de base
+
+{\bfseries Résumé} \Gray{(en français)} {\bfseries :}
+
+Le présent volet du projet avait pour principal objectif de nous familiariser avec les aspects fondamentaux liés à l'étude des chaînes de transmission en bande de base. Pour ce faire, une série d'activités ont été entreprises, incluant notamment l'étude de trois modulateurs de bande de base distincts dans le but de les comparer en termes d'efficacité spectrale, en s'appuyant sur le tracé superposé des DSP des différents signaux générés pour un même débit binaire. Par la suite, l'étude des interférences entre symboles ainsi que l'application du critère de Nyquist ont été considérées dans le cadre d'une chaîne de transmission sans canal de propagation, c’est-à-dire sans bruit mais également sans filtrage introduit par le canal, et par la suite, en intégrant un canal de propagation pour deux valeurs de BW différentes. Cette approche a permis de comparer les taux d’erreur binaire obtenus et d'en tirer des conclusions. Enfin, l'impact du bruit et du filtrage adapté a été étudié, avec un accent particulier mis sur la notion d'efficacité en puissance. Plus précisément, trois chaînes de transmission différentes ont été implémentées sans bruit dans un premier temps, puis avec l'intégration d'un bruit gaussien. Les taux d'erreur binaire ont ensuite été comparés entre les différentes chaînes de transmission, permettant ainsi de conclure sur celle qui offre les meilleures performances.
+
+{\bfseries Mots-clés :}
+
+Transmission, bande de base, modulateurs, efficacité spectrale, critère de Nyquist, taux d'erreur binaire, bruit, filtrage adapté.
+
+\vspace*{3mm}
+\hrulefill
+\vspace*{3mm}
+
+\selectlanguage{english}
+
+{\bfseries Title:}
+Study of transmission chains in base band
+
+
+{\bfseries Abstract} \Gray{(in english)}{\bfseries:}
+
+The main objective of this part of the project was to familiarize the team members with the fundamental aspects related to the study of baseband transmission channels. To achieve this, a series of activities were undertaken, including the study of three distinct baseband modulators in order to compare them in terms of spectral efficiency, based on the superimposed plot of the DSP of the different signals generated for the same bit rate. Subsequently, the study of inter-symbol interference and the application of the Nyquist criterion were considered in the context of a transmission channel without propagation, i.e. without noise but also without filtering introduced by the channel, and then by integrating a propagation channel for two different BW values. This approach allowed to compare the obtained bit error rates and draw conclusions. Finally, the impact of noise and adapted filtering was studied, with a particular focus on the concept of power efficiency. Specifically, three different transmission channels were implemented without noise initially, and then with the integration of Gaussian noise. The bit error rates were then compared between the different transmission channels, allowing to conclude on the one that offers the best performance.
+
+{\bfseries Keywords:}
+
+Transmission, baseband, modulators, spectral efficiency, Nyquist criterion, bit error rate, noise, matched filtering.
+
+% Page 3
+\newpage
+\tableofcontents
+\listoffigures
+
+\newpage
+\section{Introduction}
+
+Dans le cadre de ce projet , nous avons plonger dans l'univers fascinant des transmissions numériques par satellite. En particulier, nous avons nous intéresser aux normes DVB-S et DVB-S2, qui permettent la diffusion de flux numériques multimédias. La première version de la norme DVB-S a été publiée en 1994 et repose sur un modulateur QPSK avec une mise en forme en racine de cosinus surélevé de roll off égal à 0.35. La deuxième version, DVB-S2, est apparue en 2005 et propose plusieurs modulateurs, dont le modulateur 8-PSK avec une mise en forme en racine de cosinus surélevé de roll off égal à 0.2.
+
+Notre objectif est de faire l'étude des chaînes de transmission sur fréquence porteuse en présentant ces normes, leur fonctionnement et leur implantation. Nous avons étudier les différentes étapes de la chaîne de transmission, de la source du signal jusqu'à sa réception, en mettant l'accent sur les différents éléments qui la composent et leur rôle. Nous allons également comparer les chaînes de transmission utilisant les normes DVB-S et DVB-S2, en évaluant leur efficacité spectrale et en puissance.
+
+Dans ce rapport, nous allons aborder des concepts techniques avancés, mais nous allons nous efforcer de les présenter de manière accessible et compréhensible. Nous espérons que cette étude va permettre de mieux comprendre les technologies de transmission numérique par satellite et leur utilisation dans le monde réel.\\\\\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=17cm]{chainetransmissioncomplete.png}
+    \caption{Chaine de transmission complète \label{fig : chainetransmissioncomplete}}
+\end{figure}
+
+\newpage
+\section{Chaine de transmission avec transposition de fréquence}
+Dans un premier temps, nous allons implémenter une transmission au format DVB-S en utilisant une modulation QPSK avec une mise en forme en racine de cosinus surélevé de roll off $\alpha$ : 
+$$\alpha = 0.35$$
+ainsi qu'une transposition de fréquence. Nous utiliserons une fréquence d'échantillonnage $F_e$ :
+$$F_e = 24000 \ H_z$$
+pour transmettre un débit binaire $R_b$ :
+$$R_b = 3000 \ bps$$
+et une fréquence porteuse $f_p$ :
+$$f_p = 2000 \ H_z$$
+
+Le canal satellite pour une transmission fixe de type DVB est soumis à un bruit additif et gaussien (AWGN). Nous introduirons du bruit dans notre simulation sur la bande $F_e$ en utilisant la fonction randn de MATLAB, avec une puissance $\sigma_n^2$ qui sera déterminée en fonction du rapport signal à bruit par bit souhaité à l'entrée du récepteur, $\frac{E_b}{N_0}$. Pour ce faire, nous utiliserons la formule suivante :
+$$\sigma_n^2 = \frac{P_xN_s}{2log_2(M) \frac{E_b}{N_0}}$$
+
+où M représente l'ordre de la modulation, $N_s$ le facteur de suréchantillonnage et $P_x$ la puissance du signal à bruit (en sortie du modulateur).
+
+Enfin, le démodulateur sera implanté de manière optimale en respectant le critère de Nyquist et en utilisant un filtrage adapté, ainsi qu'en choisissant les instants optimaux pour l'échantillonnage.\\\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=7cm]{qpskimage.png}
+    \caption{PSK (Phase-Shift Keying) \label{fig : chainetransmissioncomplete}}
+\end{figure}
+Le nombre de bits par symbole k est :
+$$k = 2$$
+donc le nombre de symboles M est :
+$$M = k^2 = 4$$
+
+\newpage
+\subsection{Tracé des signaux générés sur les voies en phase et en quadrature}
+
+Tout d'abord, une séquence de bits aléatoires est générée à l'aide de la fonction "randi" qui retourne des valeurs binaires aléatoires de 0 ou 1. Cette séquence de bits est stockée dans la variable "bits".
+
+Ensuite, les bits sont mappés sur des symboles, où chaque paire de bits est transformée en un symbole complexe. Les bits pairs sont utilisés pour la partie réelle des symboles, tandis que les bits impairs sont utilisés pour la partie imaginaire. Les symboles sont stockés dans la variable "symboles".
+
+Le signal est ensuite suréchantillonné en insérant des zéros entre les symboles à l'aide de la fonction "kron". Le facteur de suréchantillonnage est déterminé par la variable "$N_s$". Le signal suréchantillonné est stocké dans la variable "symbolesSurEchantillones".
+
+Le signal est ensuite filtré à l'aide d'un filtre en racine de cosinus surélevé (RRC) conçu à l'aide de la fonction "rcosdesign". Le filtre est conçu en spécifiant le coefficient d'excès de bande (Roll Off) "$\alpha$", la longueur du filtre "L", et le facteur de suréchantillonnage "$N_s$".
+
+Le filtre introduit un retard qui doit être géré pour s'assurer que le signal est correctement aligné dans le temps. Le retard est calculé à l'aide de la variable "decalage" qui est déterminée en fonction de la longueur du filtre et du facteur de suréchantillonnage.
+
+Le signal filtré est décalé temporellement pour compenser le retard et les signaux en phase et en quadrature sont extraits à l'aide des fonctions "real" et "imag". Le signal en phase est stocké dans la variable "I" tandis que le signal en quadrature est stocké dans la variable "Q".
+
+Enfin, on a tracé les signals générés à l'aide la fonction plot dans une échelle temporelle adaptée.\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=14cm]{signalphase2.png}
+    \caption{Tracé du signal généré sur voie en phase \label{fig : SignalPhase}}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=14cm]{signalq2.png}
+    \caption{Tracé du signal généré sur voie en quadrature \label{fig : SignalQuadrature}}
+\end{figure}
+
+\subsection{Tracé du signal transmis sur fréquence porteuse}
+On a ensuite calculé le signal généré sur fréquence porteuse $x(t)$, en multipliant l'enveloppe complexe $x_e(t)$ associé à $x(t)$ par l'expression :
+$$e^{j2\pi f_pt}$$
+pour finalement obtenir $x(t)$ par l'extraction de la partie réel de l'expression précédente :
+$$x(t) \ = \ Re(x_e(t)e^{j2\pi f_pt})$$
+Nous l'avons ensuité tracé dans une echelle temporelle adapté.\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{signalfreqporteuse.png}
+    \caption{Tracé du signal de transmission sur fréquence porteuse \label{fig : SignalFreqPorteuse}}
+\end{figure}
+
+\newpage
+\subsection{Tracé de la densité spectrale de puissance des signaux générés sur les voies en phase et en quadrature}
+Les densités spectrales de puissance des signaux générés sur les voies en phase et en quadrature ont été ensuite calculées à l'aide de la fonction "pwelch" et on les a tracées ensuite sur des échelles logarithmiques convenables.\\\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{signalp2.png}
+    \caption{Tracé de la densité spectrale de puissance du signal généré en voie phase  \label{fig : DspPhase}}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=13cm]{dspq2.png}
+    \caption{Tracé de la densité spectrale de puissance du signal généré en voie quadratique  \label{fig : DspQuadratique}}
+\end{figure}
+
+\subsection{Tracé de la densité spectrale de puissance du signal transmis sur fréquence porteuse}
+On a tracé la densité spectrale de puissance du signal transmis sur frequence porteuse $x(t)$ sur une echelle logarithmique et on constate qu'il est centré autour des fréquences $f_p$ et $-f_p$ ce qui était attendu puisque :
+$$x(t) \ = \ Re(x_e(t)e^{2\pi f_pt}) = I(t)cos(2\pi f_pt) - Q(t)sin(2\pi f_pt)$$
+où $I(t)$ et $Q(t)$ représentent les parties en phase et en quadrature du signal modulant respectivement, et $f_p$ est la fréquence de la porteuse.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=13cm]{dspx.png}
+    \caption{Tracé de la densité spectrale de puissance du signal transmis sur fréquence porteuse  \label{fig : DspFreqPorteuse}}
+\end{figure}
+
+En développant la densité spectrale de puissance de $x(t)$, on obtient :
+$$x(t) \ = \ \frac{1}{2}[I(t)e^{2\pi f_pt} + I^*(t)e^{-2\pi f_pt}] + \frac{1}{2i}[Q(t)e^{2\pi f_pt} - Q^*(t)e^{-2\pi f_pt}]$$
+On peut alors exprimer la transformée de Fourier du signal $x(t)$ :
+$$X(f) \ = \ \frac{1}{2}[I(f-f_p) + I^*(f+f_p)] + \frac{1}{2i}[Q(f-f_p) - Q^*(f+f_p)]$$
+où $I(f)$ et $Q(f)$ sont les transformées de Fourier de $I(t)$ et $Q(t)$ respectivement.
+
+La densité spectrale de puissance $S_x(f)$ est donnée par le carré du module de la transformée de Fourier :
+$$ S_x(f) = |X(f)|^2$$
+
+En developpant cette expression, on obitent :
+$$ S_x(f) = \frac{1}{4}[|I(f-f_p)|^2 + |I^*(f+f_p)|^2 + 2Re(I(f-f_p)I^*(f+f_p))] + \frac{1}{4}[|Q(f-f_p)|^2 +$$ $$|Q^*(f+f_p)|^2 - 2Re(Q(f-f_p)Q^*(f+f_p))]$$
+
+Comme $I(t)$ et $Q(t)$ sont des signaux réels, on a :
+$$I(t) = I^*(t) \ \ et \ \ Q(t) = Q^*(t)$$
+
+Donc, en utilisant ces propriétés, on peut simplifier l'expression précédente :
+$$S_x(f) = \frac{1}{2}[|I(f-f_p)|^2 + |Q(f-f_p)|^2}]$$
+On peut donc remarquer que la densité spectrale de puissance $S_x(f)$ présente deux pics en $f_p$ et $-f_p$, correspondant aux fréquences porteuses. Ces pics sont symétriques car $I(t)$ et $Q(t)$ sont des signaux réels.
+
+Et dans le cours de télécommunication, l'expression suivante montre aussi que la densité spectrale de $x(t)$ doit avoir deux piques centré sur $f_p$ et $-f_p$ :
+$$S_x(f) \ = \ \frac{1}{4}(S{x_e}(f-f_p) \ + \ S{x_e}(-f-f_p))$$
+
+\subsection{Le taux d'erreur binaire sans bruit gaussien}
+La démodulation a été effectuée sans bruit, cela signifie que le signal modulé a été transmis sans aucune erreur. En effet, dans ce premier cas, le signal reçu est identique au signal émis, ce qui permet une démodulation parfaite. Ainsi, si le taux d'erreur binaire est nul, cela signifie que tous les bits ont été correctement transmis et reçus. Cependant, dans la pratique, il est rare de transmettre un signal sans bruit, ce qui peut entraîner des erreurs de transmission et donc un taux d'erreur binaire non nul (ce qu'on va voir lors de l'introduction du bruit).
+
+\subsection{Tracé du taux d'erreur binaire en fonction de $E_b/N_0$}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{TEBQPSK.png}
+    \caption{Tracé du taux d'erreur binaire estimé en fonction de $E_b/N_0$  \label{fig : TEBQPSK}}
+\end{figure}
+
+
+Le Taux d'Erreur Binaire (TEB) diminue lorsque le rapport signal sur bruit (Eb/N0) augmente. Cela est dû au fait que le bruit ajouté au signal diminue lorsque le rapport signal sur bruit augmente, ce qui facilite la détection correcte des bits envoyés.
+
+Plus précisément, lorsque le rapport signal sur bruit est faible, le bruit de fond peut masquer le signal utile et causer des erreurs de détection. En revanche, lorsque le rapport signal sur bruit est élevé, le signal utile est plus facilement détectable car il est plus fort que le bruit de fond. Cela permet de réduire les erreurs de détection et donc d'obtenir un TEB plus faible.
+
+Il convient de noter que le rapport signal sur bruit ne doit pas être trop élevé, car cela peut entraîner une saturation du récepteur et des distorsions dans le signal, ce qui peut également causer des erreurs de détection.
+
+Nous avons aussi tracé le superposé du taux d'erreur binaire estimé et le taux d'erreur binaire théorique qu'on a calculé avec la formule :
+$$TEB_{theorique} = Q(\sqrt{2\frac{E_b}{N_0}})$$
+On peut constater que les deux courbes se superposent, ce qui suggère que la démodulation a été réalisée correctement.\\
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{TEBTHQPSK.png}
+    \caption{Tracé du taux d'erreur binaire estimé et théorique en fonction de $E_b/N_0$  \label{fig : TEBQPSK}}
+\end{figure}
+
+\section{Implantation de chaine passe-bas équivalente à la chaine de transmission sur porteuse}
+
+Nous allons maintenant implémenter la chaîne de transmission passe-bas équivalente à la chaîne de transmission sur fréquence porteuse que nous avons réalisée précédemment, avec la même fréquence d'échantillonnage $F_e = 24000 \ Hz$ pour transmettre un débit binaire $R_b = 3 \ kbps$.
+
+Le bruit introduit par le canal passe-bas équivalent au canal de propagation est un bruit complexe $n_e(t) = n_I(t) + jn_Q(t)$. Ce bruit sera ajouté lors de la simulation sur la bande Fe avec une même puissance sur chaque voie ($\sigma_{nI}^2 = \sigma_{nQ}^2$), une puissance que l'on calculera en fonction du rapport signal à bruit par bit à l'entrée du récepteur $\frac{E_b}{N_0}$ souhaité de la manière suivante :
+$$\sigma_{nI}^2 = \sigma_{nQ}^2 = \frac{P_{x_e}N_s}{2log_2(M)\frac{E_b}{N_0}}$$
+
+où M représente l'ordre de la modulation, $N_s$ le facteur de suréchantillonnage et $P{x_e}$ la puissance de l'enveloppe complexe associée au signal à bruit (en sortie du modulateur).
+
+Nous pourrons ensuite observer que les deux tracés sont superposés, ce qui démontrera que la démodulation a été effectuée correctement.
+\subsection{ Tracé des signaux générés sur les voies en phase et en quadrature avec une échelle temporelle correcte}
+Après avoir calculé les signaux générés sur la voie en phase $I(t)$ et en quadrature $Q(t)$, on les a tracés dans une echelle temporelle adaptée. Nous remarquons que ce sont presque les memes que celles tracés auparavant puisqu'ils sont tracés avec la meme fréquence d'échantillonnage et les memes caractéristiques.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{passebasp.png}
+    \caption{Tracé du signal généré sur voie en phase  \label{fig : PasseBasPhase}}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{passebasq.png}
+    \caption{Tracé du signal généré sur voie en quadrature  \label{fig : PasseBasQuadrature}}
+\end{figure}
+
+\subsection{Tracé de la densité spectrale de puissance de l’enveloppe complexe associée au signal transmis sur
+fréquence porteuse}
+
+On a tracé la densité spectrale de puissance de l'enveloppe complexe $xe(t)$ associé au signal transmis sur fréquence porteuse $x(t)$.
+
+On a d'après le cours dans le cas d'une chaine passe-bas équivalente :
+$$F_{max} = B_e$$
+or d'après le shèma :
+$$B_e = 2500 \ Hz$$
+donc 
+$$F_max = 2500 \ Hz$$
+et donc le critère de shanon est vérifié car :
+$$F_e \ = \ 24000 \ Hz \ > \ 2F_{max} \ = 5000 \ H_z $$
+
+Et nous remarquons qu'au contraire de la densité spectrale de puissance du signal transmis sur fréquence porteuse $x(t)$, la DSP de l'enveloppe complexe associé est centré autour de 0.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{dspenveloppecomp.png}
+    \caption{Tracé de la densité spectrale de puissance de l'enveloppe complexe  \label{fig : EnveloppeComplexe}}
+\end{figure}
+
+\subsection{Tracé des constellations en sortie du mapping et en sortie de l’échantillonneur pour différentes valeurs de $\frac{E_b}{N_0}$}
+
+Lorsque le rapport signal sur bruit (SNR) augmente, nous pouvons observer une réduction de la dispersion des constellations en sortie de l'échantillonnage. En d'autres termes, une augmentation du SNR améliore la qualité de la transmission de données à travers un canal de communication numérique. Cela peut se produire car un SNR plus élevé signifie qu'il y a moins de perturbations dues au bruit par rapport au signal de données, ce qui réduit les erreurs de transmission. Lorsque ces erreurs sont réduites, les points de la constellation qui représentent les données restent proches de leur position d'origine, ce qui maintient la cohérence et la précision de la constellation. La dernière figure de la constellation sans bruit montre les positions origines des points de constellation.
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=6cm]{constellation0pb.png}
+    \includegraphics[width=6cm]{constellation1pb.png}
+    \includegraphics[width=6cm]{constellation2pb.png}
+    \includegraphics[width=6cm]{constellation3pb.png}
+    \includegraphics[width=6cm]{constellation4pb.png}
+    \includegraphics[width=6cm]{constellation5pb.png}
+    \includegraphics[width=6cm]{constellation6pb.png}
+    \includegraphics[width=6cm]{constellationsansbruitpb.png}
+    \caption{Les Tracés de la constellation en sortie de l'échatilloneur en fonction de $\frac{E_b}{N_0}$  \label{fig : EnveloppeComplexe}}
+\end{figure}
+\clearpage
+\subsection{Tracé du taux d’erreur binaire obtenu en fonction de $\frac{E_b}{N_0}$}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{TEBPASSEBAS.png}
+    \caption{TEB de la chaine passe-bas équivalente en fonction de $E_b/N_0$  \label{fig : TEBQPSK}}
+\end{figure}
+
+Le taux d'erreur binaire (TEB) du filtre passe-bas équivalent diminue lorsque le SNR augmente, ce qui est lié à la dispersion des constellations que nous avons mentionnée précédemment. Lorsqu'il y a moins de bruit dans le canal de communication, le filtre passe-bas équivalent peut mieux distinguer les signaux de données des perturbations de bruit, ce qui réduit le TEB. Cela se traduit par une diminution des erreurs de transmission de données et une amélioration de la qualité globale de la communication.
+
+En effet, la dispersion des constellations est un indicateur visuel de la qualité de la transmission de données, tandis que le TEB est un indicateur numérique qui mesure la probabilité d'erreur de transmission de bits individuels. Une meilleure cohérence de la constellation indique une réduction des erreurs de transmission, ce qui se traduit par une diminution du TEB. Ainsi, en réduisant la dispersion des constellations, une augmentation du SNR améliore la précision et la cohérence des données transmises, ce qui se traduit par une diminution du TEB.
+\subsection{Etude comparative entre la transposition de fréquence et les chaines passe-bas équivalent}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=14cm]{TEBTHPASSEBASQPSK.png}
+    \caption{TEB estimé et théorique et de la chaine passe-bas équivalente en fonction de $E_b/N_0$  \label{fig : TEBQPSK}}
+\end{figure}
+Nous remarquons que les tracés des taux d'erreur binaire estimé de la démodulation du signal transmis sur fréquence porteuse, de la chaine passe-bas équivalente et celui théorique sont confondues. cela suggère que les deux méthodes fonctionnent de manière équivalente en termes de qualité de transmission. Cependant, l'intérêt d'implanter une chaîne passe-bas équivalente plutôt qu'une chaîne de transmission avec transposition de fréquence dépend des avantages et inconvénients de chaque méthode.
+
+La chaîne de transmission avec transposition de fréquence est souvent utilisée pour la transmission de signaux à bande étroite, où la fréquence de la porteuse est décalée à une fréquence plus élevée pour améliorer la robustesse de la transmission et la résistance aux interférences. Cependant, cette méthode peut nécessiter une plus grande bande passante et une complexité accrue.
+
+La chaîne passe-bas équivalente, quant à elle, est utilisée pour la transmission de signaux à bande de base, où le signal est transmis à sa fréquence d'origine sans être décalé. Cette méthode est généralement plus simple à implémenter et peut nécessiter moins de bande passante que la transposition de fréquence. De plus, elle peut être plus adaptée pour la transmission de signaux à large bande passante.
+
+\section{Comparaison du modulateur DVS-S avec un des modulateurs proposés par le DVB-S2}
+Dans ce volet, nous allons comparer le modulateur DVB-S (utilisant le mapping QPSK et un filtre de mise en forme en racine de cosinus surélevé avec un roll off de $\alpha \ = \ 0,35$) à l'un des modulateurs proposés dans le DVB-S2 (utilisant le mapping 8-PSK et un filtre de mise en forme en racine de cosinus surélevé avec un roll off de $ \alpha \ = \ 0,20$). Pour cela, nous utiliserons les chaînes passe-bas équivalentes associées, avec une fréquence d'échantillonnage $F_e \ = \ 6 \ kHz$ pour transmettre un débit binaire $R_b \ = \ 3 \ kbps$.
+
+\subsection{Tracés des constellations en entrée du mapping et en sortie de l'échantilloneur en fonction de $\frac{E_b}{N_0}$}
+
+L'augmentation du rapport signal sur bruit (SNR) engendre une réduction significative de la dispersion des constellations en sortie d'échantillonnage. Cette réduction de la dispersion est un indicateur important de l'amélioration de la qualité de la transmission de données numériques à travers un canal de communication. Cette amélioration est due au fait qu'un SNR plus élevé signifie qu'il y a moins de perturbations engendrées par le bruit en comparaison du signal de données, ce qui réduit les erreurs de transmission. La réduction des erreurs de transmission se traduit par le maintien de la cohérence et de la précision des points de la constellation qui représentent les données. En fin de compte, la dernière figure de la constellation sans bruit permet d'observer les positions d'origine des points de la constellation juste après le mapping, ce qui renforce l'importance de la qualité de transmission des données.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=6cm]{constellation0.png}
+    \includegraphics[width=6cm]{constellation1.png}
+    \includegraphics[width=6cm]{constellation2.png}
+    \includegraphics[width=6cm]{constellation3.png}
+    \includegraphics[width=6cm]{constellation4.png}
+    \includegraphics[width=6cm]{constellation5.png}
+    \includegraphics[width=6cm]{constellation6.png}
+    \includegraphics[width=6cm]{constellationsansbruit.png}
+    \caption{Les Tracés de la constellation en sortie de l'échatilloneur en fonction de $\frac{E_b}{N_0}$  \label{fig : EnveloppeComplexe}}
+\end{figure}
+\newpage
+\subsection{Tracé du taux d'erreur binaire en fonction de $\frac{E_b}{N_0}$}
+Lorsque le rapport signal sur bruit (SNR) augmente, une baisse significative du taux d'erreur binaire (TEB) du filtre passe-bas équivalent est observée, ce qui est étroitement lié à la dispersion des constellations que nous avons précédemment mentionnée. En effet, une réduction du bruit dans le canal de communication permet au filtre passe-bas équivalent de mieux distinguer les signaux de données des perturbations de bruit, ce qui diminue le TEB. Cette diminution des erreurs de transmission de données se traduit alors par une amélioration globale de la qualité de la communication.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{TEB8PSK.png}
+    \caption{TEB estimé et théorique et du modulateur 8-PSK en fonction de $E_b/N_0$  \label{fig : TEB8PSK}}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=10cm]{TEBTH8PSK.png}
+    \caption{TEB estimé et théorique et du modulateur 8-PSK en fonction de $E_b/N_0$  \label{fig : TEB8PSK}}
+\end{figure}
+
+Nous remarquons également que le taux d'erreur binaire estimés est totalement confondu avec celui théorique d'expression :
+$$TEB \ = \ \frac{2}{log_2(M)}*Q(\sqrt{2log_2(M)\frac{E_b}{N_0}}sin(\frac{\pi}{8}))$$
+avec $M \ = \ 2^k \ = \ 2^3 \ = 8$, ce qui montre que notre démodulation a été bien effectué et qu'on a réussi à récupérer les bits qu'on pouvait récupérer.
+
+\subsection{Comparaison des modulateurs QPSK et 8-PSK}
+\subsubsection{En termes d'efficacité en puissance}
+En termes d'efficacité en puissance, le modulateur QPSK est plus efficace que le modulateur 8PSK,. En effet, le 8PSK est une modulation plus complexe que le QPSK, car elle utilise huit phases différentes pour transmettre l'information, alors que le QPSK n'en utilise que quatre. Cette complexité accrue rend le 8PSK plus susceptible aux erreurs de transmission, ce qui se reflète dans un TEB plus élevé.d'émission plus faible que le modulateur QPSK.
+
+Ceci est également assuré par les tracés des tauxx binaires des deux modulateurs.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=14cm]{COMPARAISONTEBQPSK8PSK.png}
+    \caption{TEB des modulateurs QPSK et 8-PSK en fonction de $E_b/N_0$  \label{fig : TEB8PSKQPSK}}
+\end{figure}
+
+\subsubsection{En termes d'efficacité spectrale}
+
+En termes d'efficacité spectrale, le modulateur 8PSK est plus efficace que le modulateur QPSK. En effet, le modulateur 8PSK utilise huit états de phase différents, ce qui permet de transmettre trois bits de données par symbole, tandis que le modulateur QPSK utilise quatre états de phase différents pour transmettre deux bits de données par symbole. Cela signifie que le modulateur 8PSK peut transmettre plus de données par unité de temps que le modulateur QPSK, ce qui le rend plus efficace en termes d'utilisation de la bande passante.
+Ceci est constaté dans le tracé des superposés des densités spectrales de puissance des signaux générés sur les voies en phase et en quadtrature.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{DSPComparaisonI.png}
+    \caption{Superposé des densités spectrales de puissance des signaux générés en voie de phase \label{fig : ComparPhase}}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=12cm]{DSPComparaisonQ.png}
+    \caption{Superposé des densités spectrales de puissance des signaux générés en voie de quadrature \label{fig : ComparQuadra}}
+\end{figure}
+
+Cependant, cela peut également rendre la transmission plus vulnérable aux effets du bruit, ce qui peut affecter le taux d'erreur binaire comme nous l'avons vu précèdement dans la comparaison des taux d'erreur binaire.
+\clearpage
+\section{Conclusion}
+Pour conclure ce projet, nous avons étudié deux modulateurs différents : le modulateur QPSK qui utilise un mapping sur 2 bits et le modulateur 8-PSK qui utilise un mapping sur 3 bits. Nous avons comparé ces deux modulateurs en termes de TEB, d'efficacité en puissance et d'efficacité spectrale.
+
+Nous avons constaté que le modulateur QPSK avait un TEB inférieur à celui du 8-PSK, car il est moins complexe. Cependant, le 8-PSK a une meilleure efficacité spectrale que le QPSK, car il permet de transmettre plus d'informations par symbole.
+
+Nous avons également mis en évidence l'intérêt d'implémenter des chaînes passe-bas équivalentes plutôt que de transmettre directement sur la fréquence porteuse. En effet, ces chaînes permettent de réduire le bruit et les interférences dans le canal de transmission, ce qui améliore la qualité de la transmission et réduit le TEB.
+
+En résumé, ce projet nous a permis de comprendre les différences entre les modulateurs QPSK et 8-PSK, ainsi que l'importance des chaînes passe-bas équivalentes dans les communications numériques.
+
+\section{Référence}
+\href{https://moodle-n7.inp-toulouse.fr/course/view.php?id=2014}{Cours de Télécommunication}
+\end{document}
