@@ -19,7 +19,7 @@ marge = 0.005;
 valeurs_carac_1 = min(min(X(:,1)))-marge:pas:max(max(X(:,1)))+marge;
 valeurs_carac_2 = min(min(X(:,2)))-marge:pas:max(max(X(:,2)))+marge;
 limites_affichage = [valeurs_carac_1(1) valeurs_carac_1(end) ...
-                    valeurs_carac_2(1) valeurs_carac_2(end)];
+                     valeurs_carac_2(1) valeurs_carac_2(end)];
 nom_carac_1 = 'Compacite';
 nom_carac_2 = 'Contraste';
 
@@ -58,9 +58,9 @@ nb_carac = size(X,2);
 ind_moins_1 = (Y == -1);
 ind_plus_1 = (Y == 1);
 plot3(X(ind_moins_1,1),X(ind_moins_1,2),(nb_carac+1)*ones(sum(ind_moins_1),1),...
-	'bx','MarkerSize',10,'LineWidth',3);
+	  'bx','MarkerSize',10,'LineWidth',3);
 plot3(X(ind_plus_1,1),X(ind_plus_1,2),(nb_carac+1)*ones(sum(ind_plus_1),1),...
-	'ro','MarkerSize',10,'LineWidth',3);
+	  'ro','MarkerSize',10,'LineWidth',3);
 
 % Les vecteurs de support sont entoures en noir :
 plot3(X_VS(:,1),X_VS(:,2),(nb_carac+1)*ones(size(X_VS,1)),'ko','MarkerSize',20,'LineWidth',3);

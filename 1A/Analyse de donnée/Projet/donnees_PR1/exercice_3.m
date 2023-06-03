@@ -14,17 +14,17 @@ X = X_app;
 Y = Y_app;
 
 % Parametres d'affichage :
-pas = 0.002;
+pas = 0.0002;
 marge = 0.005;
 valeurs_carac_1 = min(min(X(:,1)))-marge:pas:max(max(X(:,1)))+marge;
 valeurs_carac_2 = min(min(X(:,2)))-marge:pas:max(max(X(:,2)))+marge;
 limites_affichage = [valeurs_carac_1(1) valeurs_carac_1(end) ...
-                    valeurs_carac_2(1) valeurs_carac_2(end)];
+                     valeurs_carac_2(1) valeurs_carac_2(end)];
 nom_carac_1 = 'Compacite';
 nom_carac_2 = 'Contraste';
 
 % Estimation du SVM avec noyau gaussien :
-sigma = 0.006;					% Ecart-type du noyau gaussien
+sigma = 0.001;					% Ecart-type du noyau gaussien
 [X_VS,Y_VS,Alpha_VS,c,code_retour] = SVM_3(X,Y,sigma);
 
 % Si l'optimisation n'a pas converge :

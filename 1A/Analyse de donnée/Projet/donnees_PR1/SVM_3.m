@@ -1,31 +1,32 @@
-% SVM à noyau gaussien
 function [X_VS,Y_VS,Alpha_VS,c,code_retour] = SVM_3(X,Y,sigma)
-
-    % Variables
-    beq = 0;
-    eps = 1e-6;
     n = size(X,1);
+    
+    % Calcul de la matrice de Gram
     G = zeros(n,n);
-    lb = zeros(n,1);
-    ub = ones(n,1);
-    f = zeros(n,1);
-
-    % Calcul de la matrice de Gram G
-    for i=1:n
-        for j=1:n
-            G(i,j) = exp(-norm(X(i,:)-X(j,:))^2/(2*sigma^2));
+    for i = 1:n
+        for j = 1:n
+            G(i,j) = exp(-(norm(X(i,:)-X(j,:))^2)/(2*sigma^2));
         end
     end
 
-    % Résolution du problème d'optimisation
-    H = (Y*Y').*G;
+    
+    % Définition des contraintes du problème
+    H = G .* (Y*Y');
+    f = -ones(n,1);
+    A = - eye(n);
+    b = zeros(n,1);
     Aeq = Y';
-    options = optimoptions('quadprog','MaxIterations',5000);
-    [alpha,~,code_retour] = quadprog(H,f,[],[],Aeq,beq,lb,ub,[],options);
-
-    % Calcul de c et des vecteurs de support
-    X_VS = X(alpha>eps,:);
-    Y_VS = Y(alpha>eps);
-    Alpha_VS = alpha(alpha>eps);
-    c = mean(Y_VS - G(Alpha_VS>eps,:)*(Alpha_VS.*Y_VS));
+    beq = 0;
+    
+    % Résolution du problème d'optimisation quadratique
+    [alpha,~,code_retour] = quadprog(H,f,A,b,Aeq,beq);
+    
+    % Sélection des vecteurs de support
+    indices_support = find(alpha > 1e-6);
+    X_VS = X(indices_support,:);
+    Y_VS = Y(indices_support);
+    Alpha_VS = alpha(indices_support);
+    
+    % Calcul du biais c
+    c = mean(mean(G(indices_support,indices_support)*(Alpha_VS.*Y_VS) - Y_VS));
 end

@@ -1,20 +1,25 @@
-% SVM pour formulation lineaire (formulation duale)
 function [X_VS,w,c,code_retour] = SVM_2(X,Y)
-
-    % Variables
-    eps = 1e-6;
-    n = length(X);
-    f = -ones(n,1);
-    lb = zeros(n,1);
-
-    % Resolution du probleme d'optimisation
-    H = (Y.*X)*(Y.*X)';
+    n = length(Y);
+    H = Y .* (X * X') .* Y';
+    A = - eye(n);
+    b = zeros(n,1);
+    f = - ones(n,1);
+    beq = 0;
     Aeq = Y';
-    [alpha,~,code_retour] = quadprog(H,f,[],[],Aeq,0,lb,[]);
+    [alpha,~,code_retour ] = quadprog(H,f,A,b,Aeq,beq);
 
-    % Calcul de w et c
-    w = X'*(alpha.*Y);
-    X_VS = X(alpha > eps,:);
-    Y_VS = Y(alpha > eps,:);
-    c = mean(X_VS*w - Y_VS);
+
+    indices_support = find(alpha > 1e-6);
+    X_VS = X(indices_support,:);
+    Y_VS = Y(indices_support);
+    Alpha_VS = alpha(indices_support);
+    w = X_VS' * (Alpha_VS .* Y_VS);
+
+
+
+    % Calcul du biais c
+    c = mean(X_VS * w - Y_VS);
+
+
 end
+

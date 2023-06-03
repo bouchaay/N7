@@ -94,16 +94,17 @@ procedure Test_Arbre is
         pragma Assert(Donnee = 'B');
         Put (Donnee);
 
-        Put_Line("");
-        Put_Line("***************************************************************");
-        Put_line("Test de l'arbre fonctionnel : OK");
-        Put_Line("***************************************************************");
-
         -- Destruction de l'arbre
         Detruire(A);
         pragma Assert(Taille(A) = 0);
         pragma Assert(Est_Vide(A));
         pragma Assert(Est_Feuille(A));
+
+        -- Test réussi
+        Put_Line("");
+        Put_Line("***************************************************************");
+        Put_line("Test de l'arbre fonctionnel : OK");
+        Put_Line("***************************************************************");
 
     end Tester_Arbre_Fonctionnel;
 begin

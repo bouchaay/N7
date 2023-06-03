@@ -9,9 +9,9 @@ H = taille_ecran(4);
 
 load donnees_app;
 
-% Donnees filtrees :
-X = X_app_filtre;
-Y = Y_app_filtre;
+% Donnees non filtrees :
+X = X_app;
+Y = Y_app;
 
 % Parametres d'affichage :
 pas = 0.002;
@@ -19,12 +19,13 @@ marge = 0.005;
 valeurs_carac_1 = min(min(X(:,1)))-marge:pas:max(max(X(:,1)))+marge;
 valeurs_carac_2 = min(min(X(:,2)))-marge:pas:max(max(X(:,2)))+marge;
 limites_affichage = [valeurs_carac_1(1) valeurs_carac_1(end) ...
-                    valeurs_carac_2(1) valeurs_carac_2(end)];
+                     valeurs_carac_2(1) valeurs_carac_2(end)];
 nom_carac_1 = 'Compacite';
 nom_carac_2 = 'Contraste';
 
 % Estimation du SVM lineaire (formulation duale) :
-[X_VS,w,c,code_retour] = SVM_2(X,Y);
+lambda = 100;
+[X_VS,w,c,code_retour] = SVM_2_souple(X,Y, lambda);
 
 % Si l'optimisation n'a pas converge :
 if code_retour ~= 1
@@ -58,9 +59,22 @@ nb_carac = size(X,2);
 ind_moins_1 = (Y == -1);
 ind_plus_1 = (Y == 1);
 plot3(X(ind_moins_1,1),X(ind_moins_1,2),(nb_carac+1)*ones(sum(ind_moins_1),1),...
-	'bx','MarkerSize',10,'LineWidth',3);
+	  'bx','MarkerSize',10,'LineWidth',3);
 plot3(X(ind_plus_1,1),X(ind_plus_1,2),(nb_carac+1)*ones(sum(ind_plus_1),1),...
-	'ro','MarkerSize',10,'LineWidth',3);
+	  'ro','MarkerSize',10,'LineWidth',3);
 
 % Les vecteurs de support sont entoures en noir :
 plot3(X_VS(:,1),X_VS(:,2),(nb_carac+1)*ones(size(X_VS,1)),'ko','MarkerSize',20,'LineWidth',3);
+
+% Pourcentage de bonnes classifications des donnees de test :
+load donnees_test;
+nb_donnees_test = size(X_test,1);
+nb_classif_OK = 0;
+for i = 1:nb_donnees_test
+	x_i = X_test(i,:)';
+	prediction = sign(w'*x_i-c);
+	if prediction==Y_test(i)
+		nb_classif_OK = nb_classif_OK+1;
+	end
+end
+fprintf('Pourcentage de bonnes classifications des donnes de test : %.1f %%\n',double(nb_classif_OK/nb_donnees_test*100));
