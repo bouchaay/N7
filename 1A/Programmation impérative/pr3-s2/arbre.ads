@@ -77,6 +77,12 @@ package Arbre is
         with procedure Traiter_Noeud (N : T_Valeur_Noeud; V : T_Valeur_Arete; C : T_File_Abr.T_File);
     procedure Afficher (A : T_Arbre; Niveau : Integer);
 
+    -- Affiche les clés de l'arbre
+    -- paramètre A : l'arbre à traiter
+    generic
+        with procedure AfficherCle (C : T_File_Abr.T_File);
+    procedure AfficherTousCles (A : T_Arbre; C : in out T_File_Abr.T_File);
+
 private
 
     -- Type des noeuds

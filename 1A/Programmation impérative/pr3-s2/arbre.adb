@@ -15,6 +15,33 @@ package body Arbre is
 ---------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------
 
+    -- Comparter si un bout de clé est identique à un clé
+    -- Paramètre C1 : Première clé.
+    -- Paramètre C2 : Deuxième clé.
+    -- Retourne True si une clé est identique à un bout de clé, False sinon.
+    function ComparerCleBout (C1 : in out T_File_Abr.T_File; C2 : in out T_File_Abr.T_File) return Boolean is
+    CopieCle1 : T_File_Abr.T_File := C1; -- Copie de la première clé.
+    CopieCle2 : T_File_Abr.T_File := C2; -- Copie de la deuxième clé.
+    begin
+        if Taille(File => C1) > Taille(File => C2) then
+            for I in 1..Taille(File => C2) loop
+                if Extraire(File => CopieCle1) /= Extraire(File => CopieCle2) then
+                    return False;
+                end if;
+            end loop;
+        else
+            for I in 1..Taille(File => C1) loop
+                if Extraire(File => CopieCle1) /= Extraire(File => CopieCle2) then
+                    return False;
+                end if;
+            end loop;
+        end if;
+        return True;
+    end ComparerCleBout;
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
     -- Comparer deux clés.
     -- Paramètre C1 : Première clé.
     -- Paramètre C2 : Deuxième clé.
@@ -314,6 +341,7 @@ package body Arbre is
 
 ---------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------
+
                 
     -- Supprimer une valeur de l'arbre.
     procedure Supprimer (A : in out T_Arbre; V : T_Valeur_Noeud) is
@@ -335,6 +363,9 @@ package body Arbre is
         end if;
     end Supprimer;
 
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
     -- Afficher l'arbre.
     procedure Afficher (A : T_Arbre; Niveau : in Integer) is
     begin
@@ -349,5 +380,28 @@ package body Arbre is
             end loop;
         end if;
     end Afficher;
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+    -- Afficher les clés de l'arbre.
+    procedure AfficherTousCles (A : T_Arbre; C : in out T_File_Abr.T_File) is
+    CopieCle : T_File_Abr.T_File := C; -- Copie de la clé.
+    begin
+        if A = null then
+            return;
+        else
+            if ComparerCleBout (C1 => A.Cle, C2 => CopieCle) and A.ContientInformation then
+                AfficherCle(C => A.Cle);
+            end if;
+            if A.Fils.Taille > 0 then
+                for I in 1..A.Fils.Taille loop
+                    AfficherTousCles (A.Fils.Elements (I), C);
+                end loop;
+            else 
+                return;
+            end if;
+        end if;
+    end AfficherTousCles;
 
 end Arbre;

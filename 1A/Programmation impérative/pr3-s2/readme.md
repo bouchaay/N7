@@ -1,6 +1,6 @@
-# Utilisation de l'abre préfixe pour le calcul du nombre d'occurence d'un mot dans un fichier
+# Projet PIM: Session 2
 
-## Implémentation
+## Implémentation de l'arbre préfixe
 
 Dans mon implémentation, chaque noeud de l'arbre contient :
 
@@ -18,7 +18,7 @@ J'ai pris la clé comme une file, qui était la meilleure solution pour une tell
 
 Les fils ssont stockés dans une file car en premier j'avais prévu de les stocké dans un tableau mais vu que l'insertion n'impose pas necessairement un ordre et ccomme le module des files a été déjà implémenté dans le pr2-s2, je l'ai donc utilisé les fonctions et procedures qui m'étaient necessaires existent dedans.
 
-## Utilisation
+## Utilisation de compteur d'occurence.
 
 1. Pour utiliser le programme, il faut d'abord compiler les fichiers 'files.adb' et 'arbre.adb' (ou compiler directement le fichier 'test_arbre.adb').
 
@@ -32,11 +32,21 @@ où 'mot' est le mot à rechercher et 'fichier' est le nom du fichier de recherc
 
 5. Si le mot existe, le nombre d'occurence du mot va s'afficher, sinon le programme va signaler que ce mot n'existe pas.
 
-## Réponse à la question 4
+6. Le fichier 'ayoub.txt' existe pour le test ; Vous pouvez par exemple essayer la commande :
 
-Une autre proposition d'application efficace de l'arbre préfixe est la suggestion de mots similaires ou la complétion de mots, telle qu'on les trouve dans les suggestions des claviers numériques des téléphones.
+- &lt; ./main ayoub ayoub.txt &gt; pour voir que le programme affiche que le mot 'ayoub' existe 6 fois dans le fichier.
+
+- &lt; ./main n7 ayoub.txt &gt; pour voir que le programme affiche que le mot 'n7' n'existe pas dans le fichier 'ayoub.txt'.
+
+## Réponse à la question 4 (Suggestion des mots)
+
+Ma proposition d'application efficace de l'arbre préfixe est la suggestion de mots similaires ou la complétion de mots, telle qu'on les trouve dans les suggestions des claviers numériques des téléphones.
 
 En utilisant un arbre préfixe, il est possible de stocker un large ensemble de mots et de préfixes correspondants. Lorsque l'utilisateur commence à saisir un mot, l'arbre préfixe est consulté pour trouver tous les mots qui ont le même préfixe. Ces mots peuvent être présentés à l'utilisateur comme des suggestions, l'aidant ainsi à compléter le mot ou à choisir une option similaire.
+
+Ceci serait plus visible est evident en détenant une interface graphique pour raffrichir les suggestions à chaque fois que l'utilisateur tape un mot, mais dans mon programme, je me suis contenter d'insérer un petit dictionnaire qui contient une dizaine de mot (je n'ai pas pu en mettre un plus grand qui contient presque tous les mots du francais à cause des erreurs de mémoire STACK OVERFLOW), de lui demander à chaque fois s'il veut une suggestion de mot ou de quitter, s'il choisit la première option, on lui demande d'entrer les première lettre de son mot puis on affiche de l'arbre tous les mots dont les préfixes correspondent à ce qu'il a entré. Pour tester ceci, vous pouvez lancer la commande (après avoir compiler le fichier 'suggestion.adb' &lt; gnatmake suggestion.adb &gt; ) :
+
+&lt; ./suggestion &gt;
 
 ## Réponse à la question 5
 
