@@ -1,5 +1,23 @@
 # Utilisation de l'abre préfixe pour le calcul du nombre d'occurence d'un mot dans un fichier
 
+## Implémentation
+
+Dans mon implémentation, chaque noeud de l'arbre contient :
+
+1. Une valeur d'arete. (arete au dessus)
+
+2. Une valeur de noeud.
+
+3. Une clé.
+
+4. Un boolean qui indique si le contient contient uen information.
+
+5. Les fils du noeud qui sont des arbres. (stockés dans une file)
+
+J'ai pris la clé comme une file, qui était la meilleure solution pour une telle implémentation car il permet de diviser la clé en de petits bouts de clés. Chaque clé est constitué de la concaténation de la valeur des aretes de chaque noeud qu'on a parcouru à partir de la racine vers le noeud correspondant à la clé.
+
+Les fils ssont stockés dans une file car en premier j'avais prévu de les stocké dans un tableau mais vu que l'insertion n'impose pas necessairement un ordre et ccomme le module des files a été déjà implémenté dans le pr2-s2, je l'ai donc utilisé les fonctions et procedures qui m'étaient necessaires existent dedans.
+
 ## Utilisation
 
 1. Pour utiliser le programme, il faut d'abord compiler les fichiers 'files.adb' et 'arbre.adb' (ou compiler directement le fichier 'test_arbre.adb').
