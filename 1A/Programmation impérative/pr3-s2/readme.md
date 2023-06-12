@@ -14,6 +14,12 @@ où 'mot' est le mot à rechercher et 'fichier' est le nom du fichier de recherc
 
 5. Si le mot existe, le nombre d'occurence du mot va s'afficher, sinon le programme va signaler que ce mot n'existe pas.
 
+## Réponse à la question 4
+
+Une autre proposition d'application efficace de l'arbre préfixe est la suggestion de mots similaires ou la complétion de mots, telle qu'on les trouve dans les suggestions des claviers numériques des téléphones.
+
+En utilisant un arbre préfixe, il est possible de stocker un large ensemble de mots et de préfixes correspondants. Lorsque l'utilisateur commence à saisir un mot, l'arbre préfixe est consulté pour trouver tous les mots qui ont le même préfixe. Ces mots peuvent être présentés à l'utilisateur comme des suggestions, l'aidant ainsi à compléter le mot ou à choisir une option similaire.
+
 ## Réponse à la question 5
 
 Je pense que la structure arborescente est très efficace dans les algorithmes de recherche grâce à sa capacité à organiser les données de manière hiérarchique. Elle permet une recherche rapide car elle réduit le nombre de comparaisons nécessaires entre nœuds à chaque étape. 
