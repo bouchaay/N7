@@ -1,4 +1,4 @@
-# Calculer les occurences d'un mot dans un texte contenu dans un fichier
+# Utilisation de la'bre préfixe pour le calcul du nombre d'occurence d'un mot dans un fichier
 
 ## Utilisation
 
