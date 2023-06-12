@@ -11,8 +11,8 @@ package body CLI is
     procedure UserGuide is
     begin
         Put_Line("Usage: ./main <mot> <nom du fichier>");
-        Put_Line("mot: mot à rechercher");
-        Put_Line("nom du fichier: nom du fichier à analyser");
+        Put_Line("mot: mot a rechercher");
+        Put_Line("nom du fichier: nom du fichier a analyser");
     end UserGuide;
 
     procedure ParseCmdLine (Mot : out Unbounded_String; Fichier : out Unbounded_String) is

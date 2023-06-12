@@ -4,24 +4,28 @@
 
 package Exceptions is
 
-    -- Exception sur une clé existante
-    Cle_Existante : exception;
+    -- Exception sur la date de naissance
+    Date_Naissance_Invalide : exception;
 
-    -- Exception sur une clé inexistante
-    Cle_Inexistante : exception;
+    -- Exception sur une file vide
+    File_Vide : exception;
 
-    -- Exception sur chemin inexistant
-    Chemin_Inexistant : exception;
+    -- Exception sur une file pleine
+    File_Pleine : exception;
 
-    -- Exception sur une racine inexistante
-    Racine_Inexistante : exception;
+    -- Noeud non trouvé
+    Noeud_Inexistant : exception;
 
-    -- Exception sur un arbre saturé
-    Arbre_Sature : exception;
+    -- Noeud déjà existant
+    Noeud_Existant : exception;
 
-    -- Exception sur une suppression de racine
-    Suppression_Racine : exception;
-
+    -- Erreur de l'usage
     Usage_Error : exception;
+
+    -- Exception sur la taille des files
+    Tailles_Differentes : exception;
+
+    -- Exception sur la clé
+    Cle_Inexistante : exception;
 
 end Exceptions;
