@@ -18,7 +18,7 @@ J'ai pris la clé comme une file, qui était la meilleure solution pour une tell
 
 Les fils ssont stockés dans une file car en premier j'avais prévu de les stocké dans un tableau mais vu que l'insertion n'impose pas necessairement un ordre et ccomme le module des files a été déjà implémenté dans le pr2-s2, je l'ai donc utilisé les fonctions et procedures qui m'étaient necessaires existent dedans.
 
-## Utilisation de compteur d'occurence.
+## Utilisation du compteur d'occurence.
 
 1. Pour utiliser le programme, il faut d'abord compiler les fichiers 'files.adb' et 'arbre.adb' (ou compiler directement le fichier 'test_arbre.adb').
 
