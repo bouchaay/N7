@@ -1,4 +1,4 @@
-# Utilisation de la'bre préfixe pour le calcul du nombre d'occurence d'un mot dans un fichier
+# Utilisation de l'abre préfixe pour le calcul du nombre d'occurence d'un mot dans un fichier
 
 ## Utilisation
 
