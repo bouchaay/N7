@@ -59,3 +59,11 @@ Cependant, je pense que la suppression d'une donnée dans l'arbre peut être com
 J’ai pensé que pour remédier à ce problème on peut juste désactiver le nœud au lieu de le supprimer pour préserver le chemin de passage vers ses fils.
 
 Une amélioration possible pour réduire le temps de recherche dans l'arbre préfixe est d'indexer les éléments de l'arbre. Plutôt que de parcourir tous les nœuds pour effectuer une recherche, on peut utiliser des indices associés à chaque nœud pour accéder directement aux fils correspondants. Cela permet d'obtenir rapidement la valeur associée au nœud sans avoir à parcourir l'ensemble de l'arbre. Par exemple, dans notre application de l'arbre préfixe, au lieu d'insérer les fils de chaque nœud de manière aléatoire, on peut utiliser le code de chaque bout de clé (arête) pour accéder directement aux fils appropriés, facilitant ainsi la récupération des valeurs des nœuds.
+
+## Bilan
+
+Le projet etait vraiment interessant meme si je n’avais pas compris le concept
+de la mise en oeuvre de ce type d’arbre en premier temps. J’avais renconté
+plusieurs difficultés, je m’etais bloqué plusieurs fois pour des erreurs betes mais
+j’ai pu débogué mon code à l’aide des affichages sur la console pour détecter d’où
+vient une erreur.
