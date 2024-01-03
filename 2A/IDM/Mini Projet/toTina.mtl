@@ -1,0 +1,53 @@
+[comment encoding = UTF-8 /]
+[module toTina('http://petrinet')]
+
+
+[template public petritoTina(aPetriNet : PetriNet)]
+[comment @main/]
+[file (aPetriNet.name + '.net', false, 'UTF-8')]
+net [aPetriNet.name/]
+[let places : OrderedSet(Place) = aPetriNet.getPetriPlaces()]
+[for (p : Place | places) ]
+pl [  p.name /] ([  p.token  /])
+[/for ]
+[/let]
+[let transitions : OrderedSet(Transition) = aPetriNet.getPetriTransitions() ]
+[for (trans : Transition | transitions)]
+tr [trans.name/] [afficherLesSources(trans.getArcSources())/] -> [afficherLesTargets(trans.getArcDestinations())/] 
+[/for ]
+[/let]
+
+[/file]
+[/template]
+
+[template public afficherLesSources(arcs : OrderedSet(Arc)) post (trim()) ]
+	[for (a : Arc | arcs)][a.source.name/][if (a.type = ArcKind::read)]?[a.weight/][elseif (a.weight > 1)]*[a.weight/][else] [/if][/for]
+[/template]
+
+[template public afficherLesTargets(arcs : OrderedSet(Arc)) post (trim()) ]
+	[for (a : Arc | arcs)][a.target.name/] [/for]
+[/template]
+
+[query public getArcSources(trans : Transition) : OrderedSet(Arc) = 
+	trans.linksToTarget -> select( e | e.oclIsTypeOf(Arc))
+		->collect(e | e.oclAsType(Arc))
+		->asOrderedSet()
+/]
+
+[query public getArcDestinations(trans: Transition) : OrderedSet(Arc) = 
+	trans.linksToSource -> select( e | e.oclIsTypeOf(Arc))
+		-> collect(e | e.oclAsType(Arc))
+		-> asOrderedSet()
+/]
+
+[query public getPetriPlaces(petrinet: PetriNet) : OrderedSet(Place) = 
+	petrinet.elements -> select(p | p.oclIsTypeOf(Place) )
+		-> collect( p | p.oclAsType(Place) )
+		-> asOrderedSet()
+/]
+
+[query public getPetriTransitions(petrinet: PetriNet) : OrderedSet(Transition) = 
+	petrinet.elements -> select(t | t.oclIsTypeOf(Transition))
+		-> collect( t | t.oclAsType(Transition))
+		-> asOrderedSet()
+/]

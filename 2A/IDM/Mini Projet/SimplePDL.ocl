@@ -1,0 +1,63 @@
+import 'SimplePDL.ecore'
+
+package simplepdl
+
+-- Vérifie que les noms des processus sont valides.
+context Process
+inv validName('Invalid name: ' + self.name):
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+
+-- Renvoie le processus parent d'un élément de processus.
+context ProcessElement
+def: process(): Process =
+	Process.allInstances()
+		->select(p | p.processelements->includes(self))
+		->asSequence()->first()
+
+-- Vérifie que les activités précédentes et suivantes sont dans le même processus.
+context WorkSequence
+inv successorAndPredecessorInSameProcess('Activities not in the same process : '
+		+ self.predecessor.name + ' in ' + self.predecessor.process().name+ ' and '
+		+ self.successor.name + ' in ' + self.successor.process().name
+):
+	self.process() = self.successor.process()
+	and self.process() = self.predecessor.process()
+
+-- Vérifie si le nom d'une activité est unique dans le processus.
+context Process
+inv uniqueActivitiesNames('Duplicate activity name : ' + self.name):
+	self.processelements
+		->select(element | element.oclIsTypeOf(WorkDefinition))
+		->collect(element | element.oclAsType(WorkDefinition))
+		->forAll(w1, w2 | w1 <> w2 implies w1.name <> w2.name)
+	
+-- Vérifie qu'une dépendance n'est pas réflexive
+context WorkSequence
+inv noReflexiveDependency('Reflexive dependency between ' + self.predecessor.name + ' and ' + self.successor.name):
+	self.predecessor <> self.successor
+
+-- Vérifie que le nom d'une activités se composent d'au moins 2 caractères.
+context WorkDefinition
+inv nameLength('Activity name must be at least 2 characters long : ' + self.name):
+	self.name.size() >= 2
+
+-- Vérifie que le nom d’une activité est correct.
+context WorkDefinition
+inv nameCharacters('Activity name must be composed of letters, numbers or underscores, a number cannot be in first position : ' + self.name):
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+
+-- Contraintes sur les ressources.
+context Ressource
+inv validName('Invalid name: ' + self.name): -- Vérifie que les noms des ressources sont valides.
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+inv sufficientRessourceQuantity('Not enough ressources : ' + self.name): -- Vérifie que les ressources ont une quantité suffisante.
+	self.quantity > 0
+
+-- Contraintes sur l'allocation des ressources.
+context RessourceAllocation
+inv validOccurrence('Invalid occurrence : ' + self.occurence.toString()): -- Vérifie que les occurrences sont valides.
+	self.occurence >= 0
+inv lowerAllocation : -- l'allocation est inférieure à la quantité de la ressource.
+	self.occurence <= self.ressource.quantity
+
+endpackage

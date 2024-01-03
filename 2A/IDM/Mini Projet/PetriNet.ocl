@@ -1,0 +1,31 @@
+import 'PetriNet.ecore'
+
+package petrinet
+
+-- Vérifie que les noms des processus sont valides
+context PetriNet
+inv validName('Invalid name: ' + self.name):
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+
+-- Contrainte de validité des transitions
+context Transition
+inv validName('Invalid name: ' + self.name): -- Vérifie que le nom est valide
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+
+-- Contrainte de validité des places
+context Place
+inv validName('Invalid name: ' + self.name): -- Vérifie que le nom est valide
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+inv positifToken('Invalid number of tokens: ' + self.token.toString()): -- Vérifie que le nombre de jetons est positif
+	self.token >= 0
+
+-- Contrainte de validité des arcs
+context Arc
+inv positifWeight('Invalid weight: ' + self.weight.toString()): -- Le poids doit être positif
+	self.weight > 0
+inv transitionToPlace('Invalid arc'): -- Un arc doit relier une transition à une place
+	self.source.oclIsTypeOf(Transition) and self.target.oclIsTypeOf(Place)
+inv placeToTransition('Invalid arc'): -- Un arc doit relier une place à une transition
+	self.source.oclIsTypeOf(Place) and self.target.oclIsTypeOf(Transition)
+
+endpackage

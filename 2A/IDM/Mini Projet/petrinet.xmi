@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretinet:PetriNet
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pretinet="http://petrinet"
+    xsi:schemaLocation="http://petrinet PetriNet.ecore"
+    name="ifip">
+  <elements
+      xsi:type="pretinet:Place"
+      name="p1"
+      linksToTarget="//@elements.13"
+      linksToSource="//@elements.10"
+      token="1"/>
+  <elements
+      xsi:type="pretinet:Place"
+      name="p2"
+      linksToTarget="//@elements.18 //@elements.19"
+      linksToSource="//@elements.22"
+      token="2"/>
+  <elements
+      xsi:type="pretinet:Place"
+      name="p3"
+      linksToTarget="//@elements.11 //@elements.15"
+      linksToSource="//@elements.12 //@elements.14"/>
+  <elements
+      xsi:type="pretinet:Place"
+      name="p4"
+      linksToTarget="//@elements.21"
+      linksToSource="//@elements.20"/>
+  <elements
+      xsi:type="pretinet:Place"
+      name="p5"
+      linksToTarget="//@elements.23"
+      linksToSource="//@elements.16 //@elements.17"/>
+  <elements
+      xsi:type="pretinet:Transition"
+      name="t1"
+      linksToTarget="//@elements.10 //@elements.22"
+      linksToSource="//@elements.11 //@elements.21 //@elements.23"/>
+  <elements
+      xsi:type="pretinet:Transition"
+      name="t2"
+      linksToTarget="//@elements.20"
+      linksToSource="//@elements.19"/>
+  <elements
+      xsi:type="pretinet:Transition"
+      name="t3"
+      linksToTarget="//@elements.17"
+      linksToSource="//@elements.18"/>
+  <elements
+      xsi:type="pretinet:Transition"
+      name="t4"
+      linksToTarget="//@elements.14 //@elements.16"
+      linksToSource="//@elements.15"/>
+  <elements
+      xsi:type="pretinet:Transition"
+      name="t5"
+      linksToTarget="//@elements.12"
+      linksToSource="//@elements.13"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.0"
+      target="//@elements.5"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.5"
+      target="//@elements.2"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.2"
+      target="//@elements.9"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.9"
+      target="//@elements.0"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.2"
+      target="//@elements.8"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.8"
+      target="//@elements.2"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.4"
+      target="//@elements.8"
+      type="read"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.4"
+      target="//@elements.7"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.7"
+      target="//@elements.1"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.6"
+      target="//@elements.1"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.3"
+      target="//@elements.6"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.5"
+      target="//@elements.3"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      weight="2"
+      source="//@elements.1"
+      target="//@elements.5"/>
+  <elements
+      xsi:type="pretinet:Arc"
+      source="//@elements.5"
+      target="//@elements.4"/>
+</pretinet:PetriNet>

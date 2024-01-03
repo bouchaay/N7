@@ -1,0 +1,575 @@
+METHODE
+
+Moniteur -> implanter un objet partagé
+| └-> méthodes -> indépendantes du code de l'utilisateur.ice
+└-> maintient de l'invariant (état de l'objet
+
+0: Définir le ou les objet(s) partagé(s) (entre moniteur et utilisateur.ices)
+1: Interface moniteur
+   | début action
+   |  Action
+   | fin action
+2: Définir les prédicats d'acceptation
+ -> Quand est-ce que je peux réaliser cette action SANS DEVOIR ATTENDRE?
+3: Déduire les variables d'état qui aident à traduire les prédicats
+4: Traduire 2 avec 3 (+ définir l'invariant avec 3)
+5: Définir les variables conditions
+  = évènements à attendre/signaler
+6: Ecrire les méthodes
+  SI ma condition d'acceptation est fausse
+    VC.attendre()
+  SINON
+    [états des variables d'état]
+     (Quels prédicats ok?)
+    VCbis.signaler()
+
+
+
+EX1:
+Problème du barbier
+
+0: Objet partagé: 
+  La chaise (partagé entre barbier et clients (barbier/barbier & client/client))
+  La salle d'attente
+  La barbe
+
+1: Interface moniteur: 
+   | Client {
+   |  entrer dans la salle d'attente (ESA)
+   |  s'asseoir sur le fauteuil      (AF)
+   |  se lever et partir             (LP)
+   | }
+   
+   | Barbier { (on a débuter/finir car le rasage est une action bloquante)
+   |  débuter rasage                 (DR)
+   |  terminer rasage                (TR)
+   | }
+
+2: Prédicats d'acceptation
+Client
+ ESA: salle d'attente !pleine
+ AF: fauteuil vide
+ LP: plus de barbe
+
+Barbier
+ DR: client dans fauteuil & barbe
+ TR: ∅
+
+3: Variables d'état traduisant les prédicats
+ ESA: Ⓐ entier Places Libres (≤ N)
+ AF:  Ⓑ booléen fauteuil (vrai quand vide)
+ LP:  Ⓒ booléen barbe (vrai quand rasée)
+ DR:  Ⓑ et Ⓒ
+ TR:  ∅
+
+4: Traduire 2 avec 3 (+ définir l'invariant avec 3)
+  ESA: Ⓐ > 0
+  AF: Ⓑ
+  LP: Ⓒ
+  DR: !Ⓑ & !Ⓒ simplifiable en !Ⓒ (car !Ⓑ -> !Ⓒ (peu ou prou: si la barbe n'est pas rasée, il y a qqn dans le siège!))
+  TR: ∅
+
+5: Variables conditions (événements attente/signal)
+  ESA: SalleLibre 
+  AF: FauteuilLibre
+  LP: BarbeRasée
+  DR: BarbePrésente
+
+6: Ecrire méthodes (ici on a inversé l'ordre de la logique, pour le même résultat, mais apparence ≠)
+ESA: {
+  SI !(Ⓐ > 0) ALORS
+    SalleLibre.attendre()  (bloquage)
+  Ⓐ--
+ [∅]
+}
+
+AF: {
+  SI !Ⓑ ALORS
+    FauteuilLibre.attendre()   (bloquage)
+  Ⓐ++
+  Ⓑ=false
+  Ⓒ=false
+  [Ⓐ>0 & (!Ⓑ & !Ⓒ)]
+  SalleLibre.signaler()
+  BarbePrésente.Signaler()
+}
+
+LP: {
+  SI !Ⓒ ALORS
+    BarbeRasée.attendre()  (bloquage)
+  Ⓑ=true
+  [Ⓑ]
+  FauteuilLibre.signaler()
+}
+
+DR: {
+  SI Ⓑ | Ⓒ ALORS    ( !(!Ⓑ & !Ⓒ) est Ⓑ | Ⓒ ) (simplifiable en Ⓒ)
+    BarbePrésente.attendre()
+  [∅]
+}
+
+TR: {
+  Ⓒ=true
+  [Ⓒ]
+  BarbeRasée.signaler()
+}
+
+
+Pour le cas où un client abandonne si la salle d'attente est pleine: on peut modifier le script ESA comme suit:
+ESA: {
+  SI !(Ⓐ > 0) ALORS
+    ABANDON
+  Ⓐ--
+ [∅]
+}
+
+Pour le cas où il y a plusieurs barbiers: ils faudra des compteurs fauteuil et barbe, et modifier certains scripts. (Non présenté ici)
+
+
+
+
+
+Ex2:
+On aura plusieurs lecteurs en ||, un seul rédacteur à la fois.
+Si rédacteur, pas de lecteur, et vice-versa
+Les lecteurs sont prioritaires en attente (si lecteur & rédacteur en attente, lecteur passe)
+
+0: Objet partagé: 
+Une Mémoire partagée
+
+1: Interface moniteur: 
+On a d'après l'énoncé, l'interface
+  Débuter_Lecture   (DL)
+  Terminer_Lecture  (TL)
+  Débuter_Ecriture  (DE)
+  Terminer_Ecriture (TE)
+
+2: Prédicats d'acceptation
+  DL: Pas d'écriture en cours
+  TL: ∅
+  DE: Pas de lecture ni d'écriture en cours, ni de lecteur en attente
+  TE: ∅
+
+3: Variables d'état traduisant les prédicats
+ DL: Ⓐ booléen rédaction
+ TL: ∅
+ DE: Ⓐ, Ⓑ entier nombre lecteurs et Ⓒ entier nombre lecteurs en attente
+ TE: ∅
+
+4: Traduire 2 avec 3 (+ définir l'invariant avec 3)
+ DL: !Ⓐ
+ TL: ∅
+ DE: !Ⓐ & Ⓑ = 0 & Ⓒ = 0
+ TE: ∅
+
+5: Var condition
+ LectureOk
+ EcritureOk
+
+
+6: Ecrire méthodes
+DL: {
+  SI Ⓐ ALORS   (!(!Ⓐ) = Ⓐ)
+    Ⓒ++
+    LectureOk.attendre()
+  Ⓒ--
+  Ⓑ++
+   
+  {Ⓑ>0 & !Ⓐ}
+  LectureOk.signaler()  (réveil en chaine: la fin de l'ecriture réveille un lecteur qui à son tour réveille un autre lecteur...)
+}
+
+TL: {
+  Ⓑ--
+  {Ⓑ≥0 & !Ⓐ}
+
+  SI Ⓑ = 0 & Ⓒ = 0 ALORS
+    EcritureOk.signaler()
+  SINON
+    LectureOk.signaler()
+}
+
+DE: {
+  SI Ⓐ | Ⓑ > 0 | Ⓒ > 0 ALORS    (inversion de logique... (simplification de !x, implicite par la suite))
+    EcritureOk.attendre()
+  Ⓐ = true
+   
+  {Ⓐ & Ⓑ = 0}   (Ⓒ ≥ 0 car des lecteurs auront pu arriver en attente entre temps)
+}
+
+TE: {
+  Ⓐ = false
+  {!Ⓐ & Ⓑ = 0}  (Ⓒ ≥ 0)
+
+  SI Ⓒ = 0 ALORS
+    EcritureOk.signaler()
+  SINON
+    LectureOk.signaler()
+}
+
+
+Rappel structure étape 6:
+SI non (condtionAcceptation) ALORS
+  VC.attendre()
+
+(Mettre à jour var. d'état)
+[etat des variables d'etat]
+ -> signaler les VCs correspondantes
+
+
+
+On fait la même chose, avec stratégie FIFO (on rappelle que les variables conditions agissent comme des files (attendre permet de rentrer dans la file, signaler fait passer le premier de la file)
+
+0: inchangé
+1: inchangé
+2: Prédicats d'acceptation
+  DL: Pas de rédacteur ET file vide
+  TL: ∅
+  DE: Pas de rédacteur ni lecteur ET file vide
+  TE: ∅
+3: Variables d'état traduisant les prédicats
+ DL: Ⓐ boléen rédaction & AccesOk.vide() booléen lié à une variable condition  
+ TL: ∅
+ DE: Ⓐ & Ⓑ entier nombre lecteurs & AccesOk.vide() 
+ TE: ∅
+
+4: Traduire 2 avec 3 (+ définir l'invariant avec 3)
+ DL: !Ⓐ & AccesOk.vide()
+ TL: ∅
+ DE: !Ⓐ & Ⓑ = 0 & AccesOk.vide()
+ TE: ∅
+
+5: Var condition
+ AccesOk (lecture/ecriture Ok)
+
+6: Ecrire méthodes
+DL: {
+  SI Ⓐ | !AccesOk.vide() ALORS
+    AccesOk.attendre()
+  
+  Ⓑ++
+  {Ⓑ>0 & !Ⓐ}
+  AccesOK.signaler()  
+}
+
+TL: {
+  Ⓑ--
+  {Ⓑ≥0 & !Ⓐ}
+  AccesOk.signaler()
+}
+
+DE: {
+  SI Ⓐ | Ⓑ > 0 | AccesOk.vide() ALORS
+    AccesOk.attendre()
+  Ⓐ=true
+   
+  {Ⓐ & Ⓑ = 0} 
+}
+
+TE: {
+  Ⓐ = false
+  {!Ⓐ & Ⓑ = 0}
+
+  AccesOk.signaler()
+}
+
+On remarque que ce modèle permet à un rédacteur de se lancer même si des lecteurs sont déjà présents. On le modifie donc.
+
+0: inchangé
+1: inchangé
+2: inchangé
+
+3: Variables d'état traduisant les prédicats
+ DL: Ⓐ boléen rédaction & AccesOk.vide() booléen lié à une variable condition & Sas.vide()
+ TL: ∅
+ DE: Ⓐ & Ⓑ entier nombre lecteurs & AccesOk.vide() 
+ TE: ∅
+
+4: Traduire 2 avec 3 (+ définir l'invariant avec 3)
+ DL: !Ⓐ & AccesOk.vide() & Sas.vide()
+ TL: ∅
+ DE: !Ⓐ & Ⓑ = 0 & AccesOk.vide()
+ TE: ∅
+
+5: Var condition
+ AccesOk (lecture/ecriture Ok)
+ Sas (bloque quand un rédacteur est en tête)
+
+6: Méthodes
+DL: {
+  SI Ⓐ | !AccesOk.vide() | !Sas.vide() ALORS
+    AccesOk.attendre()
+  
+  Ⓑ++
+  {Ⓑ>0 & !Ⓐ & Sas.vide()}
+  
+  AccesOK.signaler()  
+}
+
+TL: {
+  Ⓑ--
+  {Ⓑ≥0 & !Ⓐ}
+
+  SI Sas.vide() ALORS
+    AccesOK.signaler()
+   
+  SI Ⓑ = 0 ALORS
+    Sas.signaler()
+}
+
+DE: {
+  SI Ⓐ | Ⓑ > 0 | !AccesOk.vide() ALORS
+    AccesOk.attendre()
+
+  SI Ⓑ > 0 ALORS
+    Sas.attendre()
+  Ⓐ=true
+   
+  {Ⓐ & Ⓑ = 0 & Sas.vide()} 
+}
+
+TE: {
+  Ⓐ = false
+  {!Ⓐ & Ⓑ = 0 & Sas.vide()}
+
+  AccesOk.signaler()
+}
+
+
+
+
+EX3: Non réalisé en TD, à faire de son coté.
+Si besoin de correction contacter la prof: sophie.mouron@etu.toulouse-inp.fr
+
+
+
+TD CSP - CLIENT SERVEUR
+
+
+Protocole sans mémoire partagée:
+| └⟶ On fonctionne par échange de messages via des canaux avec le serveur
+└⟶ Pas de gestion de conflits nécessaire.
+
+Syntaxe CSP:  ┌⟶ message retiré
+├⟶ nom_canal?_ = on retire un message sur le canal  | RDV
+└⟶ nom_canal!_ = on dépose un message sur le canal  |
+              └⟶ message déposé
+
+Processus communs (en concurrence)
+loop
+│déposer sur le canal 1
+│traiter
+│retirer sur le canal 2
+
+Processus Serveur
+loop
+│condition d'acceptation 1 -> rq1
+│🞎
+│condition d'acceptation 2 -> rq2
+
+
+
+Serveur:
+├⟶ Conditions d'acceptation évaluées une fois -> "supprime" les branches
+│ fausses pour l'itération
+├⟶ Choix arbitraire de la requête si plusieurs en attente
+└⟶ Se bloque en attente d'une requête si aucune n'est en attente.
+
+
+Notre démarche est identique à celle des moniteurs (l'implantation change!):
+
+                                  ┌⟶ Un canal pour les entrées par méthode
+     ┏━━━━━━━━━━━━━━━━━━━━┓       │     ┏━━━━━━━━━━━━━━━━━━━━┓
+┌────┸─                   ┃   ┌───────┐ ┃                    ┃
+│Méthode 1                ┃  ═╡Canal 1╞═╪                    ┃
+└────┰─                   ┃   └───────┘ ┃                    ┃
+┌────┸─                   ┃   ┌───────┐ ┃     ┌─────────────┐┃
+│Méthode 2 ┌─────────────┐┃  ═╡Canal 2╞═╪     │Objet partagé│┃
+└────┰─    │Objet partagé│┃   └───────┘ ┃     └─────────────┘┃
+     ┃     └─────────────┘┃       │     ┗━━━━━━━━━━━━━━━━━━━━┛
+     ┗━━━━━━━━━━━━━━━━━━━━┛       └⟶ Un canal pour les sorties par méthode      
+         Moniteurs                         
+
+On a les étapes:
+1- Interface
+2- Conditions d'acceptation
+3- Variables d'état
+ - Traduction des CA en language mathématique
+4- Canaux
+
+
+
+
+
+
+Exercice 4: Voie unique
+1- Interface
+Code train: *[entrer!dir; sortir!_]
+
+Processus train:
+loop
+│ Entrer()
+│ voyager
+│ Sortir()
+
+2- Conditions d'acceptation
+  Sortir!_: ∅
+  Entrer!dir: soit la voie est libre, soit dir = dir_courante
+
+!!Ce modèle ne marche pas car on ne connait pas dir avant de récupérer entrée. (Puisque dir est contenu dans entrée)
+
+1- Interface
+Code train: *[entrerEO!_; sortir!_; entrerOE!_; sortir!_]
+
+(Processus train ouest et train est)
+
+2- Conditions d'acceptation
+  Sortir!_: ∅
+  entrerEO!_: soit la voie est libre, soit dirCourante = EO
+  entrerOE!_: soit la voie est libre, soit dirCourante = OE
+
+3- Variables d'état
+  int NbTrain: Nombre de trains sur la voie unique
+  dir dirCourante: Direction courante, avec: enum dir { EO, OE }
+
+ - Traduction des CA en language mathématique
+  Sortir!_: ∅
+  entrerEO!_: NbTrain = 0 | dirCourante = EO
+  entrerOE!_: NbTrain = 0 | dirCourante = OE
+
+
+4- Canaux
+Serveur:
+code aiguilleur
+*[ #on rappelle que le serveur évalue tous les cas, et execute tous celui qui est vrai (si plusieurs vrai 
+  (NbTrain = 0 | dirCourante = EO) -> { #cas 1
+    entrerEO?_        #on accepte un train allant d'est vers ouest
+    NbTrain++         #on compte
+    dirCourante = EO  #on met a jour la direction
+  }
+  🞎  #on rappelle que le serveur évalue tous les cas, et execute tous celui qui est vrai (si plusieurs vrai, il en exécute un arbitrairement). Ce symbole représente un "ou".
+  (NbTrain = 0 | dirCourante = OE) -> { #cas 2
+    entrerOE?_        #on accepte un train allant d'ouest vers est
+    NbTrain++ 
+    dirCourante = OE
+  }
+  🞎
+  Sortir?_ -> NbTrain--;
+]
+
+
+
+On a fait une version similaire aux moniteurs, on fait maintenant un version avec des automates.
+
+ ┌┐EntrerOE
+ ┊⇣nbt++                ↓
+╭┴─────╮    EntreEO ╭──────╮          ╭──────╮
+│      │⤎╌╌╌╌╌╌╌╌╌╌┤      │  EntreOE │      ├┈┈┐ EntrerOE
+│Occupé│     nbt=1  │      ├╌╌╌╌╌╌╌╌⤏│Occupé│⤎┘   nbt++
+│      │            │      │   nbt=1  │      │
+│      │            │ Libre│          │      │
+│  EO  │    sortir  │      │  sortir  │  OE  ├┈┈┐ sortir
+│      ├╌╌╌╌╌╌╌╌╌╌⤏│      │⤎╌╌╌╌╌╌╌╌┤      │⤎┘  si nbt>1       
+╰┬─────╯   si nbt=1 ╰──────╯ si nbt=1 ╰──────╯      nbt--
+ ┊⇡sortir    nbt=0             nbt=0
+ └┘nbt--
+
+
+*[
+  Etat=Libre    -> [{ EntrerOE?_; NbTrain=1; Etat=OccupéOE }
+                     🞎
+                    { EntrerEO?_; NbTrain=1; Etat=OccupéEO }]
+  🞎
+  Etat=OccupéEO -> [{ EntrerEO?_; NbTrain++ }
+                     🞎
+                    { Sortir?_; NbTrain--; IF NbTrain = 0 THEN Etat = Libre }]
+  🞎
+  Etat=OccupéOE -> [{ EntrerOE?_; NbTrain++ }
+                     🞎
+                    { Sortir?_; NbTrain--; IF NbTrain = 0 THEN Etat = Libre }]
+]
+
+
+
+
+Exercice 5: Tournoi de bridge (On assume un nombre infini de tables)
+1- Interface 
+  Entrer!_
+  Sortir!_
+
+Processus joueur:
+loop
+│ Entrer()
+│ jouer
+│ Sortir()  
+
+Options possibles:
+  Entrées 4 par 4 
+  Sorties 4 par 4
+  Une Entrée et Une Sortie 
+
+On a alors un problème: si le serveur doit surveiller le nombre d'entrées, on fait de l'attente active! (Il nous faudrait au moins un état sans conditions)
+
+
+1- Interface
+  DemanderEntrer!_ 
+  DemanderSortir!_
+  Entrer!_
+  Sortir!_
+
+Processus joueur:
+loop
+│ demanderEntrer() #le serveur ne bloque jamais, mais ca lui permet de compter les entrees.
+│ Entrer()         #bloquant
+│ jouer
+│ demanderSortir() #le serveur ne bloque jamais, mais ca lui permet de compter les sorties.
+│ Sortir()         #bloquant
+
+2- Conditions d'acceptation
+  DemanderEntrer!_: ∅
+  DemanderSortir!_: ∅
+  Entrer!_: Si on est au moins 4 a attendre d'entrer, ou si qqn a aussi demandé à sortir
+  Sortir!_: Si on est au moins 4 a attendre de sortir, ou si qqn a aussi demandé à entrer
+
+3- Variables d'état
+  int nbAE: nombre en attente entrée
+  int nbAS: nombre en attente sortie
+
+ - Traduction des CA en language mathématique
+  DemanderEntrer!_: ∅
+  DemanderSortir!_: ∅
+  Entrer!_: nbAE ≥ 4 | nbAS ≥ 1
+  Sortir!_: nbAS ≥ 4 | nbAE ≥ 1
+
+4- Canaux
+code bridget
+*[
+  DemanderEntrer?_ -> mbAE++;
+  🞎
+  DemanderSortir?_ -> mbAS++;
+  🞎
+  (NbAE ≥ 1 & nbAS ≥ 1) -> {
+    Entrer?_
+    Sortir?_
+    nbAE--
+    nbAS--
+  }
+  🞎
+  (NbAE ≥ 4) -> {
+    Entrer?_; Entrer?_; Entrer?_; Entrer?_
+    nbAE-=4
+  }
+  (NbAS ≥ 4) -> {
+    Sortir?_; Sortir?_; Sortir?_; Sortir?_
+    nbAS-=4
+  }
+]
+
+ ⤹╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌SSSSS╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
+0,0 -ds-> 0,1 -ds-> 0,2 -ds-> 0,3 -ds-> 0,4
+ |
+ de
+1,0 -ds-> 1,1 -ds-> 0,1 ....
+
+(Automate non complété...)
+

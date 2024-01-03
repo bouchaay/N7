@@ -1,0 +1,17 @@
+(library
+  (name be)
+  (inline_tests)
+  (libraries unix)
+  (modules pos plateau wall)
+  (preprocess
+    (pps ppx_inline_test)))
+
+(executable
+  (name main)
+  (libraries be unix)
+  (modules main bfs parse parser lexer utils report location)
+  (preprocess
+    (pps ppx_inline_test)))
+
+(ocamllex (modules lexer))
+(ocamlyacc (modules parser))

@@ -1,0 +1,279 @@
+# C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\dune.exe build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root:
+# "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation
+# Fonctionnelle\\Projet\\source"
+# Auto-detected concurrency: 16
+$ C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -config > C:\OCaml64\tmp\dune_c0ba8d_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some External "C:/OCaml64/home/offic/.opam/4.14.0+mingw64c/lib/toplevel"
+#  ; ocaml_bin =
+#      External "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin"
+#  ; ocaml =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin\\ocaml.exe"
+#  ; ocamlc =
+#      External
+#        "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin\\ocamlc.opt.exe"
+#  ; ocamlopt =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin\\ocamlopt.opt.exe"
+#  ; ocamldep =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin\\ocamldep.opt.exe"
+#  ; ocamlmklib =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\\bin\\ocamlmklib.opt.exe"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" :
+#            "C:\\\\OCaml64\\\\home\\\\offic\\\\.opam\\\\4.14.0+mingw64c\\lib"
+#        ; "DUNE_OCAML_STDLIB" :
+#            "C:/OCaml64/home/offic/.opam/4.14.0+mingw64c/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source"
+#        ; "INSIDE_DUNE" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source\\_build/default"
+#        ; "MANPATH" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source\\_build/install/default/bin"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source\\_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source\\_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "C:\\Users\\offic\\OneDrive\\Bureau\\MonGithub\\N7\\2A\\Programmation Fonctionnelle\\Projet\\source\\_build/install/default/lib/toplevel"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_paths =
+#      [ External
+#          "C:\\\\OCaml64\\\\home\\\\offic\\\\.opam\\\\4.14.0+mingw64c\\lib"
+#      ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.14.0"
+#      ; standard_library_default =
+#          "C:/cygwin/home/appveyor/.opam/4.14.0+mingw64c/lib/ocaml"
+#      ; standard_library =
+#          "C:/OCaml64/home/offic/.opam/4.14.0+mingw64c/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "x86_64-w64-mingw32-gcc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-mms-bitfields" ]
+#      ; ocamlc_cppflags = []
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-mms-bitfields" ]
+#      ; ocamlopt_cppflags = []
+#      ; bytecomp_c_compiler =
+#          [ "x86_64-w64-mingw32-gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-mms-bitfields"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lws2_32"; "-lversion" ]
+#      ; native_c_compiler =
+#          [ "x86_64-w64-mingw32-gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-mms-bitfields"
+#          ]
+#      ; native_c_libraries = [ "-lws2_32"; "-lversion" ]
+#      ; native_pack_linker = [ "x86_64-w64-mingw32-ld"; "-r"; "-o" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "mingw64"
+#      ; asm = [ "x86_64-w64-mingw32-gcc"; "-c" ]
+#      ; asm_cfi_supported = false
+#      ; with_frame_pointers = false
+#      ; ext_exe = ".exe"
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".dll"
+#      ; os_type = "Win32"
+#      ; default_executable_name = "camlprog.exe"
+#      ; systhread_supported = true
+#      ; host = "x86_64-w64-mingw32"
+#      ; target = "x86_64-w64-mingw32"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X031"
+#      ; cmi_magic_number = "Caml1999I031"
+#      ; cmo_magic_number = "Caml1999O031"
+#      ; cma_magic_number = "Caml1999A031"
+#      ; cmx_magic_number = "Caml1999Y031"
+#      ; cmxa_magic_number = "Caml1999Z031"
+#      ; ast_impl_magic_number = "Caml1999M031"
+#      ; ast_intf_magic_number = "Caml1999N031"
+#      ; cmxs_magic_number = "Caml1999D031"
+#      ; cmt_magic_number = "Caml1999T031"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = true
+#      }
+#  }
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie "inline_tests=\"enabled\"" --cookie "library-name=\"libnewtonoid\"" -o lib/brick.pp.ml --impl lib/brick.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamldep.opt.exe -modules -impl lib/brick.pp.ml) > _build/default/lib/.libnewtonoid.objs/brick.pp.ml.d
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I lib/.libnewtonoid.objs/byte -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now -no-alias-deps -opaque -open Libnewtonoid -o lib/.libnewtonoid.objs/byte/libnewtonoid__Brick.cmo -c -impl lib/brick.pp.ml)
+> File "lib/brick.ml", line 2, characters 0-11:
+> 2 | open Random
+>     ^^^^^^^^^^^
+> Warning 33 [unused-open]: unused open Stdlib.Random.
+> File "lib/brick.ml", line 81, characters 20-28:
+> 81 |   let set_position (position, size, power, color, state) new_position = (new_position, size, power, color, state)
+>                          ^^^^^^^^
+> Warning 27 [unused-var-strict]: unused variable position.
+> File "lib/brick.ml", line 82, characters 26-30:
+> 82 |   let set_size (position, size, power, color, state) new_size = (position, new_size, power, color, state)
+>                                ^^^^
+> Warning 27 [unused-var-strict]: unused variable size.
+> File "lib/brick.ml", line 83, characters 33-38:
+> 83 |   let set_power (position, size, power, color, state) new_power = (position, size, new_power, color, state)
+>                                       ^^^^^
+> Warning 27 [unused-var-strict]: unused variable power.
+> File "lib/brick.ml", line 84, characters 46-51:
+> 84 |   let set_brick_color (position, size, power, color, state) new_color = (position, size, power, new_color, state)
+>                                                    ^^^^^
+> Warning 27 [unused-var-strict]: unused variable color.
+> File "lib/brick.ml", line 85, characters 47-52:
+> 85 |   let set_state (position, size, power, color, state) new_state = (position, size, power, color, new_state)
+>                                                     ^^^^^
+> Warning 27 [unused-var-strict]: unused variable state.
+> File "lib/brick.ml", line 86, characters 17-25:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                       ^^^^^^^^
+> Warning 27 [unused-var-strict]: unused variable position.
+> File "lib/brick.ml", line 86, characters 40-45:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                                              ^^^^^
+> Warning 27 [unused-var-strict]: unused variable color.
+> File "lib/brick.ml", line 86, characters 47-52:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                                                     ^^^^^
+> Warning 27 [unused-var-strict]: unused variable state.
+> File "lib/brick.ml", line 98, characters 6-12:
+> 98 |   let xbrick ((x, _), _ , _, _, _) = x (* Renvoie la position x de la brique *)
+>            ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value xbrick.
+> File "lib/brick.ml", line 99, characters 6-12:
+> 99 |   let ybrick ((_, y), _ , _, _, _) = y (* Renvoie la position y de la brique *)
+>            ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value ybrick.
+> File "lib/brick.ml", line 100, characters 6-12:
+> 100 |   let wbrick (_, (w, _), _, _, _) = w (* Renvoie la largeur de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value wbrick.
+> File "lib/brick.ml", line 101, characters 6-12:
+> 101 |   let hbrick (_, (_, h), _, _, _) = h (* Renvoie la hauteur de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value hbrick.
+> File "lib/brick.ml", line 102, characters 6-12:
+> 102 |   let cbrick ((x, y), (w, h), _, _, _) = (x +. w /. 2., y +. h /. 2.) (* Renvoie le centre de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value cbrick.
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I bin/.newtonoid.eobjs/byte -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now -I lib/.libnewtonoid.objs/byte -no-alias-deps -opaque -o bin/.newtonoid.eobjs/byte/dune__exe__Newtonoid.cmi -c -intf bin/newtonoid.mli)
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o lib/libnewtonoid.cma lib/.libnewtonoid.objs/byte/libnewtonoid.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Specialbricks.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Powerups.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Physics.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Paddle.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Level.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Iterator.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Input.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Game.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Collision.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Brick.cmo lib/.libnewtonoid.objs/byte/libnewtonoid__Ball.cmo)
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I lib/.libnewtonoid.objs/byte -I lib/.libnewtonoid.objs/native -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now -intf-suffix .ml -no-alias-deps -opaque -open Libnewtonoid -o lib/.libnewtonoid.objs/native/libnewtonoid__Brick.cmx -c -impl lib/brick.pp.ml)
+> File "lib/brick.ml", line 2, characters 0-11:
+> 2 | open Random
+>     ^^^^^^^^^^^
+> Warning 33 [unused-open]: unused open Stdlib.Random.
+> File "lib/brick.ml", line 81, characters 20-28:
+> 81 |   let set_position (position, size, power, color, state) new_position = (new_position, size, power, color, state)
+>                          ^^^^^^^^
+> Warning 27 [unused-var-strict]: unused variable position.
+> File "lib/brick.ml", line 82, characters 26-30:
+> 82 |   let set_size (position, size, power, color, state) new_size = (position, new_size, power, color, state)
+>                                ^^^^
+> Warning 27 [unused-var-strict]: unused variable size.
+> File "lib/brick.ml", line 83, characters 33-38:
+> 83 |   let set_power (position, size, power, color, state) new_power = (position, size, new_power, color, state)
+>                                       ^^^^^
+> Warning 27 [unused-var-strict]: unused variable power.
+> File "lib/brick.ml", line 84, characters 46-51:
+> 84 |   let set_brick_color (position, size, power, color, state) new_color = (position, size, power, new_color, state)
+>                                                    ^^^^^
+> Warning 27 [unused-var-strict]: unused variable color.
+> File "lib/brick.ml", line 85, characters 47-52:
+> 85 |   let set_state (position, size, power, color, state) new_state = (position, size, power, color, new_state)
+>                                                     ^^^^^
+> Warning 27 [unused-var-strict]: unused variable state.
+> File "lib/brick.ml", line 86, characters 17-25:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                       ^^^^^^^^
+> Warning 27 [unused-var-strict]: unused variable position.
+> File "lib/brick.ml", line 86, characters 40-45:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                                              ^^^^^
+> Warning 27 [unused-var-strict]: unused variable color.
+> File "lib/brick.ml", line 86, characters 47-52:
+> 86 |   let set_brick (position, size, power, color, state) new_position new_color new_state = (new_position, size, power, new_color, new_state)
+>                                                     ^^^^^
+> Warning 27 [unused-var-strict]: unused variable state.
+> File "lib/brick.ml", line 98, characters 6-12:
+> 98 |   let xbrick ((x, _), _ , _, _, _) = x (* Renvoie la position x de la brique *)
+>            ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value xbrick.
+> File "lib/brick.ml", line 99, characters 6-12:
+> 99 |   let ybrick ((_, y), _ , _, _, _) = y (* Renvoie la position y de la brique *)
+>            ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value ybrick.
+> File "lib/brick.ml", line 100, characters 6-12:
+> 100 |   let wbrick (_, (w, _), _, _, _) = w (* Renvoie la largeur de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value wbrick.
+> File "lib/brick.ml", line 101, characters 6-12:
+> 101 |   let hbrick (_, (_, h), _, _, _) = h (* Renvoie la hauteur de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value hbrick.
+> File "lib/brick.ml", line 102, characters 6-12:
+> 102 |   let cbrick ((x, y), (w, h), _, _, _) = (x +. w /. 2., y +. h /. 2.) (* Renvoie le centre de la brique *)
+>             ^^^^^^
+> Warning 32 [unused-value-declaration]: unused value cbrick.
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I bin/.newtonoid.eobjs/byte -I bin/.newtonoid.eobjs/native -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now -I lib/.libnewtonoid.objs/byte -I lib/.libnewtonoid.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.newtonoid.eobjs/native/dune__exe__Newtonoid.cmx -c -impl bin/newtonoid.ml)
+> File "bin/newtonoid.ml", line 38, characters 6-21:
+> 38 |       draw_state etat;
+>            ^^^^^^^^^^^^^^^
+> Warning 21 [nonreturning-statement]: this statement never returns (or has an unsound type.)
+> File "bin/newtonoid.ml", line 43, characters 6-7:
+> 43 |     | _ -> assert false
+>            ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "bin/newtonoid.ml", line 26, characters 15-19:
+> 26 | let draw_state etat = failwith "A DEFINIR"
+>                     ^^^^
+> Warning 27 [unused-var-strict]: unused variable etat.
+> File "bin/newtonoid.ml", line 29, characters 10-14:
+> 29 | let score etat : int = failwith "A DEFINIR"
+>                ^^^^
+> Warning 27 [unused-var-strict]: unused variable etat.
+> File "bin/newtonoid.ml", line 31, characters 4-8:
+> 31 | let draw flux_etat =
+>          ^^^^
+> Warning 32 [unused-value-declaration]: unused value draw.
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o lib/libnewtonoid.cmxa lib/.libnewtonoid.objs/native/libnewtonoid.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Specialbricks.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Powerups.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Physics.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Paddle.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Level.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Iterator.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Input.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Game.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Collision.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Brick.cmx lib/.libnewtonoid.objs/native/libnewtonoid__Ball.cmx)
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -shared -linkall -I lib -o lib/libnewtonoid.cmxs lib/libnewtonoid.cmxa)
+$ (cd _build/default && C:\OCaml64\home\offic\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -o bin/newtonoid.exe C:/OCaml64/home/offic/.opam/4.14.0+mingw64c/lib/ocaml\unix.cmxa -I C:/OCaml64/home/offic/.opam/4.14.0+mingw64c/lib/ocaml C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics\graphics.cmxa -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\graphics C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config/inline_test_config.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types/base_internalhash_types.cmxa -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\caml/caml.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\sexplib0\sexplib0.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib/shadow_stdlib.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base\base.cmxa -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\base C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\jane-street-headers\jane_street_headers.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib/ppx_sexp_conv_lib.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib/ppx_compare_lib.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib/ppx_enumerate_lib.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib/ppx_hash_lib.cmxa C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now\time_now.cmxa -I C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\time_now C:\\OCaml64\\home\\offic\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib/ppx_inline_test_lib.cmxa lib/libnewtonoid.cmxa bin/.newtonoid.eobjs/native/dune__exe__Newtonoid.cmx)
