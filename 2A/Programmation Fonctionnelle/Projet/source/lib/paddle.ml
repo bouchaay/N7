@@ -62,5 +62,4 @@ struct
   let draw (x, y) (width, height) color =
     set_color color;
     fill_rect (int_of_float x) (int_of_float y) (int_of_float width) (int_of_float height)
-
 end

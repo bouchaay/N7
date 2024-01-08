@@ -30,5 +30,8 @@ module Physics = Libnewtonoid__Physics
 (** @canonical Libnewtonoid.Powerups *)
 module Powerups = Libnewtonoid__Powerups
 
+(** @canonical Libnewtonoid.Screen *)
+module Screen = Libnewtonoid__Screen
+
 (** @canonical Libnewtonoid.Specialbricks *)
 module Specialbricks = Libnewtonoid__Specialbricks

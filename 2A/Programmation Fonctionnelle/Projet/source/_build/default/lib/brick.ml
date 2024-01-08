@@ -94,13 +94,6 @@ struct
   let spacing_x = 5.
   let spacing_y = 5.
 
-  (* Fonctions internes *)
-  let xbrick ((x, _), _ , _, _, _) = x (* Renvoie la position x de la brique *)
-  let ybrick ((_, y), _ , _, _, _) = y (* Renvoie la position y de la brique *)
-  let wbrick (_, (w, _), _, _, _) = w (* Renvoie la largeur de la brique *)
-  let hbrick (_, (_, h), _, _, _) = h (* Renvoie la hauteur de la brique *)
-  let cbrick ((x, y), (w, h), _, _, _) = (x +. w /. 2., y +. h /. 2.) (* Renvoie le centre de la brique *)
-
   (* Générer une ligne de briques *)
   let generate_brick_line position_depart position_fin brick_height nb_bricks =
     let space = spacing_x in (* Espace entre les briques *)

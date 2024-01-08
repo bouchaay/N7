@@ -31,8 +31,7 @@ def create_graph_2D(density_file, portee_km, output_graphml, weighted=False):
     # Ajouter les nœuds avec les coordonnées comme attributs de position
     for row in data.itertuples():
         id = int(row.sat_id)
-        position = [row.x, row.y, row.z]
-        G.add_node(str(id), pos=str(position))
+        G.add_node(str(id), pos=(row.x, row.y, row.z))
 
     # Ajouter les arêtes en fonction de la portée
     for i in range(len(data)):
