@@ -1,0 +1,47 @@
+Personne 1: Hallo! Wie geht es Ihnen? (Personne 1: Bonjour ! Comment ça va ?)
+
+Personne 2: Hallo! Mir geht es gut, danke! Und Ihnen? (Personne 2: Bonjour ! Ça va bien, merci ! Et vous ?)
+
+Personne 1: Mir geht es auch gut, danke! Ich bin hier in Deutschland für eine Weile. Was machen Sie hier? (Personne 1: Ça va bien aussi, merci ! Je suis en Allemagne pour un certain temps. Que faites-vous ici ?)
+
+Personne 2: Ich lebe hier in Deutschland. Schön, dass Sie hier sind! Was führt Sie hierher? (Personne 2: Je vis ici en Allemagne. C'est agréable que vous soyez ici ! Qu'est-ce qui vous amène ici ?)
+
+Personne 1: Ich bin hier für Urlaub und um die Kultur kennenzulernen. Haben Sie Empfehlungen für Sehenswürdigkeiten? (Personne 1: Je suis ici en vacances et pour découvrir la culture. Avez-vous des recommandations pour les sites touristiques ?)
+
+Personne 2: Ja, sicher! Es gibt viele schöne Orte hier. Haben Sie schon etwas Bestimmtes besucht? (Personne 2: Oui, bien sûr ! Il y a beaucoup de beaux endroits ici. Avez-vous déjà visité quelque chose en particulier ?)
+
+Personne 1: Noch nicht. Ich bin erst vor ein paar Tagen angekommen. Was essen die Leute hier gerne? (Personne 1: Pas encore. Je suis arrivé il y a seulement quelques jours. Qu'est-ce que les gens aiment manger ici ?)
+
+Personne 2: Die deutsche Küche ist vielfältig. Möchten Sie etwas Bestimmtes probieren? (Personne 2: La cuisine allemande est variée. Voulez-vous essayer quelque chose de particulier ?)
+
+Personne 1: Ich würde gerne etwas Traditionelles versuchen. Was empfehlen Sie? (Personne 1: J'aimerais essayer quelque chose de traditionnel. Que recommandez-vous ?)
+
+Personne 2: Vielleicht könnten Sie Schweinshaxe oder Sauerkraut probieren. Das sind typisch deutsche Gerichte. (Personne 2: Peut-être pourriez-vous essayer la cuisse de porc rôtie ou la choucroute. Ce sont des plats allemands typiques.)
+
+Personne 1: Das klingt interessant. Und was trinkt man hier gerne? (Personne 1: Cela semble intéressant. Et qu'aime-t-on boire ici ?)
+
+Personne 2: Bier ist sehr beliebt. Haben Sie schon deutsches Bier probiert? (Personne 2: La bière est très populaire. Avez-vous déjà goûté de la bière allemande ?)
+
+Personne 1: Noch nicht, aber ich bin gespannt darauf. Was machen die Leute hier in ihrer Freizeit? (Personne 1: Pas encore, mais j'ai hâte d'essayer. Que font les gens ici pendant leur temps libre ?)
+
+Personne 2: Viele gehen wandern, besuchen Museen oder entspannen in Biergärten. Haben Sie schon etwas Ähnliches gemacht? (Personne 2: Beaucoup font de la randonnée, visitent des musées ou se détendent dans des jardins de bière. Avez-vous déjà fait quelque chose de similaire ?)
+
+Personne 1: Noch nicht, aber das klingt toll. Was haben Sie am Wochenende gemacht? (Personne 1: Pas encore, mais cela semble génial. Qu'avez-vous fait le week-end ?)
+
+Personne 2: Am Wochenende war ich mit Freunden im Park und wir haben gegrillt. Es war sehr schön. Wie haben Sie Ihr Wochenende verbracht? (Personne 2: Le week-end, j'étais avec des amis au parc et nous avons fait un barbecue. C'était très agréable. Comment avez-vous passé votre week-end ?)
+
+Personne 1: Ich habe die Stadt erkundet und war in einem Café. Es war gemütlich. Was sind Ihre Hobbys? (Personne 1: J'ai exploré la ville et suis allé dans un café. C'était confortable. Quels sont vos hobbies ?)
+
+Personne 2: Ich spiele gerne Tennis und lese viel. Wie sieht es bei Ihnen aus? (Personne 2: J'aime jouer au tennis et lire beaucoup. Et vous ?)
+
+Personne 1: Ich interessiere mich für Fotografie und mache gerne lange Spaziergänge. Was mögen Sie an Deutschland am meisten? (Personne 1: Je m'intéresse à la photographie et j'aime faire de longues promenades. Qu'est-ce que vous aimez le plus en Allemagne ?)
+
+Personne 2: Die Vielfalt der Kultur und die freundlichen Menschen. Wie gefällt es Ihnen bisher hier? (Personne 2: La diversité culturelle et les gens sympathiques. Comment trouvez-vous jusqu'à présent ?)
+
+Personne 1: Mir gefällt es sehr gut. Die Leute sind freundlich und die Landschaft ist wunderschön. Vielen Dank für die Tipps! (Personne 1: J'aime beaucoup. Les gens sont sympathiques et le paysage est magnifique. Merci beaucoup pour les conseils !)
+
+Personne 2: Gern geschehen! Wenn Sie weitere Fragen haben oder Hilfe brauchen, lassen Sie es mich wissen. (Personne 2: De rien ! Si vous avez d'autres questions ou besoin d'aide, faites-le moi savoir.)
+
+Personne 1: Das ist nett von Ihnen. Vielen Dank! Auf Wiedersehen! (Personne 1: C'est gentil de votre part. Merci beaucoup ! Au revoir !)
+
+Personne 2: Auf Wiedersehen! Viel Spaß in Deutschland! (Personne 2: Au revoir ! Amusez-vous bien en Allemagne !)

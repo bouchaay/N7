@@ -1,0 +1,149 @@
+Problem:    ECommerceCas2
+Rows:       41
+Columns:    42 (42 integer, 36 binary)
+Non-zeros:  175
+Status:     INTEGER OPTIMAL
+Objective:  DistanceTotal = 22 (MINimum)
+
+   No.   Row name        Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 RespectSeulVisite[ALPHA]
+                                   1             1             = 
+     2 RespectSeulVisite[c1]
+                                   1             1             = 
+     3 RespectSeulVisite[c2]
+                                   1             1             = 
+     4 RespectSeulVisite[c3]
+                                   1             1             = 
+     5 RespectSeulVisite[c4]
+                                   1             1             = 
+     6 RespectSeulVisite[c5]
+                                   1             1             = 
+     7 RespectSeulQuitte[ALPHA]
+                                   1             1             = 
+     8 RespectSeulQuitte[c1]
+                                   1             1             = 
+     9 RespectSeulQuitte[c2]
+                                   1             1             = 
+    10 RespectSeulQuitte[c3]
+                                   1             1             = 
+    11 RespectSeulQuitte[c4]
+                                   1             1             = 
+    12 RespectSeulQuitte[c5]
+                                   1             1             = 
+    13 RespectDeparArr
+                                   0            -0             = 
+    14 RespectSousTournee[c1,c2]
+                                  -4                           5 
+    15 RespectSousTournee[c1,c3]
+                                   5                           5 
+    16 RespectSousTournee[c1,c4]
+                                  -2                           5 
+    17 RespectSousTournee[c1,c5]
+                                  -3                           5 
+    18 RespectSousTournee[c2,c1]
+                                   4                           5 
+    19 RespectSousTournee[c2,c3]
+                                   3                           5 
+    20 RespectSousTournee[c2,c4]
+                                   2                           5 
+    21 RespectSousTournee[c2,c5]
+                                   1                           5 
+    22 RespectSousTournee[c3,c1]
+                                   1                           5 
+    23 RespectSousTournee[c3,c2]
+                                  -3                           5 
+    24 RespectSousTournee[c3,c4]
+                                   5                           5 
+    25 RespectSousTournee[c3,c5]
+                                  -2                           5 
+    26 RespectSousTournee[c4,c1]
+                                   2                           5 
+    27 RespectSousTournee[c4,c2]
+                                  -2                           5 
+    28 RespectSousTournee[c4,c3]
+                                   1                           5 
+    29 RespectSousTournee[c4,c5]
+                                   5                           5 
+    30 RespectSousTournee[c5,c1]
+                                   3                           5 
+    31 RespectSousTournee[c5,c2]
+                                   5                           5 
+    32 RespectSousTournee[c5,c3]
+                                   2                           5 
+    33 RespectSousTournee[c5,c4]
+                                   1                           5 
+    34 RespectPremierTour[ALPHA]
+                                   1             1             = 
+    35 RespectTour[ALPHA]
+                                   1             1             6 
+    36 RespectTour[c1]
+                                   1             1             6 
+    37 RespectTour[c2]
+                                   5             1             6 
+    38 RespectTour[c3]
+                                   2             1             6 
+    39 RespectTour[c4]
+                                   3             1             6 
+    40 RespectTour[c5]
+                                   4             1             6 
+    41 DistanceTotal
+                                  22                             
+
+   No. Column name       Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 x[ALPHA,ALPHA]
+                    *              0             0             1 
+     2 x[ALPHA,c1]  *              1             0             1 
+     3 x[ALPHA,c2]  *              0             0             1 
+     4 x[ALPHA,c3]  *              0             0             1 
+     5 x[ALPHA,c4]  *              0             0             1 
+     6 x[ALPHA,c5]  *              0             0             1 
+     7 x[c1,ALPHA]  *              0             0             1 
+     8 x[c1,c1]     *              0             0             1 
+     9 x[c1,c2]     *              0             0             1 
+    10 x[c1,c3]     *              1             0             1 
+    11 x[c1,c4]     *              0             0             1 
+    12 x[c1,c5]     *              0             0             1 
+    13 x[c2,ALPHA]  *              1             0             1 
+    14 x[c2,c1]     *              0             0             1 
+    15 x[c2,c2]     *              0             0             1 
+    16 x[c2,c3]     *              0             0             1 
+    17 x[c2,c4]     *              0             0             1 
+    18 x[c2,c5]     *              0             0             1 
+    19 x[c3,ALPHA]  *              0             0             1 
+    20 x[c3,c1]     *              0             0             1 
+    21 x[c3,c2]     *              0             0             1 
+    22 x[c3,c3]     *              0             0             1 
+    23 x[c3,c4]     *              1             0             1 
+    24 x[c3,c5]     *              0             0             1 
+    25 x[c4,ALPHA]  *              0             0             1 
+    26 x[c4,c1]     *              0             0             1 
+    27 x[c4,c2]     *              0             0             1 
+    28 x[c4,c3]     *              0             0             1 
+    29 x[c4,c4]     *              0             0             1 
+    30 x[c4,c5]     *              1             0             1 
+    31 x[c5,ALPHA]  *              0             0             1 
+    32 x[c5,c1]     *              0             0             1 
+    33 x[c5,c2]     *              1             0             1 
+    34 x[c5,c3]     *              0             0             1 
+    35 x[c5,c4]     *              0             0             1 
+    36 x[c5,c5]     *              0             0             1 
+    37 u[c2]        *              5             0               
+    38 u[c1]        *              1             0               
+    39 u[c3]        *              2             0               
+    40 u[c4]        *              3             0               
+    41 u[c5]        *              4             0               
+    42 u[ALPHA]     *              1             0               
+
+Integer feasibility conditions:
+
+KKT.PE: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+End of output

@@ -1,0 +1,68 @@
+###############################  Model ###############################
+
+
+###############################  Sets  ###############################
+
+set PERSONNES; 
+
+set TACHES;	
+
+################### Variables ###################
+
+## To declare Taches effectue par une personne######
+var t{i in PERSONNES, j in TACHES}, binary; 
+
+
+
+###################  Constants: Data to load   #########################
+
+param c{i in PERSONNES, j in TACHES}; 
+
+
+
+################### Constraints ###################
+
+
+s.t. RespectTFaitParP{j in TACHES}:
+  sum{i in PERSONNES} t[i,j] = 1;
+  
+s.t. RespectPFaitParT{i in PERSONNES}:
+   sum{j in TACHES} t[i,j]  = 1;
+
+
+###### Objective ######
+
+maximize Preference: 
+		sum{i in PERSONNES} sum{j in TACHES} t[i,j]*c[i,j]; 
+
+
+
+
+data;
+
+set PERSONNES := 
+p1
+p2
+P3
+P4 
+p5;
+
+
+set TACHES :=
+t1
+t2
+t3
+t4
+t5;
+
+
+
+param c: t1 t2 t3 t4 t5 :=
+p1 1 5 10 4 2 
+p2 1 1 9 4 6 
+P3 1 9 9 7 6 
+P4 3 1 2 5 8 
+p5 1 5 10 4 2 ;
+
+
+end;

@@ -49,11 +49,11 @@ def create_graph_2D(density_file, portee_km, output_graphml, weighted=False):
             dis = distance(xi, yi, zi, xj, yj, zj)
 
             # Ajouter une arête si les nœuds sont à portée
-            if weighted:
-                if a_la_portee(xi, yi, zi, xj, yj, zj, portee_km):
+            if a_la_portee(xi, yi, zi, xj, yj, zj, portee_km):
+                if weighted:
                     G.add_edge(int(data.iloc[i].sat_id), int(data.iloc[j].sat_id), weight=dis**2)
-            else:
-                G.add_edge(int(data.iloc[i].sat_id), int(data.iloc[j].sat_id), weight=1)
+                else:
+                    G.add_edge(int(data.iloc[i].sat_id), int(data.iloc[j].sat_id), weight=1)
 
     # Écrire le graphe dans un fichier GraphML
     nx.write_graphml(G, output_graphml)
@@ -98,11 +98,11 @@ def draw_graph_3D(density_file, portee_km, weighted=False):
             xj, yj, zj = data.iloc[j].x, data.iloc[j].y, data.iloc[j].z
 
             # Lié les noeuds si ils sont à portée
-            if weighted:
-                if a_la_portee(xi, yi, zi, xj, yj, zj, portee_km):
+            if a_la_portee(xi, yi, zi, xj, yj, zj, portee_km):
+                if weighted:
                     ax.plot([xi, xj], [yi, yj], [zi, zj], c='g', linestyle='-', linewidth=0.5)
-            else:
-                ax.plot([xi, xj], [yi, yj], [zi, zj], c='g', linestyle='-', linewidth=0.5)
+                else:
+                    ax.plot([xi, xj], [yi, yj], [zi, zj], c='g', linestyle='-', linewidth=0.5)
 
     # Calculer les limites des axes
     xmin, xmax = data.x.min() - 1, data.x.max() + 1

@@ -1,0 +1,102 @@
+
+###############################  Model ###############################
+
+
+
+###############################  Sets  ###############################
+
+set DEMANDES; 
+
+set PRODUITS;
+
+set MAGASINS;		
+
+################### Variables ###################
+
+var livraison{i in MAGASINS, j in DEMANDES}, binary;
+
+var exped{i in MAGASINS}, binary;
+
+var quant{i in MAGASINS, j in DEMANDES, p in PRODUITS}, >=0; 
+
+
+###################  Constants: Data to load   #########################
+
+param A;
+param B;
+param C;
+
+param distance{i in DEMANDES, j in MAGASINS};
+
+param quantite{i in PRODUITS, j in DEMANDES};
+
+param stock {j in MAGASINS, i in PRODUITS};
+
+################### Constraints ###################
+
+
+s.t. RespectDemandes{d in DEMANDES, p in PRODUITS}:
+  sum{i in MAGASINS} quant[i,d,p] <= quantite[p,d]; 
+
+s.t. RespectStock{d in DEMANDES, p in PRODUITS, m in MAGASINS}:
+  quant[m,d,p] <= livraison[m,d]*stock[m,p]; 
+  
+s.t. RespectPreTour{m in MAGASINS}:
+  sum{ i in DEMANDES} livraison[m,i] = exped[m];
+
+s.t. RespectLivreurMagasin{m in MAGASINS, p in PRODUITS}:
+ sum{i in DEMANDES} quant[m,i,p] = sum{ i in DEMANDES} livraison[m,i]*quantite[p,i] ;
+
+s.t. RespectSatifaitDemandes{d in DEMANDES, p in PRODUITS, m in MAGASINS}:
+  quant[m,d,p] <= livraison[m,d]*quantite[p,d];
+  
+s.t. RespectExpDuMagasin{ m in MAGASINS}:
+  exped[m] <= sum{d in DEMANDES} livraison[m,d];
+
+
+
+
+###### Objective ######
+
+minimize TotalEmission: 
+    sum{m in MAGASINS} sum{p in PRODUITS} sum{d in DEMANDES} (A*quant[m,d,p] + B)*distance[d,m] + C; 
+
+
+
+data;
+
+set DEMANDES := 
+D1
+D2;
+
+set PRODUITS :=
+P1
+P2;
+
+set MAGASINS :=
+M1
+M2
+M3;
+
+param A := 1.18e-5;
+param B := 2.14e-1;
+param C := 0;
+
+
+
+param stock: P1 P2 :=
+M1 10 4
+M2 1 20
+M3 13 3;
+
+param quantite: D1 D2 :=
+P1 2 7
+P2 4 6 ;
+
+
+
+param distance: M1 M2 M3 :=
+D1 10 1 5
+D2 2 20 10;
+
+end;

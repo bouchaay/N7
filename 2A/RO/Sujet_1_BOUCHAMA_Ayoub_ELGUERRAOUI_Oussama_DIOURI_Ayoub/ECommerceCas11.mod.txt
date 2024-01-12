@@ -1,0 +1,76 @@
+
+###############################  Model ###############################
+
+
+
+###############################  Sets  ###############################
+
+set DEMANDES; 
+
+set FLUIDES;
+
+set MAGASINS;	
+
+################### Variables ###################
+ 
+var quant{i in DEMANDES, j in MAGASINS, f in FLUIDES }, >=0; 
+
+
+###################  Constants: Data to load   #########################
+
+param DemandeDuFluide{i in DEMANDES, j in FLUIDES}; 
+
+param stock {i in MAGASINS, j in FLUIDES}; 
+
+param cout {i in MAGASINS, j in FLUIDES};
+
+################### Constraints ###################
+
+
+s.t. RespectDEffectueEnM{i in DEMANDES, f in FLUIDES}:
+  sum{j in MAGASINS} quant[i,j,f] = DemandeDuFluide[i,f];
+
+s.t. RespectStockage{m in MAGASINS, i in FLUIDES}:
+  sum{j in DEMANDES} quant[j,m,i] <= stock[m,i];
+
+
+###### Objective ######
+
+minimize CoutTotal: 
+	 sum{i in FLUIDES} sum{j in MAGASINS} sum{d in DEMANDES} cout[j,i]*quant[d,j,i]; 
+
+
+
+
+
+data;
+
+set DEMANDES := 
+D1
+D2;
+
+set FLUIDES :=
+F1
+F2;
+
+set MAGASINS :=
+M1
+M2
+M3;
+
+
+param DemandeDuFluide: F1 F2 :=
+D1 2 0
+D2 1 3;
+
+param stock: F1 F2 :=
+M1 2.5 1
+M2 1 2
+M3 2 1;
+
+param cout: F1 F2 :=
+M1 1 1
+M2 2 3
+M3 3 2;
+
+end;

@@ -1,0 +1,81 @@
+
+###############################  Model ###############################
+
+
+
+###############################  Sets  ###############################
+
+set MAGASINS; 
+
+set CLIENTS;	
+
+################### Variables ###################
+
+var x{i in CLIENTS , j in CLIENTS}, binary;
+
+var u{i in CLIENTS}, integer, >=0; 
+
+
+###################  Constants: Data to load   #########################
+
+param distance {i in CLIENTS, j in CLIENTS};
+
+################### Constraints ###################
+
+
+s.t. RespectSeulVisite{i in CLIENTS}:
+  sum{j in CLIENTS} x[i,j] = 1; 
+
+s.t. RespectSeulQuitte{j in CLIENTS}:
+  sum{i in CLIENTS} x[i,j] = 1; 
+
+s.t. RespectDeparArr:
+  sum{i in CLIENTS} x[i,i] = 0; 
+  
+s.t. RespectSousTournee{i in (CLIENTS diff MAGASINS) ,j in (CLIENTS diff MAGASINS) : j!=i}:
+  u[i] - u[j] + card(CLIENTS)*x[i,j] <= card(CLIENTS) - 1;
+
+
+  
+
+
+s.t. RespectPremierTour{m in MAGASINS}:
+   u[m]=1;
+
+s.t. RespectTour{i in CLIENTS}:
+  1 <= u[i] <= card(CLIENTS);
+
+
+###### Objective ######
+
+minimize DistanceTotal: 
+		sum{i in CLIENTS, j in CLIENTS} distance[i,j]*x[i,j]; 
+
+
+
+data;
+
+set MAGASINS :=
+ALPHA;
+
+set CLIENTS := 
+ALPHA
+c1
+c2
+c3
+c4
+c5;
+
+
+
+param distance: ALPHA c1 c2 c3 c4 c5 :=
+ALPHA 0 1 1 10 12 12
+c1 1 0 1 8 10 11
+c2 1 1 0 8 11 10
+c3 10 8 8 0 1 1
+c4 12 11 11 1 0 1
+c5 12 10 10 1 1 0; 
+
+
+
+end;
