@@ -1,13 +1,14 @@
 package application;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import ReadderWriter.FileReaderWriter;
+import ReadderWriter.KV;
+import ReadderWriter.Reader;
+import ReadderWriter.Writer;
 import daemon.JobLauncher;
-import interfaces.FileReaderWriter;
-import interfaces.KV;
 import interfaces.MapReduce;
-import interfaces.Reader;
-import interfaces.Writer;
 
 public class MyMapReduce implements MapReduce {
 	private static final long serialVersionUID = 1L;
@@ -37,9 +38,9 @@ public class MyMapReduce implements MapReduce {
 		for (String k : hm.keySet()) writer.write(new KV(k,hm.get(k).toString()));
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		long t1 = System.currentTimeMillis();
-		JobLauncher.startJob(new MyMapReduce(), FileReaderWriter.FMT_TXT, args[0]);
+		JobLauncher.startJob(new MyMapReduce(), FileReaderWriter.FMT_TXT, "test.txt");
 		long t2 = System.currentTimeMillis();
 		System.out.println("time in ms ="+(t2-t1));
 		System.exit(0);

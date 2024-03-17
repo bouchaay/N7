@@ -1,0 +1,105 @@
+Tables {
+	shematables {
+		ShemaTable {
+			name IFT
+			id 1
+			columns {
+				Column {
+					name Date
+					id 1
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Open
+					id 2
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name High
+					id 3
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Low
+					id 4
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Close
+					id 5
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name AdjClose
+					id 6
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Volume
+					id 7
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+			}
+			catalogue {Catalogue {name IFT_CAT}}
+		}
+		
+		ShemaTable {
+			name IFT
+			id 1
+			columns {
+				Column {
+					name Date
+					id 1
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Open
+					id 2
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name High
+					id 3
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Low
+					id 4
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Close
+					id 5
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name AdjClose
+					id 6
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+				Column {
+					name Volume
+					id 7
+					dataType int
+					constraint {Constraint {filePath ""}}
+				}
+			}
+			catalogue {Catalogue {name IFT_CAT}}
+		}
+	}
+}
+
+

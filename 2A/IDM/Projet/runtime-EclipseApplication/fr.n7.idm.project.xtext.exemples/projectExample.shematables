@@ -1,0 +1,67 @@
+Tables {
+	ShemaTable {
+		name IFT
+		id 1
+		Column {
+			name Date
+			id 1
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name Open
+			id 2
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name High
+			id 3
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name Low
+			id 4
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name Close
+			id 5
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name AdjClose
+			id 6
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Column {
+			name Volume
+			id 7
+			dataType int
+			constraint {
+				filePath ""
+			}
+		}
+		Catalogue {
+			name IFT_CAT
+		}
+	}
+}
+
+

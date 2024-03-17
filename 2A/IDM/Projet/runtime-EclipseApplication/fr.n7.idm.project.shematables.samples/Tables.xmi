@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shematables:Tables xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:shematables="http://shematables">
+  <shematables name="Tab1" id="1">
+    <columns name="col11" id="1"/>
+    <columns name="col12" id="2"/>
+    <columns xsi:type="shematables:ReferencedColumn" name="col13" id="3" foreignTable="//@shematables.1" foreignColumn="//@shematables.1/@columns.1"/>
+    <columns xsi:type="shematables:DerivedColumn" name="col14" id="4" algorithm="//@shematables.0/@catalogue/@algorithms.0"/>
+    <catalogue name="cat1">
+      <algorithms name="add" path="c://add.py">
+        <input columns="//@shematables.0/@columns.0 //@shematables.0/@columns.1"/>
+      </algorithms>
+    </catalogue>
+  </shematables>
+  <shematables name="Tab2" id="2">
+    <columns name="col21" id="1"/>
+    <columns name="col22" id="2"/>
+    <catalogue name="cat2"/>
+  </shematables>
+</shematables:Tables>

@@ -1,0 +1,40 @@
+import 'ShemaTables.ecore'
+
+package shematables
+
+context ShemaTable
+-- Vérifie qu'un nom d'une table est non null
+inv shemaTableValidName('Invalid name: ' + self.name):
+    self.name <> null
+
+-- Vérifie que les id de chaque colonne sont uniques
+inv shemaTableUniqueColumnId('Duplicate column id: ' + self.name):
+    self.columns->forAll(c1, c2 | c1 <> c2 implies c1.name <> c2.name)
+
+inv shemaTableUniqueColumnName('Duplicate column name: ' + self.name):
+    self.columns->forAll(c1, c2 | c1 <> c2 implies c1.name <> c2.name)
+
+-- Vérifie qu'un nom d'une colonne est non null
+context Column
+inv columnValidName('Invalid name: ' + self.name):
+    self.name <> null
+
+-- Vérifie qu'un nom d'une contrainte est non null
+context Constraint
+inv constraintValidPath('Invalid path: ' + self.filePath):
+    self.filePath <> null
+    
+context Algorithm
+-- Nom de l'algorithme non null
+inv algoNomNonNul('Invalid nom') :
+    self.name <> null
+
+-- Path de m'algorithme non null
+inv pathNonNul('Invalid path') :
+	self.path <> null
+	
+context Catalogue
+inv catalogueNameNonNul('Invalid catalogue name') :
+	self.name <> null
+
+endpackage

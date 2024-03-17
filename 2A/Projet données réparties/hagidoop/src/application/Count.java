@@ -18,7 +18,7 @@ public class Count {
             long t1 = System.currentTimeMillis();
 
 			HashMap<String,Integer> hm = new HashMap<String,Integer>();
-			LineNumberReader lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(Project.PATH+"data/"+args[0])));
+			LineNumberReader lnr = new LineNumberReader(new InputStreamReader(new FileInputStream("data/test.txt")));
 			while (true) {
 				String l = lnr.readLine();
 				if (l == null) break;

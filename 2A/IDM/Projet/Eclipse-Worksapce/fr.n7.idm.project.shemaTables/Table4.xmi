@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<shematables:Tables xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:shematables="http://shematables">
+  <shematables name="tab1" id="1">
+    <columns name="c1" id="1"/>
+    <columns name="c2" id="2"/>
+    <columns name="c3" id="3"/>
+    <columns xsi:type="shematables:DerivedColumn" name="Outputadd" id="4" algorithm="//@shematables.0/@catalogue/@algorithms.0" outputColumn="//@shematables.0/@catalogue/@algorithms.0/@output">
+      <constraint filePath=""/>
+    </columns>
+    <columns xsi:type="shematables:DerivedColumn" name="Outputsub" id="5" algorithm="//@shematables.0/@catalogue/@algorithms.1" outputColumn="//@shematables.0/@catalogue/@algorithms.1/@output">
+      <constraint filePath=""/>
+    </columns>
+    <catalogue name="cat1">
+      <algorithms name="add" path="/Ressource/add.py">
+        <output>
+          <constraint filePath=""/>
+        </output>
+        <input columns="//@shematables.0/@columns.0 //@shematables.0/@columns.1"/>
+      </algorithms>
+      <algorithms name="sub" path="/Ressource/sub.py">
+        <output>
+          <constraint filePath=""/>
+        </output>
+        <input columns="//@shematables.0/@columns.1 //@shematables.0/@columns.2"/>
+      </algorithms>
+    </catalogue>
+  </shematables>
+</shematables:Tables>

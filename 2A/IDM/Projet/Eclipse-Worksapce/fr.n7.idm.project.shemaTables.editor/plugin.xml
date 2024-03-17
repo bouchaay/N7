@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ShemaTables -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="shematables.presentation.ShematablesModelWizardID"
+            name="%_UI_ShematablesModelWizard_label"
+            class="shematables.presentation.ShematablesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ShematablesModelFile.gif">
+         <description>%_UI_ShematablesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ShemaTables -->
+      <editor
+            id="shematables.presentation.ShematablesEditorID"
+            name="%_UI_ShematablesEditor_label"
+            icon="icons/full/obj16/ShematablesModelFile.gif"
+            extensions="shematables"
+            class="shematables.presentation.ShematablesEditor"
+            contributorClass="shematables.presentation.ShematablesActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:shematables="http://shematables" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_OfXaELO1Ee6VvP5JMVqsLQ" selectedViews="_fjvroLO2Ee6VvP5JMVqsLQ" version="15.2.0.202303281325">
+    <semanticResources>Tables.xmi</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_fjvroLO2Ee6VvP5JMVqsLQ">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_03mq0LO2Ee6VvP5JMVqsLQ" name="ShemaTableDiagram" repPath="#_03mDwLO2Ee6VvP5JMVqsLQ" changeId="1705880324162">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']"/>
+        <target xmi:type="shematables:Tables" href="Tables.xmi#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="_03mDwLO2Ee6VvP5JMVqsLQ">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_03nR4LO2Ee6VvP5JMVqsLQ" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_03nR4bO2Ee6VvP5JMVqsLQ" type="Sirius" element="_03mDwLO2Ee6VvP5JMVqsLQ" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_KEBlQLO3Ee6VvP5JMVqsLQ" type="2001" element="_KDeysLO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_KECzYLO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_KECzYbO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_KEFPorO3Ee6VvP5JMVqsLQ" type="3003" element="_KDkSQLO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_KEFPo7O3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KEFPpLO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_KEBlQbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KEBlQrO3Ee6VvP5JMVqsLQ" x="261" y="174" width="94" height="80"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_KEEokLO3Ee6VvP5JMVqsLQ" type="2001" element="_KDmHcbO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_KEFPoLO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_KEFPobO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_KEF2sLO3Ee6VvP5JMVqsLQ" type="3003" element="_KDmHcrO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_KEF2sbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KEF2srO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_KEEokbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KEEokrO3Ee6VvP5JMVqsLQ" x="867" y="180" width="94" height="83"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXJjwLO3Ee6VvP5JMVqsLQ" type="2001" element="_WWzlg7O3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXJjw7O3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXJjxLO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXLY8LO3Ee6VvP5JMVqsLQ" type="3016" element="_WW0MkLO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXLY8bO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXLY8rO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXJjwbO3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXJjwrO3Ee6VvP5JMVqsLQ" x="117" y="350" width="97" height="77"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXKK0LO3Ee6VvP5JMVqsLQ" type="2001" element="_WW0MkrO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXKK07O3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXKK1LO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXLY87O3Ee6VvP5JMVqsLQ" type="3016" element="_WW0Mk7O3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXLY9LO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXLY9bO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXKK0bO3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXKK0rO3Ee6VvP5JMVqsLQ" x="246" y="350" width="97" height="77"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXKK1bO3Ee6VvP5JMVqsLQ" type="2001" element="_WW0MlbO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXKK2LO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXKK2bO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXMAALO3Ee6VvP5JMVqsLQ" type="3016" element="_WW0MlrO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXMAAbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXMAArO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXKK1rO3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXKK17O3Ee6VvP5JMVqsLQ" x="357" y="348" width="94" height="79"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXKK2rO3Ee6VvP5JMVqsLQ" type="2001" element="_WW0MmLO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXKK3bO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXKK3rO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXMAA7O3Ee6VvP5JMVqsLQ" type="3016" element="_WW1asLO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXMABLO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXMABbO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXKK27O3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXKK3LO3Ee6VvP5JMVqsLQ" x="476" y="347" width="95" height="80"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXKx5bO3Ee6VvP5JMVqsLQ" type="2001" element="_WW1atbO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXKx6LO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXKx6bO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXMACbO3Ee6VvP5JMVqsLQ" type="3016" element="_WW1atrO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXMACrO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXMAC7O3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXKx5rO3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXKx57O3Ee6VvP5JMVqsLQ" x="723" y="347" width="100" height="80"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WXKx6rO3Ee6VvP5JMVqsLQ" type="2001" element="_WW1auLO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_WXKx7bO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WXKx7rO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WXMADLO3Ee6VvP5JMVqsLQ" type="3016" element="_WW1aubO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXMADbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXMADrO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXKx67O3Ee6VvP5JMVqsLQ" fontColor="16777215" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXKx7LO3Ee6VvP5JMVqsLQ" x="975" y="347" width="106" height="80"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_yreVALO3Ee6VvP5JMVqsLQ" type="2001" element="_yrDeTLO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_yreVA7O3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_yreVBLO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_yre8ELO3Ee6VvP5JMVqsLQ" type="3017" element="_yrEFULO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_yre8EbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yre8ErO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_yreVAbO3Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yreVArO3Ee6VvP5JMVqsLQ" x="108" y="72" width="106" height="80"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_yreVBbO3Ee6VvP5JMVqsLQ" type="2001" element="_yrEsYbO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_yreVCLO3Ee6VvP5JMVqsLQ" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_yreVCbO3Ee6VvP5JMVqsLQ" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_yre8E7O3Ee6VvP5JMVqsLQ" type="3017" element="_yrEsYrO3Ee6VvP5JMVqsLQ">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_yre8FLO3Ee6VvP5JMVqsLQ" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yre8FbO3Ee6VvP5JMVqsLQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_yreVBrO3Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yreVB7O3Ee6VvP5JMVqsLQ" x="999" y="66" width="112" height="74"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_03nR4rO2Ee6VvP5JMVqsLQ"/>
+        <edges xmi:type="notation:Edge" xmi:id="_hmozoLO6Ee6VvP5JMVqsLQ" type="4001" element="_hmfpsLO6Ee6VvP5JMVqsLQ" source="_KEBlQLO3Ee6VvP5JMVqsLQ" target="_yreVALO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_hmpasLO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmpasbO6Ee6VvP5JMVqsLQ" x="2" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hmqo0LO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmqo0bO6Ee6VvP5JMVqsLQ" x="-1" y="11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hmqo0rO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmqo07O6Ee6VvP5JMVqsLQ" x="2" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_hmozobO6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_hmozorO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12" bold="true"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hmozo7O6Ee6VvP5JMVqsLQ" points="[-34, -24, 75, 52]$[-95, -67, 14, 9]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hmtsILO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.30625)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hmtsIbO6Ee6VvP5JMVqsLQ" id="(0.8679245283018868,0.625)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_hmtsIrO6Ee6VvP5JMVqsLQ" type="4001" element="_hmitArO6Ee6VvP5JMVqsLQ" source="_KEEokLO3Ee6VvP5JMVqsLQ" target="_yreVBbO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_hmuTMLO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmuTMbO6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hmuTMrO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmuTM7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hmuTNLO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmuTNbO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_hmtsI7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_hmtsJLO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12" bold="true"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hmtsJbO6Ee6VvP5JMVqsLQ" points="[0, 0, -168, 140]$[168, -140, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hmuTNrO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.3132530120481928)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hmuTN7O6Ee6VvP5JMVqsLQ" id="(0.5133928571428572,0.2905405405405405)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_stxgILO6Ee6VvP5JMVqsLQ" type="4001" element="_stVbQLO6Ee6VvP5JMVqsLQ" source="_KEBlQLO3Ee6VvP5JMVqsLQ" target="_WXJjwLO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_stxgJLO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_stxgJbO6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_stxgJrO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_stxgJ7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_stxgKLO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_stxgKbO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_stxgIbO6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_stxgIrO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_stxgI7O6Ee6VvP5JMVqsLQ" points="[0, 0, 144, -176]$[-144, 176, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHMLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.30625)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHMbO6Ee6VvP5JMVqsLQ" id="(0.46907216494845366,0.2792207792207792)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_styHMrO6Ee6VvP5JMVqsLQ" type="4001" element="_stWCUrO6Ee6VvP5JMVqsLQ" source="_KEBlQLO3Ee6VvP5JMVqsLQ" target="_WXKK0LO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_styHNrO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHN7O6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHOLO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHObO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHOrO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHO7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_styHM7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_styHNLO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_styHNbO6Ee6VvP5JMVqsLQ" points="[0, 0, 18, -176]$[-18, 176, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHPLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.30625)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHPbO6Ee6VvP5JMVqsLQ" id="(0.4381443298969072,0.2792207792207792)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_styHPrO6Ee6VvP5JMVqsLQ" type="4001" element="_stWCV7O6Ee6VvP5JMVqsLQ" source="_KEBlQLO3Ee6VvP5JMVqsLQ" target="_WXKK1bO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_styHQrO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHQ7O6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHRLO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHRbO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHRrO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHR7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_styHP7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_styHQLO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_styHQbO6Ee6VvP5JMVqsLQ" points="[0, 0, -94, -174]$[94, 174, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHSLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.30625)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styHSbO6Ee6VvP5JMVqsLQ" id="(0.48404255319148937,0.2974683544303798)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_styHSrO6Ee6VvP5JMVqsLQ" type="4001" element="_stWCXLO6Ee6VvP5JMVqsLQ" source="_KEBlQLO3Ee6VvP5JMVqsLQ" target="_WXKK2rO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_styHTrO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHT7O6Ee6VvP5JMVqsLQ" x="-1" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHULO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHUbO6Ee6VvP5JMVqsLQ" x="-1" y="11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styHUrO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styHU7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_styHS7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_styHTLO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_styHTbO6Ee6VvP5JMVqsLQ" points="[46, 33, -193, -138]$[207, 149, -32, -22]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuQLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.30625)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuQbO6Ee6VvP5JMVqsLQ" id="(0.7578947368421053,0.275)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_styuQrO6Ee6VvP5JMVqsLQ" type="4001" element="_stWCYbO6Ee6VvP5JMVqsLQ" source="_KEEokLO3Ee6VvP5JMVqsLQ" target="_WXKx5bO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_styuRrO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuR7O6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styuSLO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuSbO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styuSrO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuS7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_styuQ7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_styuRLO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_styuRbO6Ee6VvP5JMVqsLQ" points="[0, 0, 120, -141]$[-120, 141, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuTLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.3132530120481928)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuTbO6Ee6VvP5JMVqsLQ" id="(0.4850000000000001,0.30625)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_styuTrO6Ee6VvP5JMVqsLQ" type="4001" element="_stWpY7O6Ee6VvP5JMVqsLQ" source="_KEEokLO3Ee6VvP5JMVqsLQ" target="_WXKx6rO3Ee6VvP5JMVqsLQ">
+          <children xmi:type="notation:Node" xmi:id="_styuUrO6Ee6VvP5JMVqsLQ" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuU7O6Ee6VvP5JMVqsLQ" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styuVLO6Ee6VvP5JMVqsLQ" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuVbO6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_styuVrO6Ee6VvP5JMVqsLQ" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_styuV7O6Ee6VvP5JMVqsLQ" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_styuT7O6Ee6VvP5JMVqsLQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_styuULO6Ee6VvP5JMVqsLQ" fontName="Segoe UI" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_styuUbO6Ee6VvP5JMVqsLQ" points="[0, 0, -138, -141]$[138, 141, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuWLO6Ee6VvP5JMVqsLQ" id="(0.5159574468085106,0.3132530120481928)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_styuWbO6Ee6VvP5JMVqsLQ" id="(0.5141509433962265,0.30625)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_03n48LO2Ee6VvP5JMVqsLQ" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_03n48bO2Ee6VvP5JMVqsLQ"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_KDeysLO3Ee6VvP5JMVqsLQ" name="Tab1" outgoingEdges="_hmfpsLO6Ee6VvP5JMVqsLQ _stVbQLO6Ee6VvP5JMVqsLQ _stWCUrO6Ee6VvP5JMVqsLQ _stWCV7O6Ee6VvP5JMVqsLQ _stWCXLO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <semanticElements xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_KDkSQLO3Ee6VvP5JMVqsLQ" labelSize="12" labelPosition="node">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='STNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='STNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_KDmHcbO3Ee6VvP5JMVqsLQ" name="Tab2" outgoingEdges="_hmitArO6Ee6VvP5JMVqsLQ _stWCYbO6Ee6VvP5JMVqsLQ _stWpY7O6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.1"/>
+      <semanticElements xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" uid="_KDmHcrO3Ee6VvP5JMVqsLQ" labelSize="12" labelPosition="node">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='STNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='STNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WWzlg7O3Ee6VvP5JMVqsLQ" name="col11" incomingEdges="_stVbQLO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Column" href="Tables.xmi#//@shematables.0/@columns.0"/>
+      <semanticElements xmi:type="shematables:Column" href="Tables.xmi#//@shematables.0/@columns.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW0MkLO3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WW0MkrO3Ee6VvP5JMVqsLQ" name="col12" incomingEdges="_stWCUrO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Column" href="Tables.xmi#//@shematables.0/@columns.1"/>
+      <semanticElements xmi:type="shematables:Column" href="Tables.xmi#//@shematables.0/@columns.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW0Mk7O3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WW0MlbO3Ee6VvP5JMVqsLQ" name="col13" incomingEdges="_stWCV7O6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:ReferencedColumn" href="Tables.xmi#//@shematables.0/@columns.2"/>
+      <semanticElements xmi:type="shematables:ReferencedColumn" href="Tables.xmi#//@shematables.0/@columns.2"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW0MlrO3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WW0MmLO3Ee6VvP5JMVqsLQ" name="col14" incomingEdges="_stWCXLO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:DerivedColumn" href="Tables.xmi#//@shematables.0/@columns.3"/>
+      <semanticElements xmi:type="shematables:DerivedColumn" href="Tables.xmi#//@shematables.0/@columns.3"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW1asLO3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WW1atbO3Ee6VvP5JMVqsLQ" name="col21" incomingEdges="_stWCYbO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Column" href="Tables.xmi#//@shematables.1/@columns.0"/>
+      <semanticElements xmi:type="shematables:Column" href="Tables.xmi#//@shematables.1/@columns.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW1atrO3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_WW1auLO3Ee6VvP5JMVqsLQ" name="col22" incomingEdges="_stWpY7O6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Column" href="Tables.xmi#//@shematables.1/@columns.1"/>
+      <semanticElements xmi:type="shematables:Column" href="Tables.xmi#//@shematables.1/@columns.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Ellipse" uid="_WW1aubO3Ee6VvP5JMVqsLQ" labelSize="12" labelColor="255,255,255" labelPosition="node" color="239,41,41">
+        <description xmi:type="style:EllipseNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='ColNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yrDeTLO3Ee6VvP5JMVqsLQ" name="cat1" incomingEdges="_hmfpsLO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Catalogue" href="Tables.xmi#//@shematables.0/@catalogue"/>
+      <semanticElements xmi:type="shematables:Catalogue" href="Tables.xmi#//@shematables.0/@catalogue"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Lozenge" uid="_yrEFULO3Ee6VvP5JMVqsLQ" labelSize="12" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:LozengeNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='CatNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='CatNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yrEsYbO3Ee6VvP5JMVqsLQ" name="cat2" incomingEdges="_hmitArO6Ee6VvP5JMVqsLQ" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="shematables:Catalogue" href="Tables.xmi#//@shematables.1/@catalogue"/>
+      <semanticElements xmi:type="shematables:Catalogue" href="Tables.xmi#//@shematables.1/@catalogue"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Lozenge" uid="_yrEsYrO3Ee6VvP5JMVqsLQ" labelSize="12" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:LozengeNodeDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='CatNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@nodeMappings[name='CatNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_hmfpsLO6Ee6VvP5JMVqsLQ" sourceNode="_KDeysLO3Ee6VvP5JMVqsLQ" targetNode="_yrDeTLO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_hmhe4LO6Ee6VvP5JMVqsLQ" lineStyle="dash" size="2" strokeColor="114,73,110">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='CatalogueOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_hmiF8LO6Ee6VvP5JMVqsLQ" labelSize="12">
+          <labelFormat>bold</labelFormat>
+        </centerLabelStyle>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='CatalogueOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_hmitArO6Ee6VvP5JMVqsLQ" sourceNode="_KDmHcbO3Ee6VvP5JMVqsLQ" targetNode="_yrEsYbO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_hmitA7O6Ee6VvP5JMVqsLQ" lineStyle="dash" size="2" strokeColor="114,73,110">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='CatalogueOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_hmitBLO6Ee6VvP5JMVqsLQ" labelSize="12">
+          <labelFormat>bold</labelFormat>
+        </centerLabelStyle>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='CatalogueOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stVbQLO6Ee6VvP5JMVqsLQ" sourceNode="_KDeysLO3Ee6VvP5JMVqsLQ" targetNode="_WWzlg7O3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stVbQbO6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stVbQrO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stWCUrO6Ee6VvP5JMVqsLQ" sourceNode="_KDeysLO3Ee6VvP5JMVqsLQ" targetNode="_WW0MkrO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stWCU7O6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stWCVLO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stWCV7O6Ee6VvP5JMVqsLQ" sourceNode="_KDeysLO3Ee6VvP5JMVqsLQ" targetNode="_WW0MlbO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stWCWLO6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stWCWbO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stWCXLO6Ee6VvP5JMVqsLQ" sourceNode="_KDeysLO3Ee6VvP5JMVqsLQ" targetNode="_WW0MmLO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stWCXbO6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stWCXrO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stWCYbO6Ee6VvP5JMVqsLQ" sourceNode="_KDmHcbO3Ee6VvP5JMVqsLQ" targetNode="_WW1atbO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stWCYrO6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stWpYLO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_stWpY7O6Ee6VvP5JMVqsLQ" sourceNode="_KDmHcbO3Ee6VvP5JMVqsLQ" targetNode="_WW1auLO3Ee6VvP5JMVqsLQ">
+      <target xmi:type="shematables:ShemaTable" href="Tables.xmi#//@shematables.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_stWpZLO6Ee6VvP5JMVqsLQ" lineStyle="dot" size="2" strokeColor="39,76,114">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_stWpZbO6Ee6VvP5JMVqsLQ" labelSize="12"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer/@edgeMappings[name='ColumnsOfShemaTable']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_03mDwbO2Ee6VvP5JMVqsLQ"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/fr.n7.idm.project.shematables.odesign/description/shematable.odesign#//@ownedViewpoints[name='ShemaTableViewPoint']/@ownedRepresentations[name='ShemaTableDiagram']/@defaultLayer"/>
+    <target xmi:type="shematables:Tables" href="Tables.xmi#/"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

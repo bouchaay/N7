@@ -1,6 +1,0 @@
-(library
- (name be)
- (inline_tests)
- (modules util be)
- (preprocess
-  (pps ppx_inline_test)))
