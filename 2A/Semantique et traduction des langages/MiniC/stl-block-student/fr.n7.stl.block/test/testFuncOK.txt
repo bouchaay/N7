@@ -1,0 +1,16 @@
+test_func {
+
+    int a = 1;
+    int b = 2;
+
+    int add(int x, int y) {
+        return x + y;
+    }
+
+    int c = 3;
+    int d = 4;
+
+    int e = add(a, b);
+    print e;
+
+}

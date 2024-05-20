@@ -1,0 +1,5 @@
+test {
+
+    typedef struct Point { int x; int y;} Point;
+    Point p = {0, 0};
+}

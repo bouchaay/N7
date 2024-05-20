@@ -1,0 +1,13 @@
+test_func {
+
+    int a = 1;
+    int b = 2;
+
+    int add(int x, int y) {
+        return false;
+    }
+    
+    boolean e = add(a, b);
+    print e;
+
+}

@@ -1,0 +1,4 @@
+test {
+	int a = 5;
+	float b = (int) a;
+}

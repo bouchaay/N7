@@ -1,0 +1,6 @@
+test_const {
+
+  const int test = 0;
+  print test;
+
+}

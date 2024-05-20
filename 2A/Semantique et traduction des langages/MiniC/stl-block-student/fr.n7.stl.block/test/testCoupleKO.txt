@@ -1,0 +1,4 @@
+test {
+    int c = 1;
+    int a = snd c;
+}

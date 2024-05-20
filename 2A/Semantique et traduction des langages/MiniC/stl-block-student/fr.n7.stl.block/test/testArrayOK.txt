@@ -1,0 +1,8 @@
+test {
+	String food5[] = new String[2];
+	String b5 = "brownie";
+	String p5 = "pizza";
+	food5[0] = b5;
+	food5[1] = p5;
+	String a = food5[0];
+}

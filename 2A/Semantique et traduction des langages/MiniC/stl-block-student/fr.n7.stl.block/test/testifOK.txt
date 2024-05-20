@@ -1,0 +1,12 @@
+test_if {
+    int a = 5;
+    int b = 3;
+    int somme = 0;
+    if (a > 0) {
+        somme = a + b;
+    } else {
+    	somme = 20;
+    }
+    print somme;
+    return somme;
+}
