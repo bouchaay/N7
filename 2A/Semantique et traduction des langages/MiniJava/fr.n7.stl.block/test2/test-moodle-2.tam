@@ -1,0 +1,39 @@
+main
+PUSH 0
+LOADL 1
+SUBR MAlloc
+CALL (SB) begin:A
+STORE (0) 0[SB]
+CALL (SB) begin:m
+PUSH 0
+LOADL 1
+SUBR MAlloc
+CALL (SB) begin:B
+STORE (0) 0[SB]
+CALL (SB) begin:m
+LOAD (0) 0[SB]
+STORE (0) 0[SB]
+CALL (SB) begin:m
+LOADL 1
+SUBR IOut
+LOADL 10
+SUBR COut
+HALT
+endmain
+m
+LOADL 2
+SUBR IOut
+LOADL 10
+SUBR COut
+RETURN (0) 0
+end of m
+RETURN (0) 0
+m
+LOADL 1
+SUBR IOut
+LOADL 10
+SUBR COut
+RETURN (0) 0
+end of m
+RETURN (0) 0
+

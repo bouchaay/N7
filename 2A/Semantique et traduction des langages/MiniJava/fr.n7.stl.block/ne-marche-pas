@@ -1,0 +1,5 @@
+- L'enchaînement des constructeurs ne fonctionne pas (this(-1)) dans le fichier test-moodle-1.java.
+	Il est nécessaire dans ce cas d'appeler un constructeur déjà défini dans la liste des constructeurs
+	avec le même type de paramètres en utilisant this. Nous n'avons pas réussi à le faire.
+	
+- L'accès à une variable ou une méthode statique définie dans la classe A depuis une autre classe B ne fonctionne pas.

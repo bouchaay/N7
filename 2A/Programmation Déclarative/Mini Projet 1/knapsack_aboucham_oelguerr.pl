@@ -8,7 +8,7 @@
 poids(morceau_du_pont_Saint_Pierre, 10).
 poids(cachous, 1).
 poids(stock_de_ballons_de_rugueubi, 7).
-poids(goodies_Airbus_et_Cité_de_l_Espace, 6).
+poids(goodies_Airbus_et_Cite_de_l_Espace, 6).
 poids(ordinateur_salle_TP_N7, 10).
 
 /****************************************************/
@@ -20,7 +20,7 @@ poids_sac([Objet|Liste], Poids) :- poids(Objet, PoidsObjet), poids_sac(Liste, Po
 /****************************************************/
 /*         Defintion du prédicat sous_liste/2       */
 /****************************************************/
-sous_liste([], []).
+sous_liste(Liste, []).
 sous_liste([T|Q1], [T|Q2]) :- sous_liste(Q1, Q2).
 sous_liste([_|Q1], [T|Q2]) :- sous_liste(Q1,[T|Q2]).
 
@@ -41,7 +41,7 @@ meilleur_poids_1(L, S1) :- acceptable(L, S1), poids_sac(S1, P1), \+ (acceptable(
 utilite(morceau_du_pont_Saint_Pierre, 1).
 utilite(cachous, 2).
 utilite(stock_de_ballons_de_rugueubi, 1).
-utilite(goodies_Airbus_et_Cité_de_l_Espace, 3).
+utilite(goodies_Airbus_et_Cite_de_l_Espace, 3).
 utilite(ordinateur_salle_TP_N7, 2).
 /* Prédicat utilite_sac */
 utilite_sac([], 0).
@@ -66,3 +66,6 @@ p1_sup_p2(S1, S2) :- poids_sac(S1, P1), acceptable(L, S2), poids_sac(S2, P2), ac
 poids_max(L, S, [H|T]) :- p1_sup_p2(S, H), poids_max(L, S, T).
 /* Meilleur poids */
 meilleur_poids_2(L, S) :- p(L, [], X), poids_max(L, S, X).
+
+
+% On a eu un problème de stackoverflow dans le test de poids_max.

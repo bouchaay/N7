@@ -1,0 +1,12 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "classes",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        // change the path to your Z3 install if necessary
+        "z3/z3-4.8.10-x64-ubuntu-18.04/bin/com.microsoft.z3.jar"
+        ],
+    "files.watcherExclude": {
+        "**/target": true
+    }
+}

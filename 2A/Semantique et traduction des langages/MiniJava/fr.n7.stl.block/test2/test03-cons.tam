@@ -1,0 +1,27 @@
+main
+PUSH 1
+LOADL 1
+SUBR MAlloc
+CALL (SB) begin:A
+STORE (1) 0[SB]
+PUSH 1
+LOADL 1
+SUBR MAlloc
+LOADL 5
+CALL (SB) begin:Aint
+STORE (1) 1[SB]
+LOAD (1) 1[HT]
+SUBR IOut
+LOADL 10
+SUBR COut
+HALT
+endmain
+LOAD (1) -1[LB]
+STORE (1) 0[HT]
+RETURN (0) 0
+;(- 1)
+LOADL 1
+SUBR INeg
+STORE (1) 0[HT]
+RETURN (0) 0
+
